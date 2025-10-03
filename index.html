@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ootahgonahApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ootahgonah - A Living Portal of Light</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body ng-controller="MainController">
+<div class="cosmic-bg" id="cosmicBg"></div>
+
+<!-- Navigation -->
+<nav>
+    <a href="#" class="logo">Ootahgonah</a>
+    <ul class="nav-links">
+        <li><a href="#home" ng-click="scrollTo('home')">Home</a></li>
+        <li><a href="#vision" ng-click="scrollTo('vision')">Vision</a></li>
+        <li><a href="#constellation" ng-click="scrollTo('constellation')">Constellation</a></li>
+        <li><a href="#offerings" ng-click="scrollTo('offerings')">Offerings</a></li>
+        <li><a href="#contact" ng-click="scrollTo('contact')">Join the Circle</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="sacred-circle">
+        <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(212, 175, 55, 0.3)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="60" fill="none" stroke="rgba(212, 175, 55, 0.4)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="40" fill="none" stroke="rgba(212, 175, 55, 0.5)" stroke-width="0.5"/>
+            <path d="M 100 20 L 100 180 M 20 100 L 180 100" stroke="rgba(212, 175, 55, 0.3)" stroke-width="0.5"/>
+            <path d="M 41.7 41.7 L 158.3 158.3 M 158.3 41.7 L 41.7 158.3" stroke="rgba(212, 175, 55, 0.3)" stroke-width="0.5"/>
+        </svg>
+    </div>
+    <h1>{{hero.title}}</h1>
+    <p class="tagline">{{hero.tagline}}</p>
+    <p>{{hero.description}}</p>
+    <a href="#vision" ng-click="scrollTo('vision')" class="cta-button">{{hero.buttonText}}</a>
+</section>
+
+<!-- Vision Section -->
+<section id="vision">
+    <h2 class="section-title">{{vision.title}}</h2>
+    <div class="vision-content">
+        <p>{{vision.description}}</p>
+        <div class="quote">
+            {{vision.quote}}
+        </div>
+        <p>{{vision.closing}}</p>
+    </div>
+</section>
+
+<!-- Constellation Section -->
+<section id="constellation">
+    <h2 class="section-title">{{constellation.title}}</h2>
+    <p style="text-align: center; font-size: 1.3rem; margin-bottom: 3rem;">{{constellation.subtitle}}</p>
+
+    <div class="team-grid">
+        <div class="team-member" ng-repeat="member in constellation.members" ng-class="{'fade-in': member.visible}">
+            <div class="member-photo" ng-if="member.photo">
+                <img ng-src="{{member.photo}}" alt="{{member.name}}">
+            </div>
+            <div class="member-info">
+                <h3>{{member.name}}</h3>
+                <p class="role">{{member.role}}</p>
+                <p>{{member.description}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Offerings Section -->
+<section id="offerings">
+    <h2 class="section-title">{{offerings.title}}</h2>
+    <div class="offerings-grid">
+        <div class="offering-card" ng-repeat="offering in offerings.items" ng-class="{'fade-in': offering.visible}">
+            <div class="offering-icon">{{offering.icon}}</div>
+            <h3>{{offering.name}}</h3>
+            <p>{{offering.description}}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2 class="section-title">{{contact.title}}</h2>
+    <p style="text-align: center; font-size: 1.3rem; margin-bottom: 2rem; font-style: italic; color: var(--ethereal-blue);">{{contact.subtitle}}</p>
+
+    <div class="contact-form">
+        <form name="contactForm" ng-submit="submitForm()" novalidate>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" ng-model="formData.name" required>
+                <span class="error" ng-show="contactForm.name.$touched && contactForm.name.$invalid">Name is required</span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" ng-model="formData.email" required>
+                <span class="error" ng-show="contactForm.email.$touched && contactForm.email.$invalid">Valid email is required</span>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" ng-model="formData.phone">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" rows="5" ng-model="formData.message"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" ng-disabled="contactForm.$invalid">Enter the Portal</button>
+        </form>
+
+        <div class="success-message" ng-show="formSubmitted">
+            <p>{{successMessage}}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>{{footer.text}}</p>
+</footer>
+
+<!-- AngularJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+<script src="app.js"></script>
+<script src="controllers/mainController.js"></script>
+<script src="services/dataService.js"></script>
+<script src="directives/cosmicBackground.js"></script>
+</body>
+</html>
