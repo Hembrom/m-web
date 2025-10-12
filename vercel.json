@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cp V6-S3-ready.html index.html",
+  "outputDirectory": ".",
+  "framework": null,
+  "installCommand": "echo 'No dependencies to install'"
+}

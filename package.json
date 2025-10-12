@@ -1,0 +1,13 @@
+{
+  "name": "ootahgonah-website",
+  "version": "1.0.0",
+  "description": "Ootahgonah - A Healing Portal of Love & Light",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'",
+    "start": "echo 'Static site deployed'"
+  },
+  "keywords": ["healing", "wellness", "spiritual"],
+  "author": "Ootahgonah Team",
+  "license": "MIT"
+}
