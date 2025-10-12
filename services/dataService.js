@@ -114,7 +114,7 @@ angular.module('ootahgonahApp')
 
     this.getFooterData = function() {
         return {
-            text: '© 2024 Ootahgonah. A living vision of remembrance and light.'
+            text: '© 2025 Ootahgonah. A living vision of remembrance and light.'
         };
     };
 });
