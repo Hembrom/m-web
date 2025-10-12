@@ -1,12 +1,6 @@
 {
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/V6.html"
-    },
-    {
-      "source": "/index.html",
-      "destination": "/V6.html"
-    }
-  ]
+  "buildCommand": "cp V6.html index.html",
+  "outputDirectory": ".",
+  "framework": null,
+  "installCommand": "echo 'No dependencies to install'"
 }
