@@ -10,6 +10,21 @@ angular.module('ootahgonahApp')
     $scope.contact = DataService.getContactData();
     $scope.footer = DataService.getFooterData();
 
+    // Ensure the following data is initialized
+    $scope.hero = {
+        title: 'Welcome to Ootahgonah',
+        tagline: 'A Haven of Healing and Warmth',
+        description: 'Discover the gifts of healing and the circle of care.',
+        buttonText: 'Learn More'
+    };
+
+    $scope.vision = {
+        title: 'Our Purpose',
+        description: 'At Ootahgonah, we believe in the power of healing...',
+        quote: '“Healing is a matter of time, but it is sometimes also a matter of opportunity.”',
+        closing: 'Join us in this journey of care and compassion.'
+    };
+
     // Form data model
     $scope.formData = {
         name: '',

@@ -68,46 +68,6 @@ In the garden of the heart, love blooms eternal, healing all that it touches wit
 <div class="team-grid">
 <div class="team-member fade-in">
 <div class="member-photo">
-<img src="assets/images/amit.jpg" alt="Amit">
-</div>
-<div class="member-info">
-<h3>Amit</h3>
-<p class="role">Visionary Healer</p>
-<p>A gentle soul dedicated to creating spaces of profound healing and transformation through ancient wisdom and modern love.</p>
-</div>
-</div>
-<div class="team-member fade-in">
-<div class="member-photo">
-<img src="assets/images/andrea.jpg" alt="Andrea">
-</div>
-<div class="member-info">
-<h3>Andrea</h3>
-<p class="role">Heart Whisperer</p>
-<p>An intuitive guide who helps others reconnect with their deepest truths and embrace their authentic healing journey.</p>
-</div>
-</div>
-<div class="team-member fade-in">
-<div class="member-photo">
-<img src="assets/images/apurva.jpg" alt="Apurva">
-</div>
-<div class="member-info">
-<h3>Apurva</h3>
-<p class="role">Sacred Guardian</p>
-<p>A compassionate keeper of sacred traditions, weaving ancient healing practices with contemporary wisdom.</p>
-</div>
-</div>
-<div class="team-member fade-in">
-<div class="member-photo">
-<img src="assets/images/heather.jpg" alt="Heather">
-</div>
-<div class="member-info">
-<h3>Heather</h3>
-<p class="role">Divine Nurturer</p>
-<p>A loving presence who creates safe havens for souls to heal, grow, and remember their innate wholeness.</p>
-</div>
-</div>
-<div class="team-member fade-in">
-<div class="member-photo">
 <img src="assets/images/sohra.jpg" alt="Sohra">
 </div>
 <div class="member-info">
@@ -205,36 +165,3 @@ In the garden of the heart, love blooms eternal, healing all that it touches wit
 </section>
 <section id="contact">
 <h2 class="section-title">Connect with Love</h2>
-<p style="text-align: center; font-size: 1.5rem; margin-bottom: 4rem; font-style: italic; color: var(--deep-indigo); font-family: 'Dancing Script', cursive;">Open your heart and step into our circle of healing</p>
-<div class="contact-form">
-<form name="contactForm" onsubmit="return submitForm(event)">
-<div class="form-group">
-<label for="name">Your Beautiful Name</label>
-<input type="text" id="name" name="name" required>
-</div>
-<div class="form-group">
-<label for="email">Email Address</label>
-<input type="email" id="email" name="email" required>
-</div>
-<div class="form-group">
-<label for="phone">Phone Number</label>
-<input type="tel" id="phone" name="phone">
-</div>
-<div class="form-group">
-<label for="message">Share from Your Heart</label>
-<textarea id="message" name="message" rows="5" placeholder="What brings you to our healing circle?"></textarea>
-</div>
-<button type="submit" class="submit-btn">Send with Love 🌿</button>
-</form>
-</div>
-</section>
-<footer>
-<p>With infinite love and gratitude, we hold space for all beings on their journey home to wholeness. 🌿</p>
-</footer>
-<script>
-function createMysticalEssence(){const mysticalBg=document.getElementById('mysticalBg');function addEssence(){const essences=['🌿','🦋','✨','🌸','🔮','🌙','⭐','🌺','💫','🍃'];const essence=document.createElement('div');essence.className='floating-essence';essence.innerHTML=essences[Math.floor(Math.random()*essences.length)];const colors=['#2D5A27','#4A9B8B','#8E44AD','#5DADE2','#F39C12'];essence.style.color=colors[Math.floor(Math.random()*colors.length)];essence.style.left=Math.random()*100+'%';essence.style.animationDelay=Math.random()*22+'s';essence.style.animationDuration=(22+Math.random()*12)+'s';mysticalBg.appendChild(essence);setTimeout(()=>{if(essence.parentNode){essence.parentNode.removeChild(essence)}},34000)}setInterval(addEssence,3500);for(let i=0;i<8;i++){setTimeout(addEssence,i*1200)}}
-function submitForm(event){event.preventDefault();const form=event.target;const formData=new FormData(form);alert('Thank you for reaching out with love! We will connect with you soon. 🌿');form.reset();return false}
-document.addEventListener('DOMContentLoaded',createMysticalEssence);
-</script>
-</body>
-</html>

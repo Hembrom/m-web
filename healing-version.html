@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ootahgonahApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ootahgonah - A Haven of Healing and Warmth</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body ng-controller="MainController">
+<div class="cosmic-bg" id="cosmicBg"></div>
+
+<!-- Navigation -->
+<nav>
+    <a href="#" class="logo">Ootahgonah</a>
+    <ul class="nav-links">
+        <li><a href="#home" ng-click="scrollTo('home')">Welcome</a></li>
+        <li><a href="#vision" ng-click="scrollTo('vision')">Our Purpose</a></li>
+        <li><a href="#constellation" ng-click="scrollTo('constellation')">The Circle</a></li>
+        <li><a href="#offerings" ng-click="scrollTo('offerings')">Gifts of Healing</a></li>
+        <li><a href="#contact" ng-click="scrollTo('contact')">Reach Out</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="sacred-circle">
+        <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(212, 175, 55, 0.3)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="60" fill="none" stroke="rgba(212, 175, 55, 0.4)" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="40" fill="none" stroke="rgba(212, 175, 55, 0.5)" stroke-width="0.5"/>
+            <path d="M 100 20 L 100 180 M 20 100 L 180 100" stroke="rgba(212, 175, 55, 0.3)" stroke-width="0.5"/>
+            <path d="M 41.7 41.7 L 158.3 158.3 M 158.3 41.7 L 41.7 158.3" stroke="rgba(212, 175, 55, 0.3)" stroke-width="0.5"/>
+        </svg>
+    </div>
+    <h1>{{hero.title}}</h1>
+    <p class="tagline">{{hero.tagline}}</p>
+    <p>{{hero.description}}</p>
+    <a href="#vision" ng-click="scrollTo('vision')" class="cta-button">{{hero.buttonText}}</a>
+</section>
+
+<!-- Vision Section -->
+<section id="vision">
+    <h2 class="section-title">{{vision.title}}</h2>
+    <div class="vision-content">
+        <p>{{vision.description}}</p>
+        <div class="quote">
+            {{vision.quote}}
+        </div>
+        <p>{{vision.closing}}</p>
+    </div>
+</section>
+
+<!-- Constellation Section -->
+<section id="constellation">
+    <h2 class="section-title">{{constellation.title}}</h2>
+    <p style="text-align: center; font-size: 1.3rem; margin-bottom: 3rem;">{{constellation.subtitle}}</p>
+
+    <div class="team-grid">
+        <div class="team-member" ng-repeat="member in constellation.members" ng-class="{'fade-in': member.visible}">
+            <div class="member-photo" ng-if="member.photo">
+                <img ng-src="{{member.photo}}" alt="{{member.name}}">
+            </div>
+            <div class="member-info">
+                <h3>{{member.name}}</h3>
+                <p class="role">{{member.role}}</p>
+                <p>{{member.description}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Offerings Section -->
+<section id="offerings">
+    <h2 class="section-title">{{offerings.title}}</h2>
+    <div class="offerings-grid">
+        <div class="offering-card" ng-repeat="offering in offerings.items" ng-class="{'fade-in': offering.visible}">
+            <div class="offering-icon">{{offering.icon}}</div>
+            <h3>{{offering.name}}</h3>
+            <p>{{offering.description}}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <h2 class="section-title">{{contact.title}}</h2>
+    <p style="text-align: center; font-size: 1.3rem; margin-bottom: 2rem; font-style: italic; color: var(--ethereal-blue);">{{contact.subtitle}}</p>
+
+    <div class="contact-form">
+        <form name="contactForm" ng-submit="submitForm()" novalidate>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" ng-model="formData.name" required>
+                <span class="error" ng-show="contactForm.name.$touched && contactForm.name.$invalid">Name is required</span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" ng-model="formData.email" required>
+                <span class="error" ng-show="contactForm.email.$touched && contactForm.email.$invalid">Valid email is required</span>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" ng-model="formData.phone">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" rows="5" ng-model="formData.message"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" ng-disabled="contactForm.$invalid">Enter the Haven</button>
+        </form>
+
+        <div class="success-message" ng-show="formSubmitted">
+            <p>{{successMessage}}</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>{{footer.text}}</p>
+</footer>
+
+<!-- AngularJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+
+<!-- Inline AngularJS App - Fallback Configuration -->
+<script>
+// Define the AngularJS module
+angular.module('ootahgonahApp', [])
+
+// Define the MainController with inline data
+.controller('MainController', ['$scope', '$timeout', function($scope, $timeout) {
+    
+    // Initialize data directly in controller
+    $scope.hero = {
+        title: 'Welcome to Ootahgonah',
+        tagline: 'A Haven of Healing and Warmth',
+        description: 'Discover the gifts of healing and the circle of care.',
+        buttonText: 'Learn More'
+    };
+
+    $scope.vision = {
+        title: 'Our Purpose',
+        description: 'At Ootahgonah, we believe in the power of healing through connection, compassion, and ancient wisdom. Our sacred space offers a sanctuary where hearts can mend and spirits can soar.',
+        quote: '"Healing is a matter of time, but it is sometimes also a matter of opportunity."',
+        closing: 'Join us in this journey of care and compassion.'
+    };
+
+    $scope.constellation = {
+        title: 'The Circle',
+        subtitle: 'Our constellation of healers and guides',
+        members: [
+            {
+                name: 'Sarah Moonwhisper',
+                role: 'Healing Guide',
+                description: 'A compassionate soul dedicated to the ancient arts of energy healing.',
+                visible: false
+            },
+            {
+                name: 'Marcus Starweaver',
+                role: 'Wisdom Keeper',
+                description: 'Guardian of sacred knowledge and spiritual practices.',
+                visible: false
+            }
+        ]
+    };
+
+    $scope.offerings = {
+        title: 'Gifts of Healing',
+        items: [
+            {
+                name: 'Energy Healing',
+                description: 'Restore balance and harmony through gentle energy work.',
+                icon: '✨',
+                visible: false
+            },
+            {
+                name: 'Sacred Ceremonies',
+                description: 'Participate in transformative ritual experiences.',
+                icon: '🌙',
+                visible: false
+            },
+            {
+                name: 'Wisdom Circles',
+                description: 'Join our community in sharing knowledge and support.',
+                icon: '🔮',
+                visible: false
+            }
+        ]
+    };
+
+    $scope.contact = {
+        title: 'Reach Out',
+        subtitle: 'Step through the portal and connect with us'
+    };
+
+    $scope.footer = {
+        text: '© 2024 Ootahgonah. A sacred space of healing and light.'
+    };
+
+    // Form data model
+    $scope.formData = {
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+    };
+
+    $scope.formSubmitted = false;
+    $scope.successMessage = '';
+
+    // Smooth scroll function
+    $scope.scrollTo = function(elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    };
+
+    // Form submission handler
+    $scope.submitForm = function() {
+        if ($scope.contactForm.$valid) {
+            console.log('Form submitted:', $scope.formData);
+
+            $scope.successMessage = 'Thank you for stepping through the portal. We will connect with you soon.';
+            $scope.formSubmitted = true;
+
+            // Reset form after 3 seconds
+            $timeout(function() {
+                $scope.formData = {
+                    name: '',
+                    email: '',
+                    phone: '',
+                    message: ''
+                };
+                $scope.contactForm.$setPristine();
+                $scope.contactForm.$setUntouched();
+                $scope.formSubmitted = false;
+            }, 3000);
+        }
+    };
+
+    // Initialize animations
+    $timeout(function() {
+        // Make elements visible for animation
+        $scope.constellation.members.forEach(function(member) {
+            member.visible = true;
+        });
+        $scope.offerings.items.forEach(function(offering) {
+            offering.visible = true;
+        });
+    }, 500);
+}]);
+</script>
+
+<!-- Remove the external script references that might be causing issues -->
+<!-- 
+<script src="app.js"></script>
+<script src="controllers/mainController.js"></script>
+<script src="services/dataService.js"></script>
+<script src="directives/cosmicBackground.js"></script>
+-->
+</body>
+</html>
