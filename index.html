@@ -948,7 +948,7 @@
     </div>
     
     <!-- Hidden Audio Element -->
-    <audio id="ambientAudio" loop preload="auto" autoplay>
+    <audio id="ambientAudio" loop preload="auto" autoplay muted>
         <source src="assets/sounds/chips1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -1175,28 +1175,47 @@
             document.addEventListener(eventType, function() {
                 if (!hasInteracted) {
                     hasInteracted = true;
-                    if (audioElement && audioElement.paused) {
-                        playAudio();
+                    if (audioElement) {
+                        audioElement.muted = false;
+                        if (audioElement.paused) {
+                            playAudio();
+                        }
                     }
                 }
             }, { once: true });
         });
         
-        // Initialize audio state when page loads
-        if (audioElement) {
-            // Try to autoplay immediately (some browsers allow this)
-            audioElement.play().then(() => {
-                updateButtonState();
-            }).catch(() => {
-                // Autoplay failed - wait for user interaction
-                console.log('Autoplay blocked - waiting for user interaction');
-            });
-        }
-        
         // Initialize audio control when page loads
         document.addEventListener('DOMContentLoaded', function() {
             audioElement = document.getElementById('ambientAudio');
             audioControl = document.getElementById('audioControl');
+            
+            // Initialize audio state when elements are ready
+            if (audioElement) {
+                // Set volume to ensure it's audible
+                audioElement.volume = 0.3;
+                
+                // Try multiple autoplay methods
+                const tryAutoplay = async () => {
+                    try {
+                        // Start muted autoplay first
+                        await audioElement.play();
+                        // Then unmute after a brief moment
+                        setTimeout(() => {
+                            audioElement.muted = false;
+                        }, 500);
+                        isAudioPlaying = true;
+                        updateButtonState();
+                        console.log('Audio autoplay successful');
+                    } catch (error) {
+                        console.log('Autoplay blocked - waiting for user interaction:', error);
+                        // Try unmuted version on user interaction
+                        audioElement.muted = false;
+                    }
+                };
+                
+                tryAutoplay();
+            }
             
             // Set initial volume
             if (audioElement) {
