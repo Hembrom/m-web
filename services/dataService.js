@@ -155,12 +155,10 @@ angular.module('ootahgonahApp')
         ];
     };
 
-    // Get today's quote based on the date
+    // Get a random quote on each page load
     this.getTodaysQuote = function() {
         const quotes = this.getDailyQuotes();
-        const today = new Date();
-        const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-        const quoteIndex = dayOfYear % quotes.length;
-        return quotes[quoteIndex];
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        return quotes[randomIndex];
     };
 });
