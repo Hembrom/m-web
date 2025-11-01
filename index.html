@@ -814,6 +814,76 @@
             font-family: 'Dancing Script', cursive;
         }
         
+        /* Audio Control Floating Button */
+        .audio-control {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            z-index: 1001;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--forest-emerald), var(--misty-teal));
+            border: 2px solid var(--healing-mint);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.6s ease;
+            box-shadow: 0 8px 25px var(--ethereal-aura);
+            backdrop-filter: blur(10px);
+        }
+        
+        .audio-control:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 15px 40px var(--mystic-glow);
+            background: linear-gradient(135deg, var(--dawn-purple), var(--golden-sunbeam));
+        }
+        
+        .audio-control .icon {
+            font-size: 1.8rem;
+            color: white;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .audio-control.playing .icon::before {
+            content: '⏸️';
+        }
+        
+        .audio-control.paused .icon::before {
+            content: '🎵';
+        }
+        
+        /* Volume indicator */
+        .audio-control::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 15px;
+            height: 15px;
+            background: var(--golden-sunbeam);
+            border-radius: 50%;
+            opacity: 0;
+            animation: soundWave 2s ease-in-out infinite;
+        }
+        
+        .audio-control.playing::after {
+            opacity: 1;
+        }
+        
+        @keyframes soundWave {
+            0%, 100% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 { font-size: 3.5rem; }
@@ -846,6 +916,15 @@
             }
             .mystical-button { padding: 1.5rem 3.5rem; font-size: 1.2rem; }
             body { padding-bottom: 100px; }
+            .audio-control {
+                bottom: 75px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+            .audio-control .icon {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -862,6 +941,17 @@
             <li><a href="#contact" ng-click="scrollTo('contact')">Join the Circle</a></li>
         </ul>
     </nav>
+
+    <!-- Audio Control -->
+    <div class="audio-control paused" id="audioControl" onclick="toggleAudio()">
+        <div class="icon"></div>
+    </div>
+    
+    <!-- Hidden Audio Element -->
+    <audio id="ambientAudio" loop preload="auto">
+        <source src="assets/sounds/chips1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -1032,6 +1122,68 @@
         
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', createMysticalEssence);
+        
+        // Audio Control Functionality
+        let isAudioPlaying = false;
+        let audioElement = null;
+        let audioControl = null;
+        
+        function toggleAudio() {
+            if (!audioElement) {
+                audioElement = document.getElementById('ambientAudio');
+                audioControl = document.getElementById('audioControl');
+            }
+            
+            if (isAudioPlaying) {
+                pauseAudio();
+            } else {
+                playAudio();
+            }
+        }
+        
+        function playAudio() {
+            if (audioElement) {
+                audioElement.volume = 0.3; // Set gentle volume
+                audioElement.play().then(() => {
+                    isAudioPlaying = true;
+                    audioControl.classList.remove('paused');
+                    audioControl.classList.add('playing');
+                }).catch((error) => {
+                    console.log('Audio play failed:', error);
+                    // Some browsers require user interaction first
+                });
+            }
+        }
+        
+        function pauseAudio() {
+            if (audioElement) {
+                audioElement.pause();
+                isAudioPlaying = false;
+                audioControl.classList.remove('playing');
+                audioControl.classList.add('paused');
+            }
+        }
+        
+        // Auto-play when user first interacts with the page (respects browser policies)
+        let hasInteracted = false;
+        document.addEventListener('click', function() {
+            if (!hasInteracted) {
+                hasInteracted = true;
+                // Optional: Auto-start ambient sound on first click
+                // playAudio();
+            }
+        });
+        
+        // Initialize audio control when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            audioElement = document.getElementById('ambientAudio');
+            audioControl = document.getElementById('audioControl');
+            
+            // Set initial volume
+            if (audioElement) {
+                audioElement.volume = 0.3;
+            }
+        });
     </script>
 </body>
 </html>
