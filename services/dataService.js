@@ -155,10 +155,18 @@ angular.module('ootahgonahApp')
         ];
     };
 
-    // Get a random quote on each page load
+    // Get today's quote based on date (round-robin: one quote per day)
     this.getTodaysQuote = function() {
         const quotes = this.getDailyQuotes();
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-        return quotes[randomIndex];
+        
+        // Calculate days since epoch (Jan 1, 1970)
+        const today = new Date();
+        const epochStart = new Date(1970, 0, 1);
+        const daysSinceEpoch = Math.floor((today - epochStart) / (1000 * 60 * 60 * 24));
+        
+        // Use modulo to cycle through quotes (31 quotes cycle)
+        const quoteIndex = daysSinceEpoch % quotes.length;
+        
+        return quotes[quoteIndex];
     };
 });
