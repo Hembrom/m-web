@@ -948,7 +948,7 @@
     </div>
     
     <!-- Hidden Audio Element -->
-    <audio id="ambientAudio" loop preload="auto">
+    <audio id="ambientAudio" autoplay loop preload="auto">
         <source src="assets/sounds/chips1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -1167,7 +1167,7 @@
             }
         }
         
-        // Chrome-optimized autoplay - aggressive immediate start
+        // Simple autoplay approach (like thetranquillity.co.uk)
         let hasInteracted = false;
         
         // Fallback: Try on first user interaction if autoplay blocked
@@ -1185,39 +1185,10 @@
             audioElement = document.getElementById('ambientAudio');
             audioControl = document.getElementById('audioControl');
             
-            // Chrome-optimized autoplay
+            // Set volume and let HTML5 autoplay attribute handle the rest
             if (audioElement) {
-                // Set volume immediately
                 audioElement.volume = 0.3;
-                
-                // Detect Chrome
-                const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-                
-                // Aggressive autoplay for Chrome
-                const startAudio = async () => {
-                    try {
-                        // Force play immediately with sound
-                        await audioElement.play();
-                        isAudioPlaying = true;
-                        updateButtonState();
-                        console.log('Chrome autoplay successful - audio started with sound');
-                    } catch (error) {
-                        console.log('Autoplay blocked, waiting for user interaction:', error);
-                        // On block, try one more time after tiny delay
-                        setTimeout(async () => {
-                            try {
-                                await audioElement.play();
-                                isAudioPlaying = true;
-                                updateButtonState();
-                            } catch (e) {
-                                console.log('Second attempt failed, needs user gesture');
-                            }
-                        }, 100);
-                    }
-                };
-                
-                // Start immediately
-                startAudio();
+                audioElement.preload = "auto";
             }
             
             // Set initial volume
