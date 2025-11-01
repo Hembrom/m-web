@@ -948,7 +948,7 @@
     </div>
     
     <!-- Hidden Audio Element -->
-    <audio id="ambientAudio" loop preload="auto" autoplay muted>
+    <audio id="ambientAudio" loop preload="auto">
         <source src="assets/sounds/chips1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -1167,20 +1167,15 @@
             }
         }
         
-        // Auto-play when user first interacts with the page (respects browser policies)
+        // Chrome-optimized autoplay - aggressive immediate start
         let hasInteracted = false;
         
-        // Try multiple events to start audio
-        ['click', 'keydown', 'scroll', 'mousemove'].forEach(eventType => {
+        // Fallback: Try on first user interaction if autoplay blocked
+        ['click', 'keydown', 'touchstart'].forEach(eventType => {
             document.addEventListener(eventType, function() {
-                if (!hasInteracted) {
+                if (!hasInteracted && audioElement && audioElement.paused) {
                     hasInteracted = true;
-                    if (audioElement) {
-                        audioElement.muted = false;
-                        if (audioElement.paused) {
-                            playAudio();
-                        }
-                    }
+                    playAudio();
                 }
             }, { once: true });
         });
@@ -1190,31 +1185,39 @@
             audioElement = document.getElementById('ambientAudio');
             audioControl = document.getElementById('audioControl');
             
-            // Initialize audio state when elements are ready
+            // Chrome-optimized autoplay
             if (audioElement) {
-                // Set volume to ensure it's audible
+                // Set volume immediately
                 audioElement.volume = 0.3;
                 
-                // Try multiple autoplay methods
-                const tryAutoplay = async () => {
+                // Detect Chrome
+                const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+                
+                // Aggressive autoplay for Chrome
+                const startAudio = async () => {
                     try {
-                        // Start muted autoplay first
+                        // Force play immediately with sound
                         await audioElement.play();
-                        // Then unmute after a brief moment
-                        setTimeout(() => {
-                            audioElement.muted = false;
-                        }, 500);
                         isAudioPlaying = true;
                         updateButtonState();
-                        console.log('Audio autoplay successful');
+                        console.log('Chrome autoplay successful - audio started with sound');
                     } catch (error) {
-                        console.log('Autoplay blocked - waiting for user interaction:', error);
-                        // Try unmuted version on user interaction
-                        audioElement.muted = false;
+                        console.log('Autoplay blocked, waiting for user interaction:', error);
+                        // On block, try one more time after tiny delay
+                        setTimeout(async () => {
+                            try {
+                                await audioElement.play();
+                                isAudioPlaying = true;
+                                updateButtonState();
+                            } catch (e) {
+                                console.log('Second attempt failed, needs user gesture');
+                            }
+                        }, 100);
                     }
                 };
                 
-                tryAutoplay();
+                // Start immediately
+                startAudio();
             }
             
             // Set initial volume
