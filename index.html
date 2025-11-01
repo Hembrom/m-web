@@ -381,6 +381,47 @@
             text-shadow: 1px 1px 5px var(--nature-mist);
         }
         
+        /* Daily healing quote */
+        .daily-quote {
+            max-width: 680px;
+            font-size: 1.3rem;
+            line-height: 2;
+            margin: 3rem auto;
+            padding: 2.5rem 3rem;
+            font-style: italic;
+            color: var(--dawn-purple);
+            background: linear-gradient(135deg, var(--crystal-white), var(--ethereal-aura));
+            border-radius: 30px;
+            box-shadow: 0 10px 30px var(--mystic-glow);
+            border: 2px solid var(--healing-mint);
+            animation: mysticalAppear 4.2s ease forwards;
+            text-align: center;
+            position: relative;
+            transform: perspective(1000px) rotateX(2deg);
+        }
+        
+        .daily-quote::before {
+            content: '"';
+            font-size: 3.5rem;
+            color: var(--misty-teal);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 0 0 15px var(--misty-teal);
+        }
+        
+        .daily-quote::after {
+            content: '"';
+            font-size: 3.5rem;
+            color: var(--misty-teal);
+            position: absolute;
+            bottom: -20px;
+            right: 20px;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 0 0 15px var(--misty-teal);
+        }
+        
         @keyframes mysticalAppear {
             from {
                 opacity: 0;
@@ -777,6 +818,15 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 3.5rem; }
             .hero .tagline { font-size: 1.5rem; }
+            .daily-quote {
+                font-size: 1.1rem;
+                padding: 2rem;
+                margin: 2rem auto;
+            }
+            .daily-quote::before,
+            .daily-quote::after {
+                font-size: 2.5rem;
+            }
             .nav-links { 
                 gap: 1rem; 
                 padding: 0 1rem;
@@ -849,8 +899,14 @@
         </div>
         
         <h1>{{hero.title || 'Ootahgonah'}}</h1>
-        <p class="tagline">{{hero.tagline || 'A Healing Portal of Love & Light'}}</p>
-        <p>{{hero.description || 'Welcome to a sacred space where healing energy flows freely, hearts connect deeply, and love transforms all. Experience the warmth of our community as we journey together toward wholeness and light.'}}</p>
+        <p class="tagline">{{hero.tagline || 'A Haven of Healing and Warmth'}}</p>
+        
+        <!-- Daily Healing Quote -->
+        <div class="daily-quote" ng-if="dailyQuote">
+            {{dailyQuote}}
+        </div>
+        
+        <p>{{hero.description || 'Discover the gifts of healing and the circle of care.'}}</p>
         <a href="#vision" ng-click="scrollTo('vision')" class="mystical-button">{{hero.buttonText || 'Enter with Love'}}</a>
     </section>
 

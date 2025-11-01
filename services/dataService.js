@@ -117,4 +117,50 @@ angular.module('ootahgonahApp')
             text: '© 2025 Ootahgonah. A living vision of remembrance and light.'
         };
     };
+
+    // Daily Healing Quotes Collection
+    this.getDailyQuotes = function() {
+        return [
+            "The Light Body is not a future attainment — it is the forgotten dimension of your being, shimmering beneath the weight of effort.",
+            "In the garden of the heart, love blooms eternal, healing all that it touches with gentle grace and infinite compassion.",
+            "Healing begins the moment you stop fighting what is and start embracing what could be.",
+            "You are not broken; you are breaking open to let more light in.",
+            "Every breath is a chance to begin again, every heartbeat a reminder that you are alive and whole.",
+            "The wound is the place where the Light enters you.",
+            "Softness is not weakness; it is the courage to remain open when the world asks you to close.",
+            "Your sensitivity is not a burden; it is your gift to the world.",
+            "In stillness, all answers arise. In presence, all healing flows.",
+            "You carry within you all the medicine you need. Trust the wisdom of your being.",
+            "Love is not something you find; it is something you remember you are.",
+            "The portal to healing opens when you choose presence over perfection.",
+            "Your heart knows the way home. Listen deeply, trust completely.",
+            "Every soul you meet is walking their own path back to wholeness.",
+            "Compassion is the bridge between suffering and liberation.",
+            "In the space between breaths, miracles await.",
+            "Your story is not your wound; your story is how you transformed it into wisdom.",
+            "Healing happens in circles, not lines. Trust the sacred spiral of growth.",
+            "You are both the seeker and the sought, the healer and the healed.",
+            "The universe conspires to help you remember who you truly are.",
+            "In surrender, we find our greatest strength.",
+            "Your authenticity is the greatest gift you can offer the world.",
+            "Peace is not the absence of storms, but the presence of grace within them.",
+            "Every moment offers a fresh invitation to return to love.",
+            "The light in you recognizes the light in all beings.",
+            "Healing is not about becoming perfect; it's about becoming whole.",
+            "Your journey is sacred, your pain has purpose, your light is needed.",
+            "In the temple of your heart, wisdom awaits your quiet arrival.",
+            "Trust the process, even when you cannot see the path.",
+            "You are exactly where you need to be for your soul's evolution.",
+            "The medicine you seek lives in the present moment."
+        ];
+    };
+
+    // Get today's quote based on the date
+    this.getTodaysQuote = function() {
+        const quotes = this.getDailyQuotes();
+        const today = new Date();
+        const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+        const quoteIndex = dayOfYear % quotes.length;
+        return quotes[quoteIndex];
+    };
 });

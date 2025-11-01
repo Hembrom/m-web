@@ -10,12 +10,15 @@ angular.module('ootahgonahApp')
     $scope.contact = DataService.getContactData();
     $scope.footer = DataService.getFooterData();
 
+    // Get today's healing quote
+    $scope.dailyQuote = DataService.getTodaysQuote();
+
     // Ensure the following data is initialized
     $scope.hero = {
-        title: 'Welcome to Ootahgonah',
+        title: 'Ootahgonah',
         tagline: 'A Haven of Healing and Warmth',
         description: 'Discover the gifts of healing and the circle of care.',
-        buttonText: 'Learn More'
+        buttonText: 'Enter with Love'
     };
 
     $scope.vision = {
