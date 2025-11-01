@@ -948,7 +948,7 @@
     </div>
     
     <!-- Hidden Audio Element -->
-    <audio id="ambientAudio" autoplay loop preload="auto">
+    <audio id="ambientAudio" autoplay loop preload="auto" muted>
         <source src="assets/sounds/chips1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -1176,28 +1176,29 @@
                 // Set volume
                 audioElement.volume = 0.3;
                 
-                // Try to play immediately (in case autoplay attribute didn't work)
-                audioElement.play().then(() => {
+                // Muted autoplay trick: starts muted, then unmute after 100ms
+                setTimeout(() => {
+                    audioElement.muted = false;
                     isAudioPlaying = true;
                     audioControl.classList.remove('paused');
                     audioControl.classList.add('playing');
-                    console.log('Audio autoplay successful');
-                }).catch((error) => {
-                    console.log('Autoplay prevented, will start on user interaction:', error);
-                    // Fallback: start on first interaction
-                    let hasInteracted = false;
-                    ['click', 'keydown', 'touchstart', 'touchend', 'mousemove'].forEach(eventType => {
-                        document.addEventListener(eventType, function() {
-                            if (!hasInteracted && audioElement.paused) {
-                                hasInteracted = true;
-                                audioElement.play().then(() => {
-                                    isAudioPlaying = true;
-                                    audioControl.classList.remove('paused');
-                                    audioControl.classList.add('playing');
-                                }).catch(e => console.log('Play failed:', e));
-                            }
-                        }, { once: true });
-                    });
+                    console.log('Audio started with muted-unmute trick');
+                }, 100);
+                
+                // Fallback: if autoplay still blocked, start on first interaction
+                let hasInteracted = false;
+                ['click', 'keydown', 'touchstart', 'touchend'].forEach(eventType => {
+                    document.addEventListener(eventType, function() {
+                        if (!hasInteracted && audioElement.paused) {
+                            hasInteracted = true;
+                            audioElement.muted = false;
+                            audioElement.play().then(() => {
+                                isAudioPlaying = true;
+                                audioControl.classList.remove('paused');
+                                audioControl.classList.add('playing');
+                            }).catch(e => console.log('Play failed:', e));
+                        }
+                    }, { once: true });
                 });
             }
             
