@@ -1167,35 +1167,42 @@
             }
         }
         
-        // Simple autoplay approach (like thetranquillity.co.uk)
-        let hasInteracted = false;
-        
-        // Fallback: Try on first user interaction if autoplay blocked
-        ['click', 'keydown', 'touchstart'].forEach(eventType => {
-            document.addEventListener(eventType, function() {
-                if (!hasInteracted && audioElement && audioElement.paused) {
-                    hasInteracted = true;
-                    playAudio();
-                }
-            }, { once: true });
-        });
-        
         // Initialize audio control when page loads
         document.addEventListener('DOMContentLoaded', function() {
             audioElement = document.getElementById('ambientAudio');
             audioControl = document.getElementById('audioControl');
             
-            // Set volume and let HTML5 autoplay attribute handle the rest
             if (audioElement) {
-                audioElement.volume = 0.3;
-                audioElement.preload = "auto";
-            }
-            
-            // Set initial volume
-            if (audioElement) {
+                // Set volume
                 audioElement.volume = 0.3;
                 
-                // Listen for audio events to update button state
+                // Try to play immediately (in case autoplay attribute didn't work)
+                audioElement.play().then(() => {
+                    isAudioPlaying = true;
+                    audioControl.classList.remove('paused');
+                    audioControl.classList.add('playing');
+                    console.log('Audio autoplay successful');
+                }).catch((error) => {
+                    console.log('Autoplay prevented, will start on user interaction:', error);
+                    // Fallback: start on first interaction
+                    let hasInteracted = false;
+                    ['click', 'keydown', 'touchstart', 'touchend', 'mousemove'].forEach(eventType => {
+                        document.addEventListener(eventType, function() {
+                            if (!hasInteracted && audioElement.paused) {
+                                hasInteracted = true;
+                                audioElement.play().then(() => {
+                                    isAudioPlaying = true;
+                                    audioControl.classList.remove('paused');
+                                    audioControl.classList.add('playing');
+                                }).catch(e => console.log('Play failed:', e));
+                            }
+                        }, { once: true });
+                    });
+                });
+            }
+            
+            // Listen for audio events to keep button state in sync
+            if (audioElement) {
                 audioElement.addEventListener('play', function() {
                     isAudioPlaying = true;
                     audioControl.classList.remove('paused');
@@ -1207,26 +1214,7 @@
                     audioControl.classList.remove('playing');
                     audioControl.classList.add('paused');
                 });
-                
-                // Check if audio is already playing (autoplay worked)
-                if (!audioElement.paused) {
-                    isAudioPlaying = true;
-                    audioControl.classList.remove('paused');
-                    audioControl.classList.add('playing');
-                } else {
-                    // Autoplay didn't work, reset button state
-                    isAudioPlaying = false;
-                    audioControl.classList.remove('playing');
-                    audioControl.classList.add('paused');
-                }
             }
-            
-            // Try to start audio immediately
-            setTimeout(() => {
-                if (audioElement && audioElement.paused) {
-                    playAudio();
-                }
-            }, 500);
         });
     </script>
 </body>
