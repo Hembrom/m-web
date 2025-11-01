@@ -948,7 +948,7 @@
     </div>
     
     <!-- Hidden Audio Element -->
-    <audio id="ambientAudio" loop preload="auto" autoplay muted>
+    <audio id="ambientAudio" loop preload="auto" autoplay muted playsinline>
         <source src="assets/sounds/chips1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -1167,23 +1167,47 @@
             }
         }
         
-        // Auto-play when user first interacts with the page (respects browser policies)
+        function ensurePlayback(unmute = true) {
+            if (!audioElement) return;
+            if (unmute) audioElement.muted = false;
+            if (audioElement.paused) {
+                audioElement.play().catch(err => {
+                    console.log('ensurePlayback play() still blocked:', err);
+                });
+            }
+        }
+
         let hasInteracted = false;
-        
-        // Try multiple events to start audio
-        ['click', 'keydown', 'scroll', 'mousemove'].forEach(eventType => {
-            document.addEventListener(eventType, function() {
+        const interactionEvents = [
+            'click','keydown','scroll','mousemove','touchstart','touchend','pointerdown','pointermove'
+        ];
+        interactionEvents.forEach(evt => {
+            document.addEventListener(evt, () => {
                 if (!hasInteracted) {
                     hasInteracted = true;
-                    if (audioElement) {
-                        audioElement.muted = false;
-                        if (audioElement.paused) {
-                            playAudio();
-                        }
-                    }
+                    ensurePlayback(true);
                 }
-            }, { once: true });
+            }, { once: true, passive: true });
         });
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible' && !hasInteracted) {
+                ensurePlayback(true);
+            }
+        });
+
+        const autoRetryInterval = setInterval(() => {
+            if (!audioElement) return;
+            if (!audioElement.paused) {
+                clearInterval(autoRetryInterval);
+                return;
+            }
+            audioElement.play().then(() => {
+                audioElement.muted = false;
+                clearInterval(autoRetryInterval);
+                console.log('Periodic retry succeeded');
+            }).catch(() => {});
+        }, 4000);
         
         // Initialize audio control when page loads
         document.addEventListener('DOMContentLoaded', function() {
@@ -1198,22 +1222,28 @@
                 // Try multiple autoplay methods
                 const tryAutoplay = async () => {
                     try {
-                        // Start muted autoplay first
                         await audioElement.play();
-                        // Then unmute after a brief moment
                         setTimeout(() => {
                             audioElement.muted = false;
-                        }, 500);
+                            let targetVol = 0.3;
+                            let step = 0.05;
+                            audioElement.volume = 0;
+                            const fade = setInterval(() => {
+                                if (audioElement.volume + step >= targetVol) {
+                                    audioElement.volume = targetVol;
+                                    clearInterval(fade);
+                                } else {
+                                    audioElement.volume += step;
+                                }
+                            }, 120);
+                        }, 300);
                         isAudioPlaying = true;
                         updateButtonState();
-                        console.log('Audio autoplay successful');
+                        console.log('Initial autoplay success');
                     } catch (error) {
-                        console.log('Autoplay blocked - waiting for user interaction:', error);
-                        // Try unmuted version on user interaction
-                        audioElement.muted = false;
+                        console.log('Initial autoplay blocked:', error);
                     }
                 };
-                
                 tryAutoplay();
             }
             
