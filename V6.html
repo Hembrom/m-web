@@ -943,12 +943,12 @@
     </nav>
 
     <!-- Audio Control -->
-    <div class="audio-control playing" id="audioControl" onclick="toggleAudio()">
+    <div class="audio-control paused" id="audioControl" onclick="toggleAudio()">
         <div class="icon"></div>
     </div>
     
     <!-- Hidden Audio Element -->
-    <audio id="ambientAudio" loop preload="auto">
+    <audio id="ambientAudio" loop preload="auto" autoplay>
         <source src="assets/sounds/chips1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -1124,7 +1124,7 @@
         document.addEventListener('DOMContentLoaded', createMysticalEssence);
         
         // Audio Control Functionality
-        let isAudioPlaying = true; // Start as true since we want auto-play
+        let isAudioPlaying = false; // Will be updated based on actual audio state
         let audioElement = null;
         let audioControl = null;
         
@@ -1169,13 +1169,29 @@
         
         // Auto-play when user first interacts with the page (respects browser policies)
         let hasInteracted = false;
-        document.addEventListener('click', function() {
-            if (!hasInteracted) {
-                hasInteracted = true;
-                // Auto-start ambient sound on first click
-                playAudio();
-            }
+        
+        // Try multiple events to start audio
+        ['click', 'keydown', 'scroll', 'mousemove'].forEach(eventType => {
+            document.addEventListener(eventType, function() {
+                if (!hasInteracted) {
+                    hasInteracted = true;
+                    if (audioElement && audioElement.paused) {
+                        playAudio();
+                    }
+                }
+            }, { once: true });
         });
+        
+        // Initialize audio state when page loads
+        if (audioElement) {
+            // Try to autoplay immediately (some browsers allow this)
+            audioElement.play().then(() => {
+                updateButtonState();
+            }).catch(() => {
+                // Autoplay failed - wait for user interaction
+                console.log('Autoplay blocked - waiting for user interaction');
+            });
+        }
         
         // Initialize audio control when page loads
         document.addEventListener('DOMContentLoaded', function() {
@@ -1185,12 +1201,39 @@
             // Set initial volume
             if (audioElement) {
                 audioElement.volume = 0.3;
+                
+                // Listen for audio events to update button state
+                audioElement.addEventListener('play', function() {
+                    isAudioPlaying = true;
+                    audioControl.classList.remove('paused');
+                    audioControl.classList.add('playing');
+                });
+                
+                audioElement.addEventListener('pause', function() {
+                    isAudioPlaying = false;
+                    audioControl.classList.remove('playing');
+                    audioControl.classList.add('paused');
+                });
+                
+                // Check if audio is already playing (autoplay worked)
+                if (!audioElement.paused) {
+                    isAudioPlaying = true;
+                    audioControl.classList.remove('paused');
+                    audioControl.classList.add('playing');
+                } else {
+                    // Autoplay didn't work, reset button state
+                    isAudioPlaying = false;
+                    audioControl.classList.remove('playing');
+                    audioControl.classList.add('paused');
+                }
             }
             
-            // Try to auto-play immediately (may be blocked by browser policy)
+            // Try to start audio immediately
             setTimeout(() => {
-                playAudio();
-            }, 1000);
+                if (audioElement && audioElement.paused) {
+                    playAudio();
+                }
+            }, 500);
         });
     </script>
 </body>
