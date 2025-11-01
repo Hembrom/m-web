@@ -943,7 +943,7 @@
     </nav>
 
     <!-- Audio Control -->
-    <div class="audio-control paused" id="audioControl" onclick="toggleAudio()">
+    <div class="audio-control playing" id="audioControl" onclick="toggleAudio()">
         <div class="icon"></div>
     </div>
     
@@ -1124,7 +1124,7 @@
         document.addEventListener('DOMContentLoaded', createMysticalEssence);
         
         // Audio Control Functionality
-        let isAudioPlaying = false;
+        let isAudioPlaying = true; // Start as true since we want auto-play
         let audioElement = null;
         let audioControl = null;
         
@@ -1149,8 +1149,11 @@
                     audioControl.classList.remove('paused');
                     audioControl.classList.add('playing');
                 }).catch((error) => {
-                    console.log('Audio play failed:', error);
-                    // Some browsers require user interaction first
+                    console.log('Audio play failed, will try on user interaction:', error);
+                    // Reset to paused state if auto-play fails
+                    isAudioPlaying = false;
+                    audioControl.classList.remove('playing');
+                    audioControl.classList.add('paused');
                 });
             }
         }
@@ -1169,8 +1172,8 @@
         document.addEventListener('click', function() {
             if (!hasInteracted) {
                 hasInteracted = true;
-                // Optional: Auto-start ambient sound on first click
-                // playAudio();
+                // Auto-start ambient sound on first click
+                playAudio();
             }
         });
         
@@ -1183,6 +1186,11 @@
             if (audioElement) {
                 audioElement.volume = 0.3;
             }
+            
+            // Try to auto-play immediately (may be blocked by browser policy)
+            setTimeout(() => {
+                playAudio();
+            }, 1000);
         });
     </script>
 </body>
