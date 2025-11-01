@@ -103,7 +103,9 @@
         /* Navigation with ethereal design - Bottom positioned */
         nav {
             position: fixed;
-            width: 100%;
+            left: 4%;
+            right: 4%;
+            width: auto;
             bottom: 0;
             z-index: 1000;
             background: rgba(253, 254, 254, 0.95);
@@ -114,7 +116,11 @@
             align-items: center;
             box-shadow: 0 -4px 25px var(--ethereal-aura);
             border-top: 2px solid var(--healing-mint);
+            border-left: 2px solid var(--healing-mint);
+            border-right: 2px solid var(--healing-mint);
             border-radius: 50px 50px 0 0;
+            max-width: 1300px;
+            margin: 0 auto;
         }
         
         .nav-links {
@@ -784,7 +790,11 @@
             .section-title { font-size: 2.8rem; }
             .team-grid, .offerings-grid { grid-template-columns: 1fr; }
             .energy-spiral { width: 320px; height: 320px; }
-            nav { padding: 1rem 2%; }
+            nav { 
+                padding: 1rem 2%; 
+                left: 4%;
+                right: 4%;
+            }
             .mystical-button { padding: 1.5rem 3.5rem; font-size: 1.2rem; }
             body { padding-bottom: 120px; }
         }
