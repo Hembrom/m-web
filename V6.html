@@ -37,6 +37,7 @@
             line-height: 1.9;
             overflow-x: hidden;
             min-height: 100vh;
+            padding-bottom: 100px; /* Add space for bottom navigation */
         }
         
         /* Floating mystical elements */
@@ -99,66 +100,40 @@
             }
         }
         
-        /* Navigation with ethereal design */
+        /* Navigation with ethereal design - Bottom positioned */
         nav {
             position: fixed;
             width: 100%;
-            top: 0;
+            bottom: 0;
             z-index: 1000;
-            background: rgba(253, 254, 254, 0.85);
+            background: rgba(253, 254, 254, 0.95);
             backdrop-filter: blur(30px);
             padding: 1.5rem 4%;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 25px var(--ethereal-aura);
-            border-bottom: 2px solid var(--healing-mint);
-        }
-        
-        .logo {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.8rem;
-            font-weight: 600;
-            color: var(--forest-emerald);
-            letter-spacing: 2px;
-            text-decoration: none;
-            text-shadow: 2px 2px 10px var(--nature-mist);
-            transition: all 0.5s ease;
-            animation: logoMystic 8s ease-in-out infinite;
-        }
-        
-        @keyframes logoMystic {
-            0%, 100% { 
-                transform: scale(1) rotate(0deg);
-                text-shadow: 2px 2px 10px var(--nature-mist);
-            }
-            50% { 
-                transform: scale(1.05) rotate(2deg);
-                text-shadow: 3px 3px 15px var(--mystic-glow);
-            }
-        }
-        
-        .logo:hover {
-            transform: scale(1.1) rotate(-2deg);
-            color: var(--dawn-purple);
-            text-shadow: 0 0 30px var(--dawn-purple);
+            box-shadow: 0 -4px 25px var(--ethereal-aura);
+            border-top: 2px solid var(--healing-mint);
+            border-radius: 50px 50px 0 0;
         }
         
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 1.5rem;
             list-style: none;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         .nav-links a {
             color: var(--forest-emerald);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             transition: all 0.6s ease;
             position: relative;
             cursor: pointer;
-            padding: 0.8rem 1.8rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 25px;
             background: linear-gradient(135deg, transparent, var(--nature-mist));
             text-transform: uppercase;
@@ -798,12 +773,20 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 3.5rem; }
             .hero .tagline { font-size: 1.5rem; }
-            .nav-links { gap: 1.5rem; }
+            .nav-links { 
+                gap: 1rem; 
+                padding: 0 1rem;
+            }
+            .nav-links a {
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
+            }
             .section-title { font-size: 2.8rem; }
             .team-grid, .offerings-grid { grid-template-columns: 1fr; }
             .energy-spiral { width: 320px; height: 320px; }
-            nav { padding: 1.2rem 4%; }
+            nav { padding: 1rem 2%; }
             .mystical-button { padding: 1.5rem 3.5rem; font-size: 1.2rem; }
+            body { padding-bottom: 120px; }
         }
     </style>
 </head>
@@ -812,7 +795,6 @@
     
     <!-- Navigation -->
     <nav>
-        <a href="#" class="logo">Ootahgonah 🌿</a>
         <ul class="nav-links">
             <li><a href="#home" ng-click="scrollTo('home')">Home</a></li>
             <li><a href="#vision" ng-click="scrollTo('vision')">Vision</a></li>
