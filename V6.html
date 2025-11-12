@@ -148,71 +148,108 @@
             }
         }
         
-        /* Navigation with ethereal design - Bottom positioned */
+        /* Navigation with icon-based design - Bottom positioned */
         nav {
             position: fixed;
-            left: 4%;
-            right: 4%;
+            left: 50%;
+            transform: translateX(-50%);
             width: auto;
-            bottom: 20px;
+            top: 80vh;
             z-index: 1000;
             background: rgba(253, 254, 254, 0.95);
             backdrop-filter: blur(30px);
-            padding: 1.5rem 4%;
+            padding: 1.5rem 3.5rem; /* Increased from 2rem to 3.5rem */
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 -4px 25px var(--ethereal-aura), 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 25px var(--ethereal-aura), 0 -4px 25px var(--ethereal-aura);
             border: 2px solid var(--healing-mint);
             border-radius: 50px;
-            max-width: 1300px;
-            margin: 0 auto;
+            max-width: 700px; /* Increased from 400px by 75% (400 * 1.75 = 700) */
         }
         
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2.6rem; /* Increased from 1.5rem by 75% (1.5 * 1.75 ≈ 2.6) */
             list-style: none;
             justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
         }
         
         .nav-links a {
-            color: var(--forest-emerald);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
+            display: block;
+            width: 55px; /* Increased from 50px by 10% (50 * 1.1 = 55) */
+            height: 55px; /* Increased from 50px by 10% (50 * 1.1 = 55) */
+            border-radius: 15px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
             transition: all 0.6s ease;
             position: relative;
             cursor: pointer;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            background: linear-gradient(135deg, transparent, var(--nature-mist));
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--dawn-purple);
-            transition: all 0.6s ease;
-            transform: translateX(-50%);
-        }
-        
-        .nav-links a:hover::after {
-            width: 80%;
+            border: 2px solid var(--healing-mint);
+            box-shadow: 0 4px 15px var(--nature-mist);
+            text-indent: -9999px;
+            overflow: visible; /* Changed from hidden to visible for tooltips */
         }
         
         .nav-links a:hover {
-            color: var(--dawn-purple);
-            background: linear-gradient(135deg, var(--ethereal-aura), var(--mystic-glow));
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 20px var(--ethereal-aura);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px var (--ethereal-aura);
+            border-color: var(--dawn-purple);
+        }
+        
+        /* Tooltip styling for navigation items */
+        .nav-links a::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -30px; /* Reduced from -50px to bring tooltip closer */
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(253, 254, 254, 0.95);
+            color: var(--forest-emerald);
+            padding: 3px 6px; /* Reduced from 4px 8px */
+            border-radius: 8px; /* Reduced from 10px */
+            font-size: 0.6rem; /* Reduced from 0.7rem */
+            font-weight: 400; /* Reduced from 500 */
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--healing-mint);
+            box-shadow: 0 1px 4px var(--nature-mist); /* Reduced shadow */
+            z-index: 1001;
+            text-indent: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a:active::after,
+        .nav-links a:focus::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-5px);
+        }
+        
+        /* Icon backgrounds for each navigation item */
+        .nav-links a[href="#home"] {
+            background-image: url('assets/images/home-icon.jpg');
+        }
+        
+        .nav-links a[href="#vision"] {
+            background-image: url('assets/images/vision.jpg');
+        }
+        
+        .nav-links a[href="#constellation"] {
+            background-image: url('assets/images/conste.jpg');
+        }
+        
+        .nav-links a[href="#offerings"] {
+            background-image: url('assets/images/offering.jpg');
+        }
+        
+        .nav-links a[href="#contact"] {
+            background-image: url('assets/images/join-the-circle.jpg');
         }
         
         /* Hero with mystical energy spiral */
@@ -220,10 +257,10 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start; /* Changed from center to flex-start */
             align-items: center;
             text-align: center;
-            padding: 0 4%;
+            padding: 4rem 4% 8rem 4%; /* Added top and bottom padding */
             position: relative;
             background: radial-gradient(ellipse at center, var(--crystal-white) 0%, var(--healing-mint) 40%, var(--soft-lavender) 100%);
         }
@@ -232,13 +269,14 @@
         .energy-spiral {
             width: 400px;
             height: 400px;
-            margin: 2.5rem auto;
+            margin: 2rem auto 3rem auto; /* Added bottom margin to create space */
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0; /* Prevent shrinking */
         }
-        
+
         .spiral-path {
             position: absolute;
             border: 2px solid;
@@ -403,7 +441,7 @@
             font-size: 5rem;
             font-weight: 600;
             color: var(--forest-emerald);
-            margin-bottom: 2rem;
+            margin: 2rem 0; /* Increased margin for better spacing */
             animation: mysticalAppear 3s ease forwards;
             text-shadow: 3px 3px 15px var(--nature-mist);
             letter-spacing: 3px;
@@ -412,7 +450,7 @@
         .hero .tagline {
             font-size: 1.8rem;
             color: var(--deep-indigo);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem; /* Reduced from 3rem */
             animation: mysticalAppear 3.5s ease forwards;
             font-weight: 400;
             font-style: italic;
@@ -423,7 +461,7 @@
             max-width: 780px;
             font-size: 1.4rem;
             line-height: 2.2;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem; /* Reduced from 4rem */
             animation: mysticalAppear 4s ease forwards;
             color: var(--forest-emerald);
             text-shadow: 1px 1px 5px var(--nature-mist);
@@ -434,10 +472,10 @@
             max-width: 680px;
             font-size: 1.3rem;
             line-height: 2;
-            margin: 3rem auto;
-            padding: 2.5rem 3rem;
+            margin: 2rem auto; /* Reduced margin */
+            padding: 2rem 2.5rem; /* Reduced padding */
             font-style: italic;
-            color: var(--dawn-purple);
+            color: var (--dawn-purple);
             background: linear-gradient(135deg, var(--crystal-white), var(--ethereal-aura));
             border-radius: 30px;
             box-shadow: 0 10px 30px var(--mystic-glow);
@@ -446,28 +484,6 @@
             text-align: center;
             position: relative;
             transform: perspective(1000px) rotateX(2deg);
-        }
-        
-        .daily-quote::before {
-            content: '"';
-            font-size: 3.5rem;
-            color: var(--misty-teal);
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            font-family: 'Dancing Script', cursive;
-            text-shadow: 0 0 15px var(--misty-teal);
-        }
-        
-        .daily-quote::after {
-            content: '"';
-            font-size: 3.5rem;
-            color: var(--misty-teal);
-            position: absolute;
-            bottom: -20px;
-            right: 20px;
-            font-family: 'Dancing Script', cursive;
-            text-shadow: 0 0 15px var(--misty-teal);
         }
         
         @keyframes mysticalAppear {
@@ -520,7 +536,7 @@
         
         .mystical-button:hover {
             transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 50px var(--mystic-glow);
+            box-shadow: 0 20px 50px var (--mystic-glow);
             background: linear-gradient(135deg, var(--dawn-purple), var(--golden-sunbeam), var(--ocean-breeze));
         }
         
@@ -552,7 +568,7 @@
             margin: 5rem 0;
             padding: 4rem;
             border: none;
-            background: linear-gradient(135deg, var(--crystal-white), var(--ethereal-aura));
+            background: linear-gradient(135deg, var(--crystal-white), var (--ethereal-aura));
             border-radius: 40px;
             box-shadow: 0 15px 45px var(--mystic-glow);
             position: relative;
@@ -580,7 +596,7 @@
         }
         
         .team-member {
-            background: linear-gradient(135deg, var(--crystal-white), var(--cloud-silver));
+            background: linear-gradient(135deg, var (--crystal-white), var(--cloud-silver));
             padding: 0;
             border-radius: 40px;
             transition: all 0.7s ease;
@@ -760,7 +776,7 @@
         .offering-card p {
             font-size: 1.15rem;
             line-height: 2;
-            color: var(--deep-indigo);
+            color: var (--deep-indigo);
         }
         
         /* Contact with mystical form */
@@ -1036,10 +1052,6 @@
             .audio-control .icon {
                 font-size: 1.5rem;
             }
-            .whatsapp-float .icon {
-                width: 28px;
-                height: 28px;
-            }
             /* Hide sidebars on mobile for better content visibility */
             .left-sidebar,
             .right-sidebar {
@@ -1061,11 +1073,11 @@
     <!-- Navigation -->
     <nav>
         <ul class="nav-links">
-            <li><a href="#home" ng-click="scrollTo('home')">Home</a></li>
-            <li><a href="#vision" ng-click="scrollTo('vision')">Vision</a></li>
-            <li><a href="#constellation" ng-click="scrollTo('constellation')">Constellation</a></li>
-            <li><a href="#offerings" ng-click="scrollTo('offerings')">Offerings</a></li>
-            <li><a href="#contact" ng-click="scrollTo('contact')">Join the Circle</a></li>
+            <li><a href="#home" ng-click="scrollTo('home')" data-tooltip="Home">Home</a></li>
+            <li><a href="#vision" ng-click="scrollTo('vision')" data-tooltip="Vision">Vision</a></li>
+            <li><a href="#constellation" ng-click="scrollTo('constellation')" data-tooltip="Constellation">Constellation</a></li>
+            <li><a href="#offerings" ng-click="scrollTo('offerings')" data-tooltip="Offerings">Offerings</a></li>
+            <li><a href="#contact" ng-click="scrollTo('contact')" data-tooltip="Join the Circle">Join the Circle</a></li>
         </ul>
     </nav>
 
