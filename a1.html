@@ -24,9 +24,9 @@
             position: fixed;
             left: 0;
             top: 0;
-            width: 10%;
+            width: 11%; /* Increased from 10% to 11% to overlap with left knot */
             height: 100%;
-            background-image: url('assets/images/fading.jpg');
+            background-image: url('assets/images/leftleft.jpg'); /* Changed from fading.jpg to leftleft.jpg */
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -39,9 +39,9 @@
             position: fixed;
             right: 0;
             top: 0;
-            width: 10%;
+            width: 11%; /* Increased from 10% to 11% to overlap with right knot */
             height: 100%;
-            background-image: url('assets/images/fading.jpg');
+            background-image: url('assets/images/leftleft.jpg'); /* Changed from fading.jpg to leftleft.jpg */
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -50,64 +50,61 @@
             transform: scaleX(-1);
         }
 
-        /* Left Celtic Knot - after left bar, 10% width */
+        /* Left Celtic Knot - overlaps with left bar slightly */
         .left-knot {
             position: fixed;
-            left: 10%;
+            left: 8%; /* Moved from 9% to 8% to overlap more with left bar */
             top: 0;
-            width: 10%;
+            width: 12%; /* Increased from 10% to 12% to overlap with main content */
             height: 100%;
-            background-image: url('assets/images/S11.jpeg'); /* Changed from sss.jpg to S11.jpeg */
-            background-size: 64%; /* Increased from 59% to 64% (8% increase) */
+            background-image: url('assets/images/S11.jpeg');
+            background-size: 70%; /* Increased from 64% by 10% (64% * 1.1 = 70.4%, rounded to 70%) */
             background-repeat: repeat-y;
             background-position: center;
             z-index: 2;
-            opacity: 0.7; /* Increased from 0.5 to 0.7 for darker appearance */
+            opacity: 0.7;
             border: none !important;
             outline: none !important;
             box-shadow: none !important;
         }
 
-        /* Right Celtic Knot - before right bar, 10% width */
+        /* Right Celtic Knot - overlaps with right bar slightly */
         .right-knot {
             position: fixed;
-            right: 10%;
+            right: 8%; /* Moved from 9% to 8% to overlap more with right bar */
             top: 0;
-            width: 10%;
+            width: 12%; /* Increased from 10% to 12% to overlap with main content */
             height: 100%;
-            background-image: url('assets/images/S11.jpeg'); /* Changed from sss.jpg to S11.jpeg */
-            background-size: 64%; /* Increased from 59% to 64% (8% increase) */
+            background-image: url('assets/images/S11.jpeg');
+            background-size: 70%; /* Increased from 64% by 10% (64% * 1.1 = 70.4%, rounded to 70%) */
             background-repeat: repeat-y;
             background-position: center;
             z-index: 2;
-            opacity: 0.7; /* Increased from 0.5 to 0.7 for darker appearance */
+            opacity: 0.7;
             transform: scaleX(-1);
             border: none !important;
             outline: none !important;
             box-shadow: none !important;
         }
 
-        /* Main Content Area - 60% center */
+        /* Main Content Area - overlaps with knots slightly */
         .main-content {
-            position: relative;
+            position: fixed; /* Changed from relative to fixed for precise positioning */
+            left: 19%; /* Moved from 20% to 19% to overlap with left knot */
+            right: 19%; /* Moved from 20% to 19% to overlap with right knot */
+            top: 0;
+            bottom: 0;
             padding: 10vh 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
             z-index: 3;
-            background: #FFF5EA; /* Only the central area gets the warm cream background */
-            margin-left: 20%;
-            margin-right: 20%;
-            width: 60%;
-            border: none !important; /* Force remove any borders */
-            box-shadow: none !important; /* Force remove shadows */
-            border-top: none !important;
-            border-bottom: none !important;
-            border-left: none !important;
-            border-right: none !important;
-            outline: none !important; /* Remove any outline that might appear as a line */
+            background: #FFF5EA;
+            /* Removed all margins and width - using left/right positioning instead */
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
         }
 
         /* Logo Container - centered */
@@ -122,12 +119,12 @@
         }
 
         .logo-container img {
-            width: 400px;
-            height: 400px;
+            width: 480px; /* Increased from 400px by 20% (400 * 1.2 = 480) */
+            height: 480px; /* Increased from 400px by 20% (400 * 1.2 = 480) */
             object-fit: contain;
-            border: none; /* Remove any border on the image */
-            outline: none; /* Remove any outline */
-            box-shadow: none; /* Remove any shadow */
+            border: none;
+            outline: none;
+            box-shadow: none;
         }
 
         /* Title */
@@ -274,6 +271,11 @@
                 width: 8%;
             }
 
+            .main-content {
+                left: 16%; /* Adjusted to match knot positions */
+                right: 16%; /* Adjusted to match knot positions */
+            }
+
             .logo-container img {
                 width: 350px;
                 height: 350px;
@@ -301,6 +303,11 @@
         @media (max-width: 768px) {
             .left-bar, .right-bar, .left-knot, .right-knot {
                 display: none;
+            }
+
+            .main-content {
+                left: 0; /* Full width when bars/knots are hidden */
+                right: 0; /* Full width when bars/knots are hidden */
             }
             
             .logo-container img {
