@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ootahgonahApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sohra - Ootahgonah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Nunito:wght@300;400;600&family=Jaini:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(180deg, #f8f0eb 0%, #f5e8ec 40%, #f2dde6 70%, #efd2e0 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Left Fading Bar */
+        .left-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 23%;
+            height: 100%;
+            background-image: url('assets/images/leftleft.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        /* Right Fading Bar */
+        .right-bar {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 23%;
+            height: 100%;
+            background-image: url('assets/images/leftleft.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.6;
+            transform: scaleX(-1);
+        }
+
+        /* Left Celtic Knot */
+        .left-knot {
+            position: absolute;
+            left: 7.5%;
+            top: 0;
+            width: 15.5%;
+            height: 100%;
+            background-image: url('assets/images/S11.jpeg');
+            background-size: 42% auto;
+            background-repeat: repeat-y;
+            background-position: top right;
+            z-index: 3;
+            opacity: 0.7;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Right Celtic Knot */
+        .right-knot {
+            position: absolute;
+            right: 7.5%;
+            top: 0;
+            width: 15.5%;
+            height: 100%;
+            background-image: url('assets/images/S11.jpeg');
+            background-size: 42% auto;
+            background-repeat: repeat-y;
+            background-position: top left;
+            z-index: 3;
+            opacity: 0.7;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            position: relative;
+            left: 23%;
+            right: 23%;
+            width: 54%;
+            min-height: 100vh;
+            padding: 40px 40px 200px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 3;
+            background: #FFF5EA;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        /* Back Button */
+        .back-button {
+            align-self: flex-start;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: rgba(212, 167, 106, 0.3);
+            border: 1px solid rgba(212, 167, 106, 0.5);
+            border-radius: 20px;
+            color: #6b4540;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(212, 167, 106, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Profile Section */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-header h1 {
+            font-family: 'Jaini', cursive;
+            font-size: 3rem;
+            color: #6b4540;
+            margin-bottom: 10px;
+        }
+
+        .profile-header h2 {
+            font-family: 'Georgia', serif;
+            font-size: 1.8rem;
+            color: #6b4540;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .profile-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(107, 69, 64, 0.2);
+        }
+
+        /* Description Section */
+        .description-section {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 50px;
+        }
+
+        .description-section p {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #6b4540;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Floating Menu */
+        .floating-menu {
+            position: fixed;
+            bottom: 70px;
+            left: calc(23% + 25px);
+            right: calc(23% + 25px);
+            transform: none;
+            display: flex;
+            gap: 40px;
+            padding: 5px 30px;
+            background: #FFF5EA;
+            backdrop-filter: none;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            z-index: 10;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-icon {
+            width: 96px;
+            height: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: none;
+            position: relative;
+            overflow: visible;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: none;
+        }
+
+        .menu-icon::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            color: #6b4540;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .menu-icon:hover::after {
+            opacity: 1;
+        }
+
+        .menu-icon[data-section="home"] {
+            background-image: url('assets/images/i-home.jpg?v=1763210508') !important;
+            width: 88px !important;
+            height: 88px !important;
+        }
+
+        .menu-icon[data-section="vision"]::after,
+        .menu-icon[data-section="constellation"]::after,
+        .menu-icon[data-section="offerings"]::after,
+        .menu-icon[data-section="contact"]::after {
+            bottom: 4px;
+        }
+
+        .menu-icon[data-section="vision"] {
+            background-image: url('assets/images/i-vision.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        .menu-icon[data-section="constellation"] {
+            background-image: url('assets/images/i-const.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        .menu-icon[data-section="offerings"] {
+            background-image: url('assets/images/i-offering.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        .menu-icon[data-section="contact"] {
+            background-image: url('assets/images/i-circle.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+    </style>
+</head>
+<body ng-controller="MainController">
+    <!-- Left Fading Bar -->
+    <div class="left-bar"></div>
+    
+    <!-- Right Fading Bar -->
+    <div class="right-bar"></div>
+    
+    <!-- Left Celtic Knot -->
+    <div class="left-knot"></div>
+    
+    <!-- Right Celtic Knot -->
+    <div class="right-knot"></div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Back Button -->
+        <a href="a1.html#guides" class="back-button">← Back</a>
+
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <h1>Sohra</h1>
+            <h2>Light Body Being & Guide</h2>
+        </div>
+
+        <!-- Profile Image -->
+        <img src="assets/images/sohra.jpg" alt="Sohra" class="profile-image">
+
+        <!-- Description Section -->
+        <div class="description-section">
+            <p>Sohra is a Light Body Being from the Sirian star system, a presence that carries transmissions of remembrance. Unlike a teacher bound to methods, Sohra awakens what is already within. The essence of Sohra is not instruction, but vibration — a current that dissolves the weight of effort and restores clarity.</p>
+            
+            <p>Sohra is the heart of Ootahgohnah. Sohra's transmission reminds us that the wall between waking life and dream is not real — it exists only by our permission. When that wall dissolves, remembrance begins.</p>
+            
+            <p>In William's meditations, Sohra is channeled as a voice of the timeless, guiding seekers into the merging of dream body and physical body, into the direct experience of Light.</p>
+            
+            <p>Sohra often speaks of the law of effortless effort:</p>
+            
+            <p style="font-style: italic; text-align: center; margin: 30px 0; font-size: 1.4rem;">"Effort stops. Clarity begins. The Light Body is not something you create — it is what you already are, shimmering beneath the weight of striving."</p>
+        </div>
+    </div>
+    
+    <!-- Floating Menu -->
+    <div class="floating-menu">
+        <div class="menu-icon" data-section="home" data-label="Home" onclick="window.location.href='a1.html'" style="cursor: pointer;" title="Home"></div>
+        <div class="menu-icon" data-section="vision" data-label="Vision" onclick="window.location.href='a1.html#vision'" title="Vision"></div>
+        <div class="menu-icon" data-section="constellation" data-label="Constellation" onclick="window.location.href='a1.html#constellation'" title="Constellation"></div>
+        <div class="menu-icon" data-section="offerings" data-label="Offerings" onclick="window.location.href='a1.html#offerings'" title="Offerings"></div>
+        <div class="menu-icon" data-section="contact" data-label="Join the Circle" onclick="window.location.href='a1.html#contact'" title="Join the Circle"></div>
+    </div>
+
+    <!-- AngularJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/mainController.js"></script>
+    <script src="services/dataService.js"></script>
+</body>
+</html>

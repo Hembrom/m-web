@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ootahgonahApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision - Ootahgonah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Nunito:wght@300;400;600&family=Jaini:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(180deg, #f8f0eb 0%, #f5e8ec 40%, #f2dde6 70%, #efd2e0 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Left Fading Bar */
+        .left-bar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 27%;
+            height: 100%;
+            background-image: url('assets/images/leftleft.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        /* Right Fading Bar */
+        .right-bar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 27%;
+            height: 100%;
+            background-image: url('assets/images/leftleft.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.6;
+            transform: scaleX(-1);
+        }
+
+        /* Left Celtic Knot */
+        .left-knot {
+            position: fixed;
+            left: 11.5%;
+            top: 0;
+            width: 15.5%;
+            height: 100%;
+            background-image: url('assets/images/S11.jpeg');
+            background-size: 42% auto;
+            background-repeat: repeat-y;
+            background-position: top right;
+            z-index: 3;
+            opacity: 0.7;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Right Celtic Knot */
+        .right-knot {
+            position: fixed;
+            right: 11.5%;
+            top: 0;
+            width: 15.5%;
+            height: 100%;
+            background-image: url('assets/images/S11.jpeg');
+            background-size: 42% auto;
+            background-repeat: repeat-y;
+            background-position: top left;
+            z-index: 3;
+            opacity: 0.7;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            position: relative;
+            left: 27%;
+            right: 27%;
+            width: 46%;
+            min-height: 100vh;
+            padding: 40px 40px 150px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 3;
+            background: #FFF5EA;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        /* Logo Container */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        .logo-container img {
+            width: 280px;
+            height: 280px;
+            object-fit: contain;
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-family: 'Georgia', serif;
+            font-size: 3.5rem;
+            color: #5a3a3a;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(107, 69, 64, 0.3);
+        }
+
+        /* Content Section */
+        .content-section {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            font-family: 'Georgia', serif;
+            font-size: 2.5rem;
+            color: #6b4540;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content-section p {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #6b4540;
+            font-family: 'Nunito', sans-serif;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(248, 220, 235, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 2px solid rgba(212, 167, 106, 0.3);
+            box-shadow: 0 15px 40px rgba(107, 69, 64, 0.2);
+        }
+
+        .quote-box p {
+            font-size: 2rem;
+            line-height: 1.6;
+            color: #6b4540;
+            font-family: 'Jaini', cursive;
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* Floating Menu at Bottom - Fixed Position */
+        .floating-menu {
+            position: fixed;
+            bottom: 70px;
+            left: calc(27% + 25px);
+            right: calc(27% + 25px);
+            transform: none;
+            display: flex;
+            gap: 40px;
+            padding: 0;
+            background: transparent;
+            backdrop-filter: none;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            z-index: 10;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-icon {
+            width: 96px;
+            height: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: none;
+            position: relative;
+            overflow: visible;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: none;
+        }
+
+        .menu-icon::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            color: #6b4540;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .menu-icon:hover::after {
+            opacity: 1;
+        }
+
+        /* Navigation icon backgrounds - with size overrides */
+        .menu-icon[data-section="home"] {
+            background-image: url('assets/images/i-home.jpg?v=1763210508') !important;
+            width: 88px !important;
+            height: 88px !important;
+        }
+
+        .menu-icon[data-section="vision"]::after,
+        .menu-icon[data-section="constellation"]::after,
+        .menu-icon[data-section="offerings"]::after,
+        .menu-icon[data-section="contact"]::after {
+            bottom: 4px;
+        }
+
+        .menu-icon[data-section="vision"] {
+            background-image: url('assets/images/i-vision.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        .menu-icon[data-section="constellation"] {
+            background-image: url('assets/images/i-const.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        .menu-icon[data-section="offerings"] {
+            background-image: url('assets/images/i-offering.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        .menu-icon[data-section="contact"] {
+            background-image: url('assets/images/i-circle.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .left-bar, .right-bar {
+                width: 8%;
+            }
+            
+            .left-knot {
+                left: 8%;
+                width: 8%;
+            }
+            
+            .right-knot {
+                right: 8%;
+                width: 8%;
+            }
+
+            .main-content {
+                left: 16%;
+                right: 16%;
+                width: 68%;
+            }
+
+            .logo-container img {
+                width: 220px;
+                height: 220px;
+            }
+
+            .page-title h1 {
+                font-size: 2.8rem;
+            }
+            
+            .floating-menu {
+                gap: 30px;
+                padding: 15px 30px;
+            }
+            
+            .menu-icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-bar, .right-bar, .left-knot, .right-knot {
+                display: none;
+            }
+
+            .main-content {
+                left: 0;
+                right: 0;
+                width: 100%;
+            }
+            
+            .logo-container img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .page-title h1 {
+                font-size: 2.2rem;
+            }
+
+            .content-section h2 {
+                font-size: 2rem;
+            }
+
+            .content-section p {
+                font-size: 1.2rem;
+            }
+
+            .quote-box p {
+                font-size: 1.5rem;
+            }
+            
+            .floating-menu {
+                gap: 20px;
+                padding: 12px 25px;
+                bottom: 20px;
+            }
+            
+            .menu-icon {
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body ng-controller="MainController">
+    <!-- Left Fading Bar -->
+    <div class="left-bar"></div>
+    
+    <!-- Right Fading Bar -->
+    <div class="right-bar"></div>
+    
+    <!-- Left Celtic Knot -->
+    <div class="left-knot"></div>
+    
+    <!-- Right Celtic Knot -->
+    <div class="right-knot"></div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="assets/images/logo.jpg" alt="Ootahgonah Logo">
+        </div>
+        
+        <!-- Page Title -->
+        <div class="page-title">
+            <h1>Vision</h1>
+        </div>
+        
+        <!-- Content Section -->
+        <div class="content-section">
+            <h2>Our Purpose</h2>
+            <p>At Ootahgonah, we believe in the power of healing...</p>
+        </div>
+
+        <!-- Quote Box -->
+        <div class="quote-box">
+            <p>"Healing is a matter of time, but it is sometimes also a matter of opportunity."</p>
+        </div>
+    </div>
+    
+    <!-- Floating Menu - Fixed Position -->
+    <div class="floating-menu">
+        <div class="menu-icon" data-section="home" data-label="Home" ng-click="navigateTo('a1.html')" title="Home"></div>
+        <div class="menu-icon" data-section="vision" data-label="Vision" ng-click="navigateTo('vision.html')" title="Vision"></div>
+        <div class="menu-icon" data-section="constellation" data-label="Constellation" ng-click="navigateTo('constellation.html')" title="Constellation"></div>
+        <div class="menu-icon" data-section="offerings" data-label="Offerings" ng-click="navigateTo('offerings.html')" title="Offerings"></div>
+        <div class="menu-icon" data-section="contact" data-label="Join the Circle" ng-click="navigateTo('contact.html')" title="Join the Circle"></div>
+    </div>
+
+    <!-- AngularJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/mainController.js"></script>
+    <script src="services/dataService.js"></script>
+    <script>
+        // Simple navigation function
+        angular.module('ootahgonahApp').controller('MainController', function($scope, $window) {
+            $scope.navigateTo = function(page) {
+                $window.location.href = page;
+            };
+        });
+    </script>
+</body>
+</html>

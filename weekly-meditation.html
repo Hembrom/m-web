@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ootahgonahApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Meditation - Ootahgonah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Nunito:wght@300;400;600&family=Jaini:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(180deg, #f8f0eb 0%, #f5e8ec 40%, #f2dde6 70%, #efd2e0 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .left-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 23%;
+            height: 100%;
+            background-image: url('assets/images/leftleft.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        .right-bar {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 23%;
+            height: 100%;
+            background-image: url('assets/images/leftleft.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.6;
+            transform: scaleX(-1);
+        }
+
+        .left-knot {
+            position: absolute;
+            left: 7.5%;
+            top: 0;
+            width: 15.5%;
+            height: 100%;
+            background-image: url('assets/images/S11.jpeg');
+            background-size: 42% auto;
+            background-repeat: repeat-y;
+            background-position: top right;
+            z-index: 3;
+            opacity: 0.7;
+        }
+
+        .right-knot {
+            position: absolute;
+            right: 7.5%;
+            top: 0;
+            width: 15.5%;
+            height: 100%;
+            background-image: url('assets/images/S11.jpeg');
+            background-size: 42% auto;
+            background-repeat: repeat-y;
+            background-position: top left;
+            z-index: 3;
+            opacity: 0.7;
+        }
+
+        .main-content {
+            position: relative;
+            left: 23%;
+            right: 23%;
+            width: 54%;
+            min-height: 100vh;
+            padding: 40px 40px 150px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 3;
+            background: #FFF5EA;
+        }
+
+        .back-button {
+            align-self: flex-start;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: rgba(212, 167, 106, 0.3);
+            border: 1px solid rgba(212, 167, 106, 0.5);
+            border-radius: 20px;
+            color: #6b4540;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(212, 167, 106, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-family: 'Jaini', cursive;
+            font-size: 3rem;
+            color: #6b4540;
+            margin-bottom: 10px;
+        }
+
+        .page-header h2 {
+            font-family: 'Georgia', serif;
+            font-size: 1.8rem;
+            color: #6b4540;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .content-section {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .content-section p {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #6b4540;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .floating-menu {
+            position: fixed;
+            bottom: 70px;
+            left: calc(23% + 25px);
+            right: calc(23% + 25px);
+            display: flex;
+            gap: 40px;
+            padding: 5px 30px;
+            background: #FFF5EA;
+            z-index: 10;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-icon {
+            width: 96px;
+            height: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1) translateY(-3px);
+        }
+
+        .menu-icon::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            color: #6b4540;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-icon:hover::after {
+            opacity: 1;
+        }
+
+        .menu-icon[data-section="home"] {
+            background-image: url('assets/images/i-home.jpg?v=1763210508') !important;
+            width: 88px !important;
+            height: 88px !important;
+        }
+
+        .menu-icon[data-section="vision"]::after,
+        .menu-icon[data-section="constellation"]::after,
+        .menu-icon[data-section="offerings"]::after,
+        .menu-icon[data-section="contact"]::after {
+            bottom: 4px;
+        }
+
+        .menu-icon[data-section="vision"] {
+            background-image: url('assets/images/i-vision.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        .menu-icon[data-section="constellation"] {
+            background-image: url('assets/images/i-const.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        .menu-icon[data-section="offerings"] {
+            background-image: url('assets/images/i-offering.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        .menu-icon[data-section="contact"] {
+            background-image: url('assets/images/i-circle.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+    </style>
+</head>
+<body ng-controller="MainController">
+    <div class="left-bar"></div>
+    <div class="right-bar"></div>
+    <div class="left-knot"></div>
+    <div class="right-knot"></div>
+    
+    <div class="main-content">
+        <a href="a1.html#offerings" class="back-button">← Back</a>
+
+        <div class="page-header">
+            <h1>Weekly Meditation</h1>
+            <h2>Regular Practice & Spiritual Development</h2>
+        </div>
+
+        <div class="content-section">
+            <p>These meditations are simple yet profound — a time to release effort, rest in clarity, and let healing arise naturally. Guided by transmissions from Sohra and companions, the circle becomes a gentle portal where the dream body and waking body meet, and where remembrance flows without striving.</p>
+        </div>
+    </div>
+    
+    <div class="floating-menu">
+        <div class="menu-icon" data-section="home" data-label="Home" onclick="window.location.href='a1.html'" style="cursor: pointer;" title="Home"></div>
+        <div class="menu-icon" data-section="vision" data-label="Vision" onclick="window.location.href='a1.html#vision'" title="Vision"></div>
+        <div class="menu-icon" data-section="constellation" data-label="Constellation" onclick="window.location.href='a1.html#constellation'" title="Constellation"></div>
+        <div class="menu-icon" data-section="offerings" data-label="Offerings" onclick="window.location.href='a1.html#offerings'" title="Offerings"></div>
+        <div class="menu-icon" data-section="contact" data-label="Join the Circle" onclick="window.location.href='a1.html#contact'" title="Join the Circle"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/mainController.js"></script>
+    <script src="services/dataService.js"></script>
+</body>
+</html>

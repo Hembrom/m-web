@@ -155,17 +155,18 @@ angular.module('ootahgonahApp')
         ];
     };
 
-    // Get today's quote based on date (round-robin: one quote per day)
+    // Get a quote that changes every 4 hours
     this.getTodaysQuote = function() {
         const quotes = this.getDailyQuotes();
         
-        // Calculate days since epoch (Jan 1, 1970)
-        const today = new Date();
+        // Get current time and calculate 4-hour periods since epoch
+        const now = new Date();
         const epochStart = new Date(1970, 0, 1);
-        const daysSinceEpoch = Math.floor((today - epochStart) / (1000 * 60 * 60 * 24));
+        const hoursSinceEpoch = Math.floor((now - epochStart) / (1000 * 60 * 60));
+        const fourHourPeriods = Math.floor(hoursSinceEpoch / 4);
         
-        // Use modulo to cycle through quotes (31 quotes cycle)
-        const quoteIndex = daysSinceEpoch % quotes.length;
+        // Use modulo to cycle through quotes every 4 hours
+        const quoteIndex = fourHourPeriods % quotes.length;
         
         return quotes[quoteIndex];
     };

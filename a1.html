@@ -22,10 +22,10 @@
 
         /* Left Fading Bar - reduced by 30% */
         .left-bar {
-            position: fixed;
+            position: absolute;
             left: 0;
             top: 0;
-            width: 15%; /* Reduced from 22% by 30% (22% * 0.7 = 15.4%, rounded to 15%) */
+            width: 23%; /* Reduced from 27% to make room for wider center */
             height: 100%;
             background-image: url('assets/images/leftleft.jpg');
             background-size: cover;
@@ -37,10 +37,10 @@
 
         /* Right Fading Bar - reduced by 30% */
         .right-bar {
-            position: fixed;
+            position: absolute;
             right: 0;
             top: 0;
-            width: 15%; /* Reduced from 22% by 30% (22% * 0.7 = 15.4%, rounded to 15%) */
+            width: 23%; /* Reduced from 27% to make room for wider center */
             height: 100%;
             background-image: url('assets/images/leftleft.jpg');
             background-size: cover;
@@ -53,36 +53,35 @@
 
         /* Left Celtic Knot - adjusted for smaller bars */
         .left-knot {
-            position: fixed;
-            left: 12%; /* Adjusted from 18% to 12% to account for smaller left bar */
+            position: absolute;
+            left: 7.5%; /* Moved from 11.5% to align with narrower 23% layout */
             top: 0;
-            width: 15%;
+            width: 15.5%; /* Extended slightly to 15.5% to overlap with center and remove gap */
             height: 100%;
             background-image: url('assets/images/S11.jpeg');
-            background-size: 70%;
+            background-size: 42% auto; /* Width reduced by 40% (70% * 0.6 = 42%), height increased by 25% (auto maintains aspect, will repeat more) */
             background-repeat: repeat-y;
-            background-position: top center;
-            z-index: 2;
+            background-position: top right; /* Changed from center to right to align with main-content edge */
+            z-index: 3; /* Higher than left-bar to cover any overlap */
             opacity: 0.7;
             border: none !important;
             outline: none !important;
             box-shadow: none !important;
         }
 
-        /* Right Celtic Knot - adjusted for smaller bars */
+        /* Right Celtic Knot - mirrors left side */
         .right-knot {
-            position: fixed;
-            right: 12%; /* Adjusted from 18% to 12% to account for smaller right bar */
+            position: absolute;
+            right: 7.5%; /* Moved from 11.5% to align with narrower 23% layout */
             top: 0;
-            width: 15%;
+            width: 15.5%; /* Extended slightly to 15.5% to overlap with center and remove gap */
             height: 100%;
             background-image: url('assets/images/S11.jpeg');
-            background-size: 70%;
+            background-size: 42% auto; /* Width reduced by 40%, height auto */
             background-repeat: repeat-y;
-            background-position: top center;
-            z-index: 2;
+            background-position: top left; /* Changed from center to left to align with main-content edge */
+            z-index: 3; /* Higher than right-bar to cover any overlap */
             opacity: 0.7;
-            transform: scaleX(-1);
             border: none !important;
             outline: none !important;
             box-shadow: none !important;
@@ -90,12 +89,12 @@
 
         /* Main Content Area - adjusted for smaller side layout */
         .main-content {
-            position: fixed;
-            left: 27%; /* Adjusted from 33% to 27% to account for smaller sides */
-            right: 27%; /* Adjusted from 33% to 27% to account for smaller sides */
-            top: 0;
-            bottom: 0;
-            padding: 20px 0;
+            position: relative;
+            left: 23%; /* Adjusted from 27% to 23% for wider center */
+            right: 23%; /* Adjusted from 27% to 23% for wider center */
+            width: 54%; /* Increased from 46% to 54% */
+            min-height: 100vh;
+            padding: 40px 40px 150px 40px; /* Added top and bottom padding for floating menu clearance */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -112,7 +111,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 10px;
+            margin-bottom: 0px; /* Reduced from 10px to move quote closer */
             border: none;
             outline: none;
             box-shadow: none;
@@ -130,7 +129,7 @@
         /* Title */
         .title {
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 0px; /* Reduced from 10px to move quote closer */
         }
 
         .title h1 {
@@ -150,9 +149,9 @@
         /* Meditation Quote in Center - Rectangle Box */
         .center-quote {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 60px; /* Space before vision section */
             max-width: 700px;
-            padding: 40px;
+            padding: 20px; /* Reduced from 40px to move bottom edge up */
             background: rgba(248, 220, 235, 0.4);
             backdrop-filter: blur(10px);
             border-radius: 30px;
@@ -167,39 +166,305 @@
             font-family: 'Jaini', cursive;
         }
 
+        /* Content Section */
+        .content-section {
+            width: 100%;
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            font-family: 'Georgia', serif;
+            font-size: 2.5rem;
+            color: #6b4540;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content-section p {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #6b4540;
+            font-family: 'Nunito', sans-serif;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        /* Vision Quote Box */
+        .vision-quote {
+            text-align: center;
+            margin: 40px 0;
+            max-width: 700px;
+            padding: 30px;
+            background: rgba(248, 220, 235, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 2px solid rgba(212, 167, 106, 0.3);
+            box-shadow: 0 15px 40px rgba(107, 69, 64, 0.2);
+        }
+
+        .vision-quote p {
+            font-size: 2rem;
+            line-height: 1.6;
+            color: #6b4540;
+            font-family: 'Jaini', cursive;
+        }
+
+        /* Constellation Container */
+        .constellation-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 60px 0;
+        }
+
+        .constellation-container h2 {
+            font-family: 'Jaini', cursive;
+            font-size: 2.2rem;
+            color: #6b4540;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Constellation Section with Background Image */
+        .constellation-section {
+            width: 100%;
+            position: relative;
+            min-height: 700px;
+            background-image: url('assets/images/const.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px 0 40px 0;
+        }
+
+        .constellation-text {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            border-radius: 20px;
+            width: 100%;
+        }
+
+        .constellation-text p {
+            font-size: 1.5rem;
+            line-height: 1.4;
+            color: #ffffff;
+            font-family: 'Jaini', cursive;
+            text-align: center;
+        }
+
+        /* Constellation Detail Section */
+        .constellation-detail {
+            width: 100%;
+            max-width: 700px;
+            margin: 60px 0;
+            display: grid;
+            grid-template-columns: 35% 30% 35%;
+            gap: 0;
+        }
+
+        /* Left Column - kkknot and Sohra */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .kkknot-image {
+            width: 80%;
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .sohra-text {
+            font-family: 'Jaini', cursive;
+            font-size: 2rem;
+            color: #6b4540;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .pretext-container {
+            width: 100%;
+            position: relative;
+            background-image: url('assets/images/pre-text.jpg');
+            background-size: 105%;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 500px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .pretext-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(107, 69, 64, 0.3);
+        }
+
+        .sohra-top-half {
+            width: 100%;
+            height: 50%;
+            background-image: url('assets/images/sohra.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .text-bottom-half {
+            width: 100%;
+            height: 50%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -49px;
+        }
+
+        .text-bottom-half p {
+            font-family: 'Jaini', cursive;
+            font-size: 1rem;
+            color: #6b4540;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* Right Column */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Center Column - Leaf */
+        .center-column {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            margin-top: -416px;
+        }
+
+        .leaf-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            width: 80%;
+            max-width: 600px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(212, 167, 106, 0.5) 20%, rgba(212, 167, 106, 0.5) 80%, transparent);
+            margin: 60px auto;
+            border-radius: 50px;
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: rgba(212, 167, 106, 0.7);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(212, 167, 106, 0.4);
+        }
+
+        /* Offerings Section */
+        .offerings-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 60px 0;
+        }
+
+        .offerings-container h2 {
+            font-family: 'Jaini', cursive;
+            font-size: 2.2rem;
+            color: #6b4540;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .offerings-image-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .offerings-list {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 5;
+            width: 100%;
+        }
+
+        .offerings-list p {
+            font-family: 'Jaini', cursive;
+            font-size: 1.8rem;
+            color: #6b4540;
+            margin: 20px 0;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+        }
+
+        .offerings-image {
+            width: 110%;
+            height: auto;
+            border-radius: 30px;
+            display: block;
+        }
+
         /* Floating Menu at Bottom */
         .floating-menu {
             position: fixed;
             bottom: 70px;
-            left: calc(27% + 25px); /* Updated from 33% to 27% to match new main content positioning */
-            right: calc(27% + 25px); /* Updated from 33% to 27% to match new main content positioning */
+            left: calc(23% + 25px); /* Updated from 27% to 23% to match new main content positioning */
+            right: calc(23% + 25px); /* Updated from 27% to 23% to match new main content positioning */
             transform: none;
             display: flex;
             gap: 40px;
-            padding: 0;
-            background: transparent;
-            backdrop-filter: none;
-            border-radius: 0;
-            box-shadow: none;
-            border: none;
+            padding: 15px 30px;
+            background: rgba(255, 245, 234, 0.95);
+            backdrop-filter: blur(8px);
+            border-radius: 25px;
+            border: 1px solid rgba(212, 167, 106, 0.2);
+            box-shadow: 0 4px 20px rgba(212, 167, 106, 0.15);
             z-index: 10;
             justify-content: space-between;
+            align-items: center;
         }
 
         .menu-icon {
-            width: 78px;
-            height: 78px;
+            width: 96px; /* Increased by another 7% (90 * 1.07 = 96.3, rounded to 96) */
+            height: 96px; /* Increased by another 7% (90 * 1.07 = 96.3, rounded to 96) */
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
             border-radius: 0;
-            background-size: cover;
+            background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
             border: none;
             position: relative;
+            overflow: visible;
         }
 
         .menu-icon:hover {
@@ -207,46 +472,173 @@
             box-shadow: none;
         }
 
-        /* Navigation icon backgrounds */
+        .menu-icon::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            color: #6b4540;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .menu-icon:hover::after {
+            opacity: 1;
+        }
+
+        /* Navigation icon backgrounds - with size overrides */
         .menu-icon[data-section="home"] {
-            background-image: url('assets/images/i-home.jpg?t=1763134745');
+            background-image: url('assets/images/i-home.jpg?v=1763210508') !important;
+            width: 88px !important;
+            height: 88px !important;
+        }
+
+        .menu-icon[data-section="vision"]::after,
+        .menu-icon[data-section="constellation"]::after,
+        .menu-icon[data-section="offerings"]::after,
+        .menu-icon[data-section="contact"]::after {
+            bottom: 4px; /* Raised to match home icon gap: -30px + (156-88)/2 = 4px */
         }
 
         .menu-icon[data-section="vision"] {
-            background-image: url('assets/images/i-vision.jpg?t=1763134745');
+            background-image: url('assets/images/i-vision.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
         }
 
         .menu-icon[data-section="constellation"] {
-            background-image: url('assets/images/i-const.jpg?t=1763134745');
+            background-image: url('assets/images/i-const.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
         }
 
         .menu-icon[data-section="offerings"] {
-            background-image: url('assets/images/i-offering.jpg?t=1763134745');
+            background-image: url('assets/images/i-offering.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
         }
 
         .menu-icon[data-section="contact"] {
-            background-image: url('assets/images/i-circle.jpg?t=1763134745');
+            background-image: url('assets/images/i-circle.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
         }
 
-        /* Navigation icon backgrounds - NEW SELECTORS */
-        .menu-icon[data-section="home"] {
-            background-image: url('assets/images/i-home.jpg') !important;
+        /* CSS Variables */
+        :root {
+            --forest-emerald: #2D5A27;
+            --misty-teal: #4A9B8B;
+            --healing-mint: #A8E6CF;
+            --golden-sunbeam: #FFD700;
+            --ethereal-aura: rgba(168, 230, 207, 0.3);
+            --mystic-glow: rgba(168, 230, 207, 0.5);
+            --dawn-purple: #9B59B6;
         }
 
-        .menu-icon[data-section="vision"] {
-            background-image: url('assets/images/i-vision.jpg') !important;
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 1001;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f2dde6, #efd2e0);
+            border: 2px solid #d4a76a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.6s ease;
+            box-shadow: 0 8px 25px rgba(212, 167, 106, 0.4);
+            backdrop-filter: blur(10px);
+            text-decoration: none;
         }
 
-        .menu-icon[data-section="constellation"] {
-            background-image: url('assets/images/i-const.jpg') !important;
+        .whatsapp-float:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 167, 106, 0.6);
+            background: linear-gradient(135deg, #efd2e0, #f5e8ec);
         }
 
-        .menu-icon[data-section="offerings"] {
-            background-image: url('assets/images/i-offering.jpg') !important;
+        .whatsapp-float .icon {
+            width: 32px;
+            height: 32px;
         }
 
-        .menu-icon[data-section="contact"] {
-            background-image: url('assets/images/i-circle.jpg') !important;
+        /* Audio Control Floating Button */
+        .audio-control {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            z-index: 1001;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f8f0eb, #f5e8ec);
+            border: 2px solid #d4a76a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.6s ease;
+            box-shadow: 0 8px 25px rgba(212, 167, 106, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .audio-control:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 167, 106, 0.6);
+            background: linear-gradient(135deg, #efd2e0, #f2dde6);
+        }
+
+        .audio-control .icon {
+            font-size: 1.8rem;
+            color: #6b4540;
+            text-shadow: 0 0 10px rgba(107, 69, 64, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .audio-control.playing .icon::before {
+            content: '⏸️';
+        }
+
+        .audio-control.paused .icon::before {
+            content: '🎵';
+        }
+
+        .audio-control::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 15px;
+            height: 15px;
+            background: var(--golden-sunbeam);
+            border-radius: 50%;
+            opacity: 0;
+            animation: soundWave 2s ease-in-out infinite;
+        }
+
+        .audio-control.playing::after {
+            opacity: 1;
+        }
+
+        @keyframes soundWave {
+            0%, 100% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
         }
 
         /* Responsive Design */
@@ -344,7 +736,7 @@
     <div class="right-knot"></div>
     
     <!-- Main Content -->
-    <div class="main-content">
+    <div id="home" class="main-content">
         <!-- Logo -->
         <div class="logo-container">
             <img src="assets/images/logo.jpg" alt="Ootahgonah Logo">
@@ -357,19 +749,186 @@
         
         <!-- Meditation Quote in Center -->
         <div class="center-quote">
-            <p>When you're relaxed and meditating, you're letting go of this relentless thinking of the mind.</p>
+            <p>{{dailyQuote}}</p>
         </div>
         
-        <!-- Removed the {{hero.quote}} section and its box -->
+        <!-- Home Page Bottom Text -->
+        <div class="home-bottom-text" style="text-align: center; margin: 30px 0; font-family: 'Nunito', sans-serif; font-size: 1.1rem; color: #6b4540; line-height: 1.6;">
+            <p>Ootahgohnah is not an organization, nor a project alone. It is a living vision — a portal where body, space, and spirit remember their true light.</p>
+        </div>
+        
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+        
+        <!-- Vision Section -->
+        <div id="vision" class="content-section">
+            <h2>Our Purpose</h2>
+            <p>Ootahgohnah is a living portal where body, space, and spirit return to their true light. It unfolds through community, healing spaces, and retreats — not as separate offerings, but as one rhythm of remembrance. Here, living itself becomes practice, design becomes medicine, and clarity arises not by striving, but by softening into presence.</p>
+            
+            <p><em>"The Light Body is not a future attainment — it is the forgotten dimension of your being, shimmering beneath the weight of effort." — William</em></p>
+            
+            <p>Ootahgohnah carries this remembrance into form — inviting all who feel the call to step in, not as seekers or followers, but as ones who already belong.</p>
+        </div>
+
+        <!-- Vision Quote -->
+        <div class="vision-quote">
+            <img src="assets/images/quote1.jpg" alt="Vision Quote" style="max-width: 100%; height: auto; margin-bottom: 15px; border-radius: 8px;">
+            <p>If you accept difficulty and are okay with it, difficulty does become less difficult immediately. You take the trying out of it.</p>
+        </div>
+
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+
+        <!-- Constellation Section -->
+        <div id="constellation" class="constellation-container">
+            <h2>The Constellations</h2>
+            <div class="constellation-section">
+                <div class="constellation-text">
+                    <p>Ootahgonah is carried by a constellation of companions — Light Body beings as guides, enlightened masters as teachers, and fellow travelers — each holding a unique thread of the vision.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+
+        <!-- Constellation Detail Section -->
+        <div class="constellation-detail" id="guides">
+            <!-- Left Column - Sohra -->
+            <div class="left-column">
+                <img src="assets/images/kkknot.jpg" alt="KKKnot" class="kkknot-image">
+                <div class="sohra-text">Sohra</div>
+                <div class="pretext-container" onclick="window.location.href='sohra.html'">
+                    <div class="sohra-top-half"></div>
+                    <div class="text-bottom-half">
+                        <p>A Light Body Being from the Sirian star system, carrying transmissions of remembrance. Sohra awakens what is already within through vibration, dissolving effort and restoring clarity.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center Column - Leaf -->
+            <div class="center-column">
+                <img src="assets/images/leaf1.jpg" alt="Leaf" class="leaf-image">
+            </div>
+            
+            <!-- Right Column - William -->
+            <div class="right-column">
+                <img src="assets/images/kkknot.jpg" alt="KKKnot" class="kkknot-image">
+                <div class="sohra-text">William</div>
+                <div class="pretext-container" onclick="window.location.href='william.html'">
+                    <div class="sohra-top-half" style="background-image: url('assets/images/will.jpg');"></div>
+                    <div class="text-bottom-half">
+                        <p>An enlightened teacher in Oregon devoted to the Light Body. He channels Sohra and practices Ujrayaan Buddhism and yoga, embodying effortless effort.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+
+        <!-- Practices and Offerings Section -->
+        <div id="offerings" class="offerings-section" style="text-align: center;">
+            <h2 style="font-family: 'Jaini', cursive; font-size: 2.2rem; color: #6b4540; margin-bottom: 30px; text-align: center;">Practices and Offerings</h2>
+            <div class="offerings-image-container" style="position: relative; display: inline-block;">
+                <img src="assets/images/offering.png" alt="Practices and Offerings" class="offerings-image" style="display: block; max-width: 100%; height: auto;">
+                
+                <!-- Hexagonal arrangement with invisible clickable areas -->
+                <!-- Top Center - One on One -->
+                <a href="one-on-one-circle.html" style="position: absolute; top: 10%; left: 35%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="One on One Circle"></a>
+                
+                <!-- Top Right - Healing Sessions -->
+                <a href="healing-sessions.html" style="position: absolute; top: 25%; right: 10%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Healing Sessions"></a>
+                
+                <!-- Bottom Right - Retreats & Staycations -->
+                <a href="retreats-staycations.html" style="position: absolute; top: 55%; right: 10%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Retreats & Staycations"></a>
+                
+                <!-- Bottom Center - Portal Channelings -->
+                <a href="portal-channelings.html" style="position: absolute; bottom: 10%; left: 35%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Portal Channelings"></a>
+                
+                <!-- Bottom Left - Meet Ups -->
+                <a href="meet-ups.html" style="position: absolute; top: 55%; left: 10%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Meet Ups"></a>
+                
+                <!-- Top Left - Weekly Meditation -->
+                <a href="weekly-meditation.html" style="position: absolute; top: 25%; left: 10%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Weekly Meditation"></a>
+                
+                <!-- Center - Join the Circle -->
+                <a ng-click="scrollTo('contact')" style="position: absolute; top: 40%; left: 35%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Join the Circle"></a>
+            </div>
+        </div>
+        
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+        
+        <!-- Contact Section -->
+        <section id="contact" style="margin-top: 60px; padding: 40px 20px; margin-bottom: 120px;">
+            <h2 style="font-family: 'Jaini', cursive; font-size: 2.5rem; color: #6b4540; text-align: center; margin-bottom: 20px;">Join the circle</h2>
+            <p style="text-align: center; font-size: 1.3rem; margin-bottom: 40px; font-style: italic; color: #6b4540; font-family: 'Nunito', sans-serif;">Open your heart and step into our circle of healing</p>
+            
+            <div style="max-width: 600px; margin: 0 auto; background: rgba(255, 245, 234, 0.7); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(107, 69, 64, 0.1);">
+                <form name="contactForm" ng-submit="submitForm()" novalidate>
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-family: 'Nunito', sans-serif; font-size: 1.1rem; color: #6b4540; margin-bottom: 8px;">Your Beautiful Name</label>
+                        <input type="text" ng-model="formData.name" required style="width: 100%; padding: 12px 15px; border: 2px solid rgba(107, 69, 64, 0.2); border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 1rem; background: white;">
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-family: 'Nunito', sans-serif; font-size: 1.1rem; color: #6b4540; margin-bottom: 8px;">Email Address</label>
+                        <input type="email" ng-model="formData.email" required style="width: 100%; padding: 12px 15px; border: 2px solid rgba(107, 69, 64, 0.2); border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 1rem; background: white;">
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-family: 'Nunito', sans-serif; font-size: 1.1rem; color: #6b4540; margin-bottom: 8px;">Phone Number</label>
+                        <input type="tel" ng-model="formData.phone" style="width: 100%; padding: 12px 15px; border: 2px solid rgba(107, 69, 64, 0.2); border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 1rem; background: white;">
+                    </div>
+                    <div style="margin-bottom: 25px;">
+                        <label style="display: block; font-family: 'Nunito', sans-serif; font-size: 1.1rem; color: #6b4540; margin-bottom: 8px;">Share from Your Heart</label>
+                        <textarea ng-model="formData.message" rows="4" placeholder="What brings you to our healing circle?" style="width: 100%; padding: 12px 15px; border: 2px solid rgba(107, 69, 64, 0.2); border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 1rem; background: white; resize: vertical;"></textarea>
+                    </div>
+                    <button type="submit" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #d4a76a, #c49660); border: none; border-radius: 10px; color: white; font-family: 'Nunito', sans-serif; font-size: 1.2rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Send with Love 🌿</button>
+                </form>
+                
+                <!-- WhatsApp Alternative -->
+                <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(107, 69, 64, 0.1); margin-bottom: 30px;">
+                    <p style="font-family: 'Nunito', sans-serif; color: #6b4540; margin-bottom: 15px;">Or connect with us directly:</p>
+                    <a href="https://wa.me/15551234567?text=Hello!%20I%20would%20like%20to%20connect%20with%20Ootahgonah" target="_blank" style="display: inline-flex; align-items: center; padding: 12px 25px; background: #25d366; color: white; text-decoration: none; border-radius: 25px; font-family: 'Nunito', sans-serif; font-weight: 600; transition: all 0.3s ease;">
+                        <svg style="width: 20px; height: 20px; margin-right: 8px;" viewBox="0 0 32 32">
+                            <path fill="white" d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.245 1.407 1.417-5.264-0.321-0.533c-1.331-2.21-2.007-4.739-2.007-7.382 0-7.51 6.123-13.633 13.633-13.633s13.633 6.123 13.633 13.633c0 7.51-6.123 13.633-13.633 13.633zM21.751 18.893c-0.413-0.207-2.448-1.207-2.828-1.344s-0.655-0.207-0.931 0.207c-0.276 0.413-1.069 1.344-1.31 1.62s-0.482 0.31-0.896 0.103c-0.413-0.207-1.745-0.643-3.324-2.051-1.228-1.096-2.058-2.448-2.296-2.862s-0.024-0.637 0.182-0.843c0.186-0.186 0.413-0.482 0.62-0.724s0.276-0.413 0.413-0.689c0.138-0.276 0.069-0.517-0.034-0.724s-0.931-2.241-1.276-3.069c-0.338-0.807-0.679-0.697-0.931-0.71-0.241-0.012-0.517-0.014-0.793-0.014s-0.724 0.103-1.103 0.517c-0.379 0.413-1.448 1.414-1.448 3.448s1.482 4 1.689 4.276c0.207 0.276 2.914 4.448 7.062 6.236 0.986 0.426 1.755 0.681 2.355 0.872 0.992 0.315 1.896 0.271 2.61 0.164 0.796-0.119 2.448-1 2.793-1.966s0.345-1.793 0.241-1.966c-0.103-0.172-0.379-0.276-0.793-0.482z"/>
+                        </svg>
+                        WhatsApp Us
+                    </a>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/15551234567?text=Hello!%20I%20would%20like%20to%20connect%20with%20Ootahgonah" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       title="Connect via WhatsApp">
+        <svg class="icon" viewBox="0 0 32 32" width="32" height="32">
+            <path fill="#6b4540" d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.245 1.407 1.417-5.264-0.321-0.533c-1.331-2.21-2.007-4.739-2.007-7.382 0-7.51 6.123-13.633 13.633-13.633s13.633 6.123 13.633 13.633c0 7.51-6.123 13.633-13.633 13.633zM21.751 18.893c-0.413-0.207-2.448-1.207-2.828-1.344s-0.655-0.207-0.931 0.207c-0.276 0.413-1.069 1.344-1.31 1.62s-0.482 0.31-0.896 0.103c-0.413-0.207-1.745-0.643-3.324-2.051-1.228-1.096-2.058-2.448-2.296-2.862s-0.024-0.637 0.182-0.843c0.186-0.186 0.413-0.482 0.62-0.724s0.276-0.413 0.413-0.689c0.138-0.276 0.069-0.517-0.034-0.724s-0.931-2.241-1.276-3.069c-0.338-0.807-0.679-0.697-0.931-0.71-0.241-0.012-0.517-0.014-0.793-0.014s-0.724 0.103-1.103 0.517c-0.379 0.413-1.448 1.414-1.448 3.448s1.482 4 1.689 4.276c0.207 0.276 2.914 4.448 7.062 6.236 0.986 0.426 1.755 0.681 2.355 0.872 0.992 0.315 1.896 0.271 2.61 0.164 0.796-0.119 2.448-1 2.793-1.966s0.345-1.793 0.241-1.966c-0.103-0.172-0.379-0.276-0.793-0.482z"/>
+        </svg>
+    </a>
+
+    <!-- Audio Control -->
+    <div class="audio-control paused" id="audioControl" onclick="toggleAudio()" title="Click to play ambient music">
+        <div class="icon"></div>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="ambientAudio" loop preload="auto">
+        <source src="assets/sounds/chips1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
     
     <!-- Floating Menu -->
     <div class="floating-menu">
-        <div class="menu-icon" data-section="home" ng-click="scrollTo('home')" title="Home"></div>
-        <div class="menu-icon" data-section="vision" ng-click="scrollTo('vision')" title="Vision"></div>
-        <div class="menu-icon" data-section="constellation" ng-click="scrollTo('constellation')" title="Constellation"></div>
-        <div class="menu-icon" data-section="offerings" ng-click="scrollTo('offerings')" title="Offerings"></div>
-        <div class="menu-icon" data-section="contact" ng-click="scrollTo('contact')" title="Join the Circle"></div>
+        <div class="menu-icon" data-section="home" data-label="Home" ng-click="scrollTo('home')" title="Home"></div>
+        <div class="menu-icon" data-section="vision" data-label="Vision" ng-click="scrollTo('vision')" title="Vision"></div>
+        <div class="menu-icon" data-section="constellation" data-label="Constellation" ng-click="scrollTo('constellation')" title="Constellation"></div>
+        <div class="menu-icon" data-section="offerings" data-label="Offerings" ng-click="scrollTo('offerings')" title="Offerings"></div>
+        <div class="menu-icon" data-section="contact" data-label="Join the Circle" ng-click="scrollTo('contact')" title="Join the Circle"></div>
     </div>
 
     <!-- AngularJS -->
@@ -377,5 +936,79 @@
     <script src="app.js"></script>
     <script src="controllers/mainController.js"></script>
     <script src="services/dataService.js"></script>
+    <script>
+        // Audio Control Functionality
+        let isAudioPlaying = false;
+        let audioElement = null;
+        let audioControl = null;
+        
+        function toggleAudio() {
+            if (!audioElement) {
+                audioElement = document.getElementById('ambientAudio');
+                audioControl = document.getElementById('audioControl');
+            }
+            
+            if (isAudioPlaying) {
+                pauseAudio();
+            } else {
+                playAudio();
+            }
+        }
+        
+        function playAudio() {
+            if (audioElement) {
+                audioElement.volume = 0.3;
+                audioElement.play().then(() => {
+                    isAudioPlaying = true;
+                    audioControl.classList.remove('paused');
+                    audioControl.classList.add('playing');
+                }).catch((error) => {
+                    console.log('Audio play failed, will try on user interaction:', error);
+                    isAudioPlaying = false;
+                    audioControl.classList.remove('playing');
+                    audioControl.classList.add('paused');
+                });
+            }
+        }
+        
+        function pauseAudio() {
+            if (audioElement) {
+                audioElement.pause();
+                isAudioPlaying = false;
+                audioControl.classList.remove('playing');
+                audioControl.classList.add('paused');
+            }
+        }
+        
+        // Initialize audio control when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            audioElement = document.getElementById('ambientAudio');
+            audioControl = document.getElementById('audioControl');
+            
+            if (audioElement) {
+                audioElement.volume = 0.3;
+                
+                // Try to auto-start music immediately
+                playAudio();
+                
+                // Fallback: if autoplay fails, start on any user interaction
+                if (!isAudioPlaying) {
+                    document.addEventListener('click', function startAudio() {
+                        if (audioElement && !isAudioPlaying) {
+                            playAudio();
+                        }
+                        document.removeEventListener('click', startAudio);
+                    }, { once: true });
+                    
+                    document.addEventListener('touchstart', function startAudioTouch() {
+                        if (audioElement && !isAudioPlaying) {
+                            playAudio();
+                        }
+                        document.removeEventListener('touchstart', startAudioTouch);
+                    }, { once: true });
+                }
+            }
+        });
+    </script>
 </body>
 </html>

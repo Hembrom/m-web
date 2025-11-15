@@ -181,7 +181,7 @@
             width: 55px; /* Increased from 50px by 10% (50 * 1.1 = 55) */
             height: 55px; /* Increased from 50px by 10% (50 * 1.1 = 55) */
             border-radius: 15px;
-            background-size: contain;
+            background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             transition: all 0.6s ease;
@@ -190,7 +190,7 @@
             border: 2px solid var(--healing-mint);
             box-shadow: 0 4px 15px var(--nature-mist);
             text-indent: -9999px;
-            overflow: visible; /* Changed from hidden to visible for tooltips */
+            overflow: hidden; /* Changed back to hidden to prevent icon cutoff */
         }
         
         .nav-links a:hover {
