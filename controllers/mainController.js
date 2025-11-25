@@ -39,13 +39,16 @@ angular.module('ootahgonahApp')
     $scope.formSubmitted = false;
     $scope.successMessage = '';
 
-    // Smooth scroll function
+    // Smooth scroll function with offset for better spacing
     $scope.scrollTo = function(elementId) {
         const element = document.getElementById(elementId);
         if (element) {
-            element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const elementPosition = element.offsetTop;
+            const offsetPosition = elementPosition - 100; // Add 100px offset above the element
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
             });
         }
     };

@@ -94,7 +94,7 @@
             right: 23%; /* Adjusted from 27% to 23% for wider center */
             width: 54%; /* Increased from 46% to 54% */
             min-height: 100vh;
-            padding: 10px 40px 150px 40px; /* Reduced top padding from 40px to 10px to move logo up */
+            padding: 40px 40px 150px 40px; /* Added top and bottom padding for floating menu clearance */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -111,15 +111,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: -20px; /* Reduced from 0px to move logo and quote section up */
+            margin-bottom: 0px; /* Reduced from 10px to move quote closer */
             border: none;
             outline: none;
             box-shadow: none;
         }
 
         .logo-container img {
-            width: 528px;
-            height: 528px;
+            width: 480px;
+            height: 480px;
             object-fit: contain;
             border: none;
             outline: none;
@@ -149,8 +149,7 @@
         /* Meditation Quote in Center - Rectangle Box */
         .center-quote {
             text-align: center;
-            margin-top: -30px; /* Added negative top margin to move quote up */
-            margin-bottom: 10px; /* Reduced from 60px to 10px to move vision section 50px higher */
+            margin-bottom: 60px; /* Space before vision section */
             max-width: 700px;
             padding: 20px; /* Reduced from 40px to move bottom edge up */
             background: rgba(248, 220, 235, 0.4);
@@ -215,7 +214,7 @@
         .constellation-container {
             width: 100%;
             max-width: 700px;
-            margin: 120px 0 60px 0; /* Increased top margin from 60px to 120px for navigation spacing */
+            margin: 60px 0;
         }
 
         .constellation-container h2 {
@@ -292,21 +291,18 @@
         }
 
         .pretext-container {
-            width: 110%; /* Increased from 100% to extend beyond normal bounds */
+            width: 100%;
             position: relative;
             background-image: url('assets/images/pre-text.jpg');
-            background-size: cover; /* Changed from 100% to cover for better overlap */
-            background-position: center center; /* Ensure centered positioning */
+            background-size: 105%;
+            background-position: center;
             background-repeat: no-repeat;
-            min-height: 600px; /* Increased height to accommodate full image */
+            min-height: 500px;
             border-radius: 20px;
             display: flex;
             flex-direction: column;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid rgba(212, 167, 106, 0.3); /* Added border to enhance visual definition */
-            margin-left: -5%; /* Center the expanded container */
-            margin-top: 15px; /* Move both Sohra and William boxes down by 15px */
         }
         
         .pretext-container:hover {
@@ -327,16 +323,16 @@
         .text-bottom-half {
             width: 100%;
             height: 50%;
-            padding: 25px; /* Increased from 20px for better spacing with larger text */
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: -30px; /* Reduced from -35px to move text down by another 5px */
+            margin-top: -49px;
         }
 
         .text-bottom-half p {
             font-family: 'Jaini', cursive;
-            font-size: 1.35rem; /* Increased from 1.125rem by 20% (1.125 * 1.2 = 1.35) */
+            font-size: 1rem;
             color: #6b4540;
             text-align: center;
             line-height: 1.4;
@@ -355,7 +351,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px 0;
-            margin-top: -441px; /* Reduced from -431px to move leaf up by another 10px */
+            margin-top: -416px;
         }
 
         .leaf-image {
@@ -392,7 +388,7 @@
         .offerings-container {
             width: 100%;
             max-width: 700px;
-            margin: 120px 0 60px 0; /* Increased top margin from 60px to 120px for navigation spacing */
+            margin: 60px 0;
         }
 
         .offerings-container h2 {
@@ -437,7 +433,7 @@
         /* Floating Menu at Bottom */
         .floating-menu {
             position: fixed;
-            bottom: 20px; /* Reduced from 40px to move floating menu further down */
+            bottom: 70px;
             left: calc(23% + 25px); /* Updated from 27% to 23% to match new main content positioning */
             right: calc(23% + 25px); /* Updated from 27% to 23% to match new main content positioning */
             transform: none;
@@ -455,8 +451,8 @@
         }
 
         .menu-icon {
-            width: 69px; /* Reduced by another 10% from 77px (77 * 0.9 = 69.3, rounded to 69) */
-            height: 69px; /* Reduced by another 10% from 77px (77 * 0.9 = 69.3, rounded to 69) */
+            width: 96px; /* Increased by another 7% (90 * 1.07 = 96.3, rounded to 96) */
+            height: 96px; /* Increased by another 7% (90 * 1.07 = 96.3, rounded to 96) */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -479,7 +475,7 @@
         .menu-icon::after {
             content: attr(data-label);
             position: absolute;
-            bottom: 10px; /* Moved up from -30px to 10px to appear inside the floating menu box */
+            bottom: -30px;
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Nunito', sans-serif;
@@ -498,52 +494,39 @@
         /* Navigation icon backgrounds - with size overrides */
         .menu-icon[data-section="home"] {
             background-image: url('assets/images/i-home.jpg?v=1763210508') !important;
-            width: 63px !important;
-            height: 63px !important;
+            width: 88px !important;
+            height: 88px !important;
         }
 
-        .menu-icon[data-section="home"]::after {
-            bottom: -30px; /* Moved to bottom like other icons */
+        .menu-icon[data-section="vision"]::after,
+        .menu-icon[data-section="constellation"]::after,
+        .menu-icon[data-section="offerings"]::after,
+        .menu-icon[data-section="contact"]::after {
+            bottom: 4px; /* Raised to match home icon gap: -30px + (156-88)/2 = 4px */
         }
 
         .menu-icon[data-section="vision"] {
             background-image: url('assets/images/i-vision.jpg?v=1763210508') !important;
-            width: 112px !important;
-            height: 112px !important;
-        }
-
-        .menu-icon[data-section="vision"]::after {
-            bottom: -5px; /* Positioned below the icon image */
+            width: 156px !important;
+            height: 156px !important;
         }
 
         .menu-icon[data-section="constellation"] {
-            background-image: url('assets/images/i1-const.jpg?v=1763210508') !important;
-            width: 112px !important;
-            height: 112px !important;
-        }
-
-        .menu-icon[data-section="constellation"]::after {
-            bottom: -5px; /* Positioned closer to the icon image */
+            background-image: url('assets/images/i-const.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
         }
 
         .menu-icon[data-section="offerings"] {
             background-image: url('assets/images/i-offering.jpg?v=1763210508') !important;
-            width: 90px !important;
-            height: 90px !important;
-        }
-
-        .menu-icon[data-section="offerings"]::after {
-            bottom: -15px; /* Positioned below the icon image */
+            width: 156px !important;
+            height: 156px !important;
         }
 
         .menu-icon[data-section="contact"] {
-            background-image: url('assets/images/i1-circle.jpg?v=1763210508') !important;
-            width: 90px !important;
-            height: 90px !important;
-        }
-
-        .menu-icon[data-section="contact"]::after {
-            bottom: -15px; /* Positioned below the icon image */
+            background-image: url('assets/images/i-circle.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
         }
 
         /* CSS Variables */
@@ -698,8 +681,8 @@
             }
             
             .menu-icon {
-                width: 36px;
-                height: 36px;
+                width: 50px;
+                height: 50px;
             }
         }
 
@@ -733,8 +716,8 @@
             }
             
             .menu-icon {
-                width: 32px;
-                height: 32px;
+                width: 45px;
+                height: 45px;
             }
         }
     </style>
@@ -756,7 +739,7 @@
     <div id="home" class="main-content">
         <!-- Logo -->
         <div class="logo-container">
-            <img src="assets/images/Logo-100.jpg" alt="Ootahgonah Logo">
+            <img src="assets/images/logo.jpg" alt="Ootahgonah Logo">
         </div>
         
         <!-- Title -->
@@ -878,7 +861,7 @@
         <div class="section-divider"></div>
         
         <!-- Contact Section -->
-        <section id="contact" style="margin-top: 120px; padding: 40px 20px; margin-bottom: 120px;"> <!-- Increased top margin from 60px to 120px for navigation spacing -->
+        <section id="contact" style="margin-top: 60px; padding: 40px 20px; margin-bottom: 120px;">
             <h2 style="font-family: 'Jaini', cursive; font-size: 2.5rem; color: #6b4540; text-align: center; margin-bottom: 20px;">Join the circle</h2>
             <p style="text-align: center; font-size: 1.3rem; margin-bottom: 40px; font-style: italic; color: #6b4540; font-family: 'Nunito', sans-serif;">Open your heart and step into our circle of healing</p>
             
@@ -906,9 +889,9 @@
                 <!-- WhatsApp Alternative -->
                 <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(107, 69, 64, 0.1); margin-bottom: 30px;">
                     <p style="font-family: 'Nunito', sans-serif; color: #6b4540; margin-bottom: 15px;">Or connect with us directly:</p>
-                    <a href="https://wa.me/15551234567?text=Hello!%20I%20would%20like%20to%20connect%20with%20Ootahgonah" target="_blank" style="display: inline-flex; align-items: center; padding: 12px 25px; background: linear-gradient(135deg, rgba(212, 167, 106, 0.6), rgba(196, 150, 96, 0.7)); border: 2px solid rgba(212, 167, 106, 0.8); color: #6b4540; text-decoration: none; border-radius: 25px; font-family: 'Nunito', sans-serif; font-weight: 600; transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(212, 167, 106, 0.3); backdrop-filter: blur(5px);">
+                    <a href="https://wa.me/15551234567?text=Hello!%20I%20would%20like%20to%20connect%20with%20Ootahgonah" target="_blank" style="display: inline-flex; align-items: center; padding: 12px 25px; background: #25d366; color: white; text-decoration: none; border-radius: 25px; font-family: 'Nunito', sans-serif; font-weight: 600; transition: all 0.3s ease;">
                         <svg style="width: 20px; height: 20px; margin-right: 8px;" viewBox="0 0 32 32">
-                            <path fill="#6b4540" d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.245 1.407 1.417-5.264-0.321-0.533c-1.331-2.21-2.007-4.739-2.007-7.382 0-7.51 6.123-13.633 13.633-13.633s13.633 6.123 13.633 13.633c0 7.51-6.123 13.633-13.633 13.633zM21.751 18.893c-0.413-0.207-2.448-1.207-2.828-1.344s-0.655-0.207-0.931 0.207c-0.276 0.413-1.069 1.344-1.31 1.62s-0.482 0.31-0.896 0.103c-0.413-0.207-1.745-0.643-3.324-2.051-1.228-1.096-2.058-2.448-2.296-2.862s-0.024-0.637 0.182-0.843c0.186-0.186 0.413-0.482 0.62-0.724s0.276-0.413 0.413-0.689c0.138-0.276 0.069-0.517-0.034-0.724s-0.931-2.241-1.276-3.069c-0.338-0.807-0.679-0.697-0.931-0.71-0.241-0.012-0.517-0.014-0.793-0.014s-0.724 0.103-1.103 0.517c-0.379 0.413-1.448 1.414-1.448 3.448s1.482 4 1.689 4.276c0.207 0.276 2.914 4.448 7.062 6.236 0.986 0.426 1.755 0.681 2.355 0.872 0.992 0.315 1.896 0.271 2.61 0.164 0.796-0.119 2.448-1 2.793-1.966s0.345-1.793 0.241-1.966c-0.103-0.172-0.379-0.276-0.793-0.482z"/>
+                            <path fill="white" d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.245 1.407 1.417-5.264-0.321-0.533c-1.331-2.21-2.007-4.739-2.007-7.382 0-7.51 6.123-13.633 13.633-13.633s13.633 6.123 13.633 13.633c0 7.51-6.123 13.633-13.633 13.633zM21.751 18.893c-0.413-0.207-2.448-1.207-2.828-1.344s-0.655-0.207-0.931 0.207c-0.276 0.413-1.069 1.344-1.31 1.62s-0.482 0.31-0.896 0.103c-0.413-0.207-1.745-0.643-3.324-2.051-1.228-1.096-2.058-2.448-2.296-2.862s-0.024-0.637 0.182-0.843c0.186-0.186 0.413-0.482 0.62-0.724s0.276-0.413 0.413-0.689c0.138-0.276 0.069-0.517-0.034-0.724s-0.931-2.241-1.276-3.069c-0.338-0.807-0.679-0.697-0.931-0.71-0.241-0.012-0.517-0.014-0.793-0.014s-0.724 0.103-1.103 0.517c-0.379 0.413-1.448 1.414-1.448 3.448s1.482 4 1.689 4.276c0.207 0.276 2.914 4.448 7.062 6.236 0.986 0.426 1.755 0.681 2.355 0.872 0.992 0.315 1.896 0.271 2.61 0.164 0.796-0.119 2.448-1 2.793-1.966s0.345-1.793 0.241-1.966c-0.103-0.172-0.379-0.276-0.793-0.482z"/>
                         </svg>
                         WhatsApp Us
                     </a>

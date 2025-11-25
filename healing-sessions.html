@@ -231,6 +231,167 @@
             width: 156px !important;
             height: 156px !important;
         }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .left-bar, .right-bar {
+                width: 5%;
+            }
+            
+            .left-knot, .right-knot {
+                width: 5%;
+            }
+            
+            .left-knot {
+                left: 5%;
+            }
+            
+            .right-knot {
+                right: 5%;
+            }
+
+            .main-content {
+                left: 10%;
+                right: 10%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-bar, .right-bar, .left-knot, .right-knot {
+                display: none;
+            }
+
+            body {
+                padding: 10px;
+            }
+
+            .main-content {
+                left: 0;
+                right: 0;
+                padding: 15px;
+                margin: 0;
+            }
+            
+            .back-button {
+                font-size: 18px !important;
+                padding: 10px 15px !important;
+                margin-bottom: 20px !important;
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem !important;
+                line-height: 1.2;
+                margin-bottom: 10px;
+            }
+
+            .page-header h2 {
+                font-size: 1.3rem !important;
+                line-height: 1.3;
+                margin-bottom: 15px;
+            }
+
+            .content-section {
+                padding: 15px !important;
+                margin: 15px 0 !important;
+            }
+
+            .content-section p {
+                font-size: 1.1rem !important;
+                line-height: 1.6;
+                margin-bottom: 15px;
+            }
+
+            .floating-menu {
+                gap: 15px !important;
+                padding: 10px 20px !important;
+                bottom: 15px !important;
+                left: 10px !important;
+                right: 10px !important;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+            
+            .menu-icon {
+                width: 42px !important;
+                height: 42px !important;
+                min-width: 42px;
+                touch-action: manipulation;
+            }
+
+            .menu-icon[data-section="home"] {
+                width: 42px !important;
+                height: 42px !important;
+            }
+
+            .menu-icon[data-section="vision"] {
+                width: 42px !important;
+                height: 42px !important;
+            }
+
+            .menu-icon[data-section="constellation"] {
+                width: 42px !important;
+                height: 42px !important;
+            }
+
+            .menu-icon[data-section="offerings"] {
+                width: 42px !important;
+                height: 42px !important;
+            }
+
+            .menu-icon[data-section="contact"] {
+                width: 42px !important;
+                height: 42px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 10px;
+            }
+            
+            .back-button {
+                font-size: 16px !important;
+                padding: 8px 12px !important;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem !important;
+            }
+
+            .page-header h2 {
+                font-size: 1.1rem !important;
+            }
+
+            .content-section p {
+                font-size: 1rem !important;
+            }
+            
+            .floating-menu {
+                gap: 10px !important;
+                padding: 8px 15px !important;
+                bottom: 10px !important;
+                left: 5px !important;
+                right: 5px !important;
+            }
+            
+            .menu-icon {
+                width: 38px !important;
+                height: 38px !important;
+                min-width: 38px;
+            }
+
+            .menu-icon[data-section="home"],
+            .menu-icon[data-section="vision"],
+            .menu-icon[data-section="constellation"],
+            .menu-icon[data-section="offerings"],
+            .menu-icon[data-section="contact"] {
+                width: 38px !important;
+                height: 38px !important;
+            }
+        }
     </style>
 </head>
 <body ng-controller="MainController">
@@ -240,7 +401,7 @@
     <div class="right-knot"></div>
     
     <div class="main-content">
-        <a href="a1.html" class="back-button">← Back</a>
+        <a href="a1.html#offerings" class="back-button">← Back</a>
 
         <div class="page-header">
             <h1>Healing Sessions</h1>

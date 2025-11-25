@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Responsiveness Test - Ootahgonah</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(180deg, #f8f0eb 0%, #efd2e0 100%);
+            min-height: 100vh;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px solid #d4a76a;
+            border-radius: 8px;
+        }
+        
+        .test-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #6b4540;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px;
+            min-height: 44px;
+            line-height: 20px;
+            text-align: center;
+        }
+        
+        .device-info {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .test-container {
+                padding: 15px;
+                margin: 10px;
+            }
+            
+            .test-section {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .test-container {
+                padding: 10px;
+                margin: 5px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>📱 Mobile Responsiveness Test</h1>
+        
+        <div class="device-info">
+            <strong>Current viewport:</strong> <span id="viewport"></span><br>
+            <strong>Device pixel ratio:</strong> <span id="devicePixelRatio"></span><br>
+            <strong>User agent:</strong> <span id="userAgent"></span>
+        </div>
+        
+        <div class="test-section">
+            <h2>🎯 Touch Target Test</h2>
+            <p>These buttons should be easily tappable on mobile (minimum 44px height):</p>
+            <a href="a1.html" class="test-button">Go to Home</a>
+            <a href="portal-channelings.html" class="test-button">Portal Channelings</a>
+            <a href="healing-sessions.html" class="test-button">Healing Sessions</a>
+        </div>
+        
+        <div class="test-section">
+            <h2>📏 Layout Test</h2>
+            <p><strong>Desktop (>992px):</strong> Should show side decorations</p>
+            <p><strong>Tablet (768px-992px):</strong> Reduced side decorations</p>
+            <p><strong>Mobile (<768px):</strong> Full width, no decorations</p>
+            <p><strong>Small Mobile (<480px):</strong> Compact spacing</p>
+        </div>
+        
+        <div class="test-section">
+            <h2>🚀 Quick Navigation</h2>
+            <p>Test the mobile experience on different pages:</p>
+            <ul>
+                <li><a href="a1.html">Main Portal (a1.html)</a></li>
+                <li><a href="sohra.html">Sohra Profile</a></li>
+                <li><a href="william.html">William Profile</a></li>
+                <li><a href="weekly-meditation.html">Weekly Meditation</a></li>
+                <li><a href="meet-ups.html">Meet-ups</a></li>
+            </ul>
+        </div>
+        
+        <div class="test-section">
+            <h2>✅ Mobile Features Checklist</h2>
+            <ul>
+                <li>✅ Responsive viewport meta tag</li>
+                <li>✅ Touch-friendly button sizes (44px minimum)</li>
+                <li>✅ Readable font sizes (16px+ to prevent zoom)</li>
+                <li>✅ Proper spacing for thumb navigation</li>
+                <li>✅ Hidden decorative elements on mobile</li>
+                <li>✅ Optimized floating menu and buttons</li>
+                <li>✅ Clean URL navigation (no fragments)</li>
+                <li>✅ Mobile-first responsive design</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('viewport').textContent = window.innerWidth + ' × ' + window.innerHeight;
+        document.getElementById('devicePixelRatio').textContent = window.devicePixelRatio;
+        document.getElementById('userAgent').textContent = navigator.userAgent.substring(0, 60) + '...';
+        
+        window.addEventListener('resize', function() {
+            document.getElementById('viewport').textContent = window.innerWidth + ' × ' + window.innerHeight;
+        });
+    </script>
+</body>
+</html>
