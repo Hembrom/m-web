@@ -1,0 +1,836 @@
+/* ============================================
+   OOTAHGONAH - HEALING PORTAL STYLES
+   ============================================ */
+
+/* Base Reset & Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(180deg, #f8f0eb 0%, #f5e8ec 40%, #f2dde6 70%, #efd2e0 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   LAYOUT - BACKGROUND ELEMENTS
+   ============================================ */
+
+.left-bar,
+.right-bar {
+    position: absolute;
+    top: 0;
+    width: 23%;
+    height: 100%;
+    background-image: url('../assets/images/leftleft.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    opacity: 0.6;
+}
+
+.left-bar {
+    left: 0;
+}
+
+.right-bar {
+    right: 0;
+    transform: scaleX(-1);
+}
+
+.left-knot,
+.right-knot {
+    position: absolute;
+    top: 0;
+    width: 15.5%;
+    height: 100%;
+    background-image: url('../assets/images/S11.jpeg');
+    background-size: 42% auto;
+    background-repeat: repeat-y;
+    z-index: 3;
+    opacity: 0.7;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.left-knot {
+    left: 7.5%;
+    background-position: top right;
+}
+
+.right-knot {
+    right: 7.5%;
+    background-position: top left;
+}
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+
+.main-content {
+    position: relative;
+    left: 23%;
+    right: 23%;
+    width: 54%;
+    min-height: 100vh;
+    padding: 10px 40px 150px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 3;
+    background: #FFF5EA;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* ============================================
+   LOGO & TITLE
+   ============================================ */
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -20px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.logo-container img {
+    width: 528px;
+    height: 528px;
+    object-fit: contain;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.title h1 {
+    font-family: 'Georgia', serif;
+    font-size: 4rem;
+    color: #5a3a3a;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(107, 69, 64, 0.3);
+}
+
+.title .subtitle {
+    font-size: 1.5rem;
+    color: #6b4540;
+    font-style: italic;
+}
+
+/* ============================================
+   QUOTE BOXES
+   ============================================ */
+
+.center-quote {
+    text-align: center;
+    margin-top: -30px;
+    margin-bottom: 10px;
+    max-width: 700px;
+    padding: 20px;
+    background: rgba(248, 220, 235, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    border: 2px solid rgba(212, 167, 106, 0.3);
+    box-shadow: 0 15px 40px rgba(107, 69, 64, 0.2);
+}
+
+.center-quote p {
+    font-size: 2.2rem;
+    line-height: 1.6;
+    color: #6b4540;
+    font-family: 'Jaini', cursive;
+}
+
+.vision-quote {
+    text-align: center;
+    margin: 40px 0;
+    max-width: 700px;
+    padding: 30px;
+    background: rgba(248, 220, 235, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    border: 2px solid rgba(212, 167, 106, 0.3);
+    box-shadow: 0 15px 40px rgba(107, 69, 64, 0.2);
+}
+
+.vision-quote p {
+    font-size: 2rem;
+    line-height: 1.6;
+    color: #6b4540;
+    font-family: 'Jaini', cursive;
+}
+
+/* ============================================
+   CONTENT SECTIONS
+   ============================================ */
+
+.content-section {
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 40px;
+}
+
+.content-section h2 {
+    font-family: 'Georgia', serif;
+    font-size: 2.5rem;
+    color: #6b4540;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.content-section p {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: #6b4540;
+    font-family: 'Nunito', sans-serif;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.home-bottom-text {
+    text-align: center;
+    margin: 30px 0;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    color: #6b4540;
+    line-height: 1.6;
+}
+
+/* ============================================
+   SECTION DIVIDER
+   ============================================ */
+
+.section-divider {
+    width: 80%;
+    max-width: 600px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(212, 167, 106, 0.5) 20%, rgba(212, 167, 106, 0.5) 80%, transparent);
+    margin: 60px auto;
+    border-radius: 50px;
+    position: relative;
+}
+
+.section-divider::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: rgba(212, 167, 106, 0.7);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(212, 167, 106, 0.4);
+}
+
+/* ============================================
+   CONSTELLATION SECTION
+   ============================================ */
+
+.constellation-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 120px 0 60px 0;
+}
+
+.constellation-container h2 {
+    font-family: 'Jaini', cursive;
+    font-size: 2.2rem;
+    color: #6b4540;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.constellation-section {
+    width: 100%;
+    position: relative;
+    min-height: 700px;
+    background-image: url('../assets/images/const.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 0 40px 0;
+}
+
+.constellation-text {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 20px 40px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.constellation-text p {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: #ffffff;
+    font-family: 'Jaini', cursive;
+    text-align: center;
+}
+
+/* ============================================
+   CONSTELLATION DETAIL GRID
+   ============================================ */
+
+.constellation-detail {
+    width: 100%;
+    max-width: 700px;
+    margin: 60px 0;
+    display: grid;
+    grid-template-columns: 35% 30% 35%;
+    gap: 0;
+}
+
+.left-column,
+.right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.center-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    margin-top: -441px;
+}
+
+.kkknot-image {
+    width: 80%;
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.sohra-text {
+    font-family: 'Jaini', cursive;
+    font-size: 2rem;
+    color: #6b4540;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.pretext-container {
+    width: 110%;
+    position: relative;
+    background-image: url('../assets/images/pre-text.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 600px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid rgba(212, 167, 106, 0.3);
+    margin-left: -5%;
+    margin-top: 15px;
+}
+
+.pretext-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(107, 69, 64, 0.3);
+}
+
+.sohra-top-half {
+    width: 100%;
+    height: 50%;
+    background-image: url('../assets/images/sohra.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px 20px 0 0;
+}
+
+.text-bottom-half {
+    width: 100%;
+    height: 50%;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -30px;
+}
+
+.text-bottom-half p {
+    font-family: 'Jaini', cursive;
+    font-size: 1.35rem;
+    color: #6b4540;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.leaf-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* ============================================
+   OFFERINGS SECTION
+   ============================================ */
+
+.offerings-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 120px 0 60px 0;
+    text-align: center;
+}
+
+.offerings-container h2 {
+    font-family: 'Jaini', cursive;
+    font-size: 2.2rem;
+    color: #6b4540;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.offerings-image-container {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+}
+
+.offerings-image {
+    width: 110%;
+    height: auto;
+    border-radius: 30px;
+    display: block;
+    max-width: 100%;
+}
+
+.quote-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+/* ============================================
+   FLOATING MENU
+   ============================================ */
+
+.floating-menu {
+    position: fixed;
+    bottom: 20px;
+    left: calc(23% + 25px);
+    right: calc(23% + 25px);
+    transform: none;
+    display: flex;
+    gap: 40px;
+    padding: 15px 30px;
+    background: rgba(255, 245, 234, 0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 25px;
+    border: 1px solid rgba(212, 167, 106, 0.2);
+    box-shadow: 0 4px 20px rgba(212, 167, 106, 0.15);
+    z-index: 10;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-icon {
+    width: 69px;
+    height: 69px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    position: relative;
+    overflow: visible;
+}
+
+.menu-icon:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: none;
+}
+
+.menu-icon::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: #6b4540;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.menu-icon:hover::after {
+    opacity: 1;
+}
+
+.menu-icon[data-section="home"] {
+    background-image: url('../assets/images/i-home.jpg?v=1763210508') !important;
+    width: 63px !important;
+    height: 63px !important;
+}
+
+.menu-icon[data-section="home"]::after {
+    bottom: -30px;
+}
+
+.menu-icon[data-section="vision"] {
+    background-image: url('../assets/images/i-vision.jpg?v=1763210508') !important;
+    width: 112px !important;
+    height: 112px !important;
+}
+
+.menu-icon[data-section="vision"]::after {
+    bottom: -5px;
+}
+
+.menu-icon[data-section="constellation"] {
+    background-image: url('../assets/images/i1-const.jpg?v=1763210508') !important;
+    width: 112px !important;
+    height: 112px !important;
+}
+
+.menu-icon[data-section="constellation"]::after {
+    bottom: -5px;
+}
+
+.menu-icon[data-section="offerings"] {
+    background-image: url('../assets/images/i-offering.jpg?v=1763210508') !important;
+    width: 90px !important;
+    height: 90px !important;
+}
+
+.menu-icon[data-section="offerings"]::after {
+    bottom: -15px;
+}
+
+.menu-icon[data-section="contact"] {
+    background-image: url('../assets/images/i1-circle.jpg?v=1763210508') !important;
+    width: 90px !important;
+    height: 90px !important;
+}
+
+.menu-icon[data-section="contact"]::after {
+    bottom: -15px;
+}
+
+/* ============================================
+   FLOATING BUTTONS
+   ============================================ */
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 1001;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #f2dde6, #efd2e0);
+    border: 2px solid #d4a76a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.6s ease;
+    box-shadow: 0 8px 25px rgba(212, 167, 106, 0.4);
+    backdrop-filter: blur(10px);
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.15) translateY(-5px);
+    box-shadow: 0 15px 40px rgba(212, 167, 106, 0.6);
+    background: linear-gradient(135deg, #efd2e0, #f5e8ec);
+}
+
+.whatsapp-float .icon {
+    width: 32px;
+    height: 32px;
+}
+
+.audio-control {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    z-index: 1001;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #f8f0eb, #f5e8ec);
+    border: 2px solid #d4a76a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.6s ease;
+    box-shadow: 0 8px 25px rgba(212, 167, 106, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.audio-control:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 15px 40px rgba(212, 167, 106, 0.6);
+    background: linear-gradient(135deg, #efd2e0, #f2dde6);
+}
+
+.audio-control .icon {
+    font-size: 1.8rem;
+    color: #6b4540;
+    text-shadow: 0 0 10px rgba(107, 69, 64, 0.3);
+    transition: all 0.3s ease;
+}
+
+.audio-control.playing .icon::before {
+    content: '⏸️';
+}
+
+.audio-control.paused .icon::before {
+    content: '🎵';
+}
+
+.audio-control::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    background: #FFD700;
+    border-radius: 50%;
+    opacity: 0;
+    animation: soundWave 2s ease-in-out infinite;
+}
+
+.audio-control.playing::after {
+    opacity: 1;
+}
+
+@keyframes soundWave {
+    0%, 100% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   CONTACT FORM STYLES
+   ============================================ */
+
+.contact-section {
+    margin-top: 120px;
+    padding: 40px 20px;
+    margin-bottom: 120px;
+}
+
+.contact-section h2 {
+    font-family: 'Jaini', cursive;
+    font-size: 2.5rem;
+    color: #6b4540;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-section .subtitle {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    font-style: italic;
+    color: #6b4540;
+    font-family: 'Nunito', sans-serif;
+}
+
+.contact-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 245, 234, 0.7);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(107, 69, 64, 0.1);
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    color: #6b4540;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid rgba(107, 69, 64, 0.2);
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    background: white;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #d4a76a, #c49660);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-alternative {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(107, 69, 64, 0.1);
+    margin-bottom: 30px;
+}
+
+.whatsapp-alternative p {
+    font-family: 'Nunito', sans-serif;
+    color: #6b4540;
+    margin-bottom: 15px;
+}
+
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, rgba(212, 167, 106, 0.6), rgba(196, 150, 96, 0.7));
+    border: 2px solid rgba(212, 167, 106, 0.8);
+    color: #6b4540;
+    text-decoration: none;
+    border-radius: 25px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(212, 167, 106, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.whatsapp-button svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .left-bar, .right-bar {
+        width: 8%;
+    }
+    
+    .left-knot {
+        left: 8%;
+        width: 8%;
+    }
+    
+    .right-knot {
+        right: 8%;
+        width: 8%;
+    }
+
+    .main-content {
+        left: 16%;
+        right: 16%;
+    }
+
+    .logo-container img {
+        width: 350px;
+        height: 350px;
+    }
+
+    .title h1 {
+        font-size: 3rem;
+    }
+    
+    .floating-menu {
+        gap: 30px;
+        padding: 15px 30px;
+    }
+    
+    .menu-icon {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .left-bar, .right-bar, .left-knot, .right-knot {
+        display: none;
+    }
+
+    .main-content {
+        left: 0;
+        right: 0;
+    }
+    
+    .logo-container img {
+        width: 280px;
+        height: 280px;
+    }
+
+    .title h1 {
+        font-size: 2.5rem;
+    }
+    
+    .floating-menu {
+        gap: 20px;
+        padding: 12px 25px;
+        bottom: 20px;
+    }
+    
+    .menu-icon {
+        width: 32px;
+        height: 32px;
+    }
+}
