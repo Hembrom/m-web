@@ -124,7 +124,7 @@ angular.module('ootahgonahApp')
             "The Light Body is not a future attainment — it is the forgotten dimension of your being, shimmering beneath the weight of effort.",
             "In the garden of the heart, love blooms eternal, healing all that it touches with gentle grace and infinite compassion.",
             "Healing begins the moment you stop fighting what is and start embracing what could be.",
-            "You are not broken; you are breaking open to let more light in.",
+            "**You are not broken; you are breaking open to let more light in.**",
             "Every breath is a chance to begin again, every heartbeat a reminder that you are alive and whole.",
             "The wound is the place where the Light enters you.",
             "Softness is not weakness; it is the courage to remain open when the world asks you to close.",
