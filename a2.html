@@ -841,13 +841,25 @@
             }
             
             .floating-menu {
-                gap: 15px;
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                width: auto;
+                transform: none;
+                display: flex;
+                gap: 20px;
                 padding: 10px 20px;
-                bottom: 15px;
-                left: 10px;
-                right: 10px;
-                flex-wrap: wrap;
-                justify-content: center;
+                background: rgba(255, 245, 234, 0.95);
+                backdrop-filter: blur(8px);
+                border-radius: 25px;
+                border: 1px solid rgba(212, 167, 106, 0.2);
+                box-shadow: 0 4px 20px rgba(212, 167, 106, 0.15);
+                z-index: 10;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: nowrap;
+                max-width: calc(100% - 40px);
             }
             
             .menu-icon {
