@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ootahgonahApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ootahgonah - A Healing Portal of Love & Light</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Nunito:wght@300;400;600&family=Jaini:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Mobile Responsiveness -->
+    <style>
+        @media (max-width: 1200px) {
+            .left-bar, .right-bar {
+                width: 20%;
+            }
+
+            .main-content {
+                left: 20%;
+                right: 20%;
+                width: 60%;
+            }
+            
+            .floating-menu {
+                left: calc(20% + 25px);
+                right: calc(20% + 25px);
+            }
+            
+            .logo-container img {
+                width: 320px;
+                height: 320px;
+            }
+            
+            .title h1 {
+                font-size: 3.5rem;
+            }
+            
+            .center-quote p {
+                font-size: 2rem;
+            }
+            
+            .floating-menu {
+                gap: 30px;
+                padding: 15px 30px;
+            }
+            
+            .menu-icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-bar, .right-bar, .left-knot, .right-knot {
+                display: none;
+            }
+
+            .main-content {
+                left: 0;
+                right: 0;
+                width: 100%;
+                padding: 20px;
+                min-height: 100vh;
+            }
+            
+            .logo-container img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .title h1 {
+                font-size: 2.2rem;
+            }
+            
+            .center-quote {
+                margin: 20px auto;
+                padding: 15px;
+                max-width: 95%;
+            }
+            
+            .center-quote p {
+                font-size: 1.6rem;
+                line-height: 1.4;
+            }
+            
+            .home-bottom-text {
+                font-size: 1rem !important;
+                padding: 0 10px;
+                margin: 20px 0 !important;
+            }
+            
+            .content-section {
+                max-width: 95%;
+                margin-bottom: 30px;
+            }
+            
+            .content-section h2 {
+                font-size: 2rem;
+            }
+            
+            .content-section p {
+                font-size: 1.2rem;
+                line-height: 1.6;
+                text-align: left;
+            }
+            
+            .vision-quote {
+                margin: 30px auto;
+                padding: 20px;
+                max-width: 95%;
+            }
+            
+            .vision-quote p {
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            
+            .quote-image {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+            }
+            
+            .constellation-container {
+                max-width: 95%;
+                margin: 40px auto;
+            }
+            
+            .constellation-container h2 {
+                font-size: 2rem;
+            }
+            
+            .constellation-section {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .left-column, .right-column {
+                width: 100%;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            
+            .center-column {
+                width: 100%;
+                max-width: 200px;
+                margin: 20px auto;
+            }
+            
+            .leaf-image {
+                width: 150px !important;
+                height: 150px !important;
+            }
+            
+            .kkknot-image {
+                width: 150px !important;
+                height: 150px !important;
+            }
+            
+            .pretext-container {
+                width: 100%;
+                max-width: 300px;
+                height: 300px;
+            }
+            
+            .sohra-top-half {
+                height: 60%;
+            }
+            
+            .text-bottom-half {
+                height: 40%;
+                padding: 10px;
+            }
+            
+            .text-bottom-half p {
+                font-size: 0.9rem;
+                line-height: 1.3;
+            }
+            
+            .sohra-text {
+                font-size: 1.3rem;
+                margin: 10px 0;
+            }
+            
+            .offerings-container {
+                max-width: 95%;
+            }
+            
+            .offerings-container h2 {
+                font-size: 2rem;
+            }
+            
+            .offering-item {
+                margin: 20px 0;
+                padding: 15px;
+            }
+            
+            .offering-item h3 {
+                font-size: 1.4rem;
+            }
+            
+            .offering-item p {
+                font-size: 1.1rem;
+                line-height: 1.5;
+            }
+            
+            .floating-menu {
+                position: fixed;
+                bottom: 15px;
+                left: 15px;
+                right: 100px;
+                width: auto;
+                transform: none;
+                display: flex;
+                gap: 12px;
+                padding: 6px 12px;
+                background: rgba(255, 245, 234, 0.95);
+                backdrop-filter: blur(8px);
+                border-radius: 20px;
+                border: 1px solid rgba(212, 167, 106, 0.2);
+                box-shadow: 0 4px 20px rgba(212, 167, 106, 0.15);
+                z-index: 10;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: nowrap;
+                overflow: hidden;
+            }
+            
+            .menu-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .contact-section {
+                max-width: 95%;
+                margin: 30px auto;
+                padding: 20px;
+            }
+            
+            .contact-form-container {
+                padding: 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 12px;
+            }
+            
+            .submit-button {
+                width: 100%;
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+            
+            .whatsapp-button {
+                bottom: 20px;
+                right: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(180deg, #f8f0eb 0%, #f5e8ec 40%, #f2dde6 70%, #efd2e0 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Left Fading Bar - reduced by 30% */
+        .left-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 23%; /* Reduced from 27% to make room for wider center */
+            height: 100%;
+            background-image: url('assets/images/leftleft.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        /* Right Fading Bar - reduced by 30% */
+        .right-bar {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 23%; /* Reduced from 27% to make room for wider center */
+            height: 100%;
+            background-image: url('assets/images/leftleft.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.6;
+            transform: scaleX(-1);
+        }
+
+        /* Left Celtic Knot - adjusted for smaller bars */
+        .left-knot {
+            position: absolute;
+            left: 7.5%; /* Moved from 11.5% to align with narrower 23% layout */
+            top: 0;
+            width: 15.5%; /* Extended slightly to 15.5% to overlap with center and remove gap */
+            height: 100%;
+            background-image: url('assets/images/S11.jpeg');
+            background-size: 42% auto; /* Width reduced by 40% (70% * 0.6 = 42%), height increased by 25% (auto maintains aspect, will repeat more) */
+            background-repeat: repeat-y;
+            background-position: top right; /* Changed from center to right to align with main-content edge */
+            z-index: 3; /* Higher than left-bar to cover any overlap */
+            opacity: 0.7;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Right Celtic Knot - mirrors left side */
+        .right-knot {
+            position: absolute;
+            right: 7.5%; /* Moved from 11.5% to align with narrower 23% layout */
+            top: 0;
+            width: 15.5%; /* Extended slightly to 15.5% to overlap with center and remove gap */
+            height: 100%;
+            background-image: url('assets/images/S11.jpeg');
+            background-size: 42% auto; /* Width reduced by 40%, height auto */
+            background-repeat: repeat-y;
+            background-position: top left; /* Changed from center to left to align with main-content edge */
+            z-index: 3; /* Higher than right-bar to cover any overlap */
+            opacity: 0.7;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Main Content Area - adjusted for smaller side layout */
+        .main-content {
+            position: relative;
+            left: 23%; /* Adjusted from 27% to 23% for wider center */
+            right: 23%; /* Adjusted from 27% to 23% for wider center */
+            width: 54%; /* Increased from 46% to 54% */
+            min-height: 100vh;
+            padding: 40px 40px 150px 40px; /* Added top and bottom padding for floating menu clearance */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            z-index: 3;
+            background: #FFF5EA;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        /* Logo Container - centered */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0px; /* Reduced from 10px to move quote closer */
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        .logo-container img {
+            width: 480px;
+            height: 480px;
+            object-fit: contain;
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* Title */
+        .title {
+            text-align: center;
+            margin-bottom: 0px; /* Reduced from 10px to move quote closer */
+        }
+
+        .title h1 {
+            font-family: 'Georgia', serif;
+            font-size: 4rem;
+            color: #5a3a3a;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(107, 69, 64, 0.3);
+        }
+
+        .title .subtitle {
+            font-size: 1.5rem;
+            color: #6b4540;
+            font-style: italic;
+        }
+
+        /* Meditation Quote in Center - Rectangle Box */
+        .center-quote {
+            text-align: center;
+            margin-bottom: 60px; /* Space before vision section */
+            max-width: 700px;
+            padding: 20px; /* Reduced from 40px to move bottom edge up */
+            background: rgba(248, 220, 235, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 2px solid rgba(212, 167, 106, 0.3);
+            box-shadow: 0 15px 40px rgba(107, 69, 64, 0.2);
+        }
+
+        .center-quote p {
+            font-size: 2.2rem;
+            line-height: 1.6;
+            color: #6b4540;
+            font-family: 'Jaini', cursive;
+        }
+
+        /* Content Section */
+        .content-section {
+            width: 100%;
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .content-section h2 {
+            font-family: 'Georgia', serif;
+            font-size: 2.5rem;
+            color: #6b4540;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .content-section p {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: #6b4540;
+            font-family: 'Nunito', sans-serif;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        /* Vision Quote Box */
+        .vision-quote {
+            text-align: center;
+            margin: 40px 0;
+            max-width: 700px;
+            padding: 30px;
+            background: rgba(248, 220, 235, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 2px solid rgba(212, 167, 106, 0.3);
+            box-shadow: 0 15px 40px rgba(107, 69, 64, 0.2);
+        }
+
+        .vision-quote p {
+            font-size: 2rem;
+            line-height: 1.6;
+            color: #6b4540;
+            font-family: 'Jaini', cursive;
+        }
+
+        /* Constellation Container */
+        .constellation-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 60px 0;
+        }
+
+        .constellation-container h2 {
+            font-family: 'Jaini', cursive;
+            font-size: 2.2rem;
+            color: #6b4540;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Constellation Section with Background Image */
+        .constellation-section {
+            width: 100%;
+            position: relative;
+            min-height: 700px;
+            background-image: url('assets/images/const.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px 0 40px 0;
+        }
+
+        .constellation-text {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            border-radius: 20px;
+            width: 100%;
+        }
+
+        .constellation-text p {
+            font-size: 1.5rem;
+            line-height: 1.4;
+            color: #ffffff;
+            font-family: 'Jaini', cursive;
+            text-align: center;
+        }
+
+        /* Constellation Detail Section */
+        .constellation-detail {
+            width: 100%;
+            max-width: 700px;
+            margin: 60px 0;
+            display: grid;
+            grid-template-columns: 35% 30% 35%;
+            gap: 0;
+        }
+
+        /* Left Column - kkknot and Sohra */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .kkknot-image {
+            width: 80%;
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .sohra-text {
+            font-family: 'Jaini', cursive;
+            font-size: 2rem;
+            color: #6b4540;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .pretext-container {
+            width: 100%;
+            position: relative;
+            background-image: url('assets/images/pre-text.jpg');
+            background-size: 105%;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 500px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .pretext-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(107, 69, 64, 0.3);
+        }
+
+        .sohra-top-half {
+            width: 100%;
+            height: 50%;
+            background-image: url('assets/images/sohra.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .text-bottom-half {
+            width: 100%;
+            height: 50%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -49px;
+        }
+
+        .text-bottom-half p {
+            font-family: 'Jaini', cursive;
+            font-size: 1rem;
+            color: #6b4540;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* Right Column */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Center Column - Leaf */
+        .center-column {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            margin-top: -416px;
+        }
+
+        .leaf-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Section Divider */
+        .section-divider {
+            width: 80%;
+            max-width: 600px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(212, 167, 106, 0.5) 20%, rgba(212, 167, 106, 0.5) 80%, transparent);
+            margin: 60px auto;
+            border-radius: 50px;
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: rgba(212, 167, 106, 0.7);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(212, 167, 106, 0.4);
+        }
+
+        /* Offerings Section */
+        .offerings-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 60px 0;
+        }
+
+        .offerings-container h2 {
+            font-family: 'Jaini', cursive;
+            font-size: 2.2rem;
+            color: #6b4540;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .offerings-image-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .offerings-list {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 5;
+            width: 100%;
+        }
+
+        .offerings-list p {
+            font-family: 'Jaini', cursive;
+            font-size: 1.8rem;
+            color: #6b4540;
+            margin: 20px 0;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+        }
+
+        .offerings-image {
+            width: 110%;
+            height: auto;
+            border-radius: 30px;
+            display: block;
+        }
+
+        /* Floating Menu at Bottom */
+        .floating-menu {
+            position: fixed;
+            bottom: 70px;
+            left: calc(23% + 25px); /* Updated from 27% to 23% to match new main content positioning */
+            right: calc(23% + 25px); /* Updated from 27% to 23% to match new main content positioning */
+            transform: none;
+            display: flex;
+            gap: 40px;
+            padding: 15px 30px;
+            background: rgba(255, 245, 234, 0.95);
+            backdrop-filter: blur(8px);
+            border-radius: 25px;
+            border: 1px solid rgba(212, 167, 106, 0.2);
+            box-shadow: 0 4px 20px rgba(212, 167, 106, 0.15);
+            z-index: 10;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-icon {
+            width: 96px; /* Increased by another 7% (90 * 1.07 = 96.3, rounded to 96) */
+            height: 96px; /* Increased by another 7% (90 * 1.07 = 96.3, rounded to 96) */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: none;
+            position: relative;
+            overflow: visible;
+        }
+
+        .menu-icon:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: none;
+        }
+
+        .menu-icon::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            color: #6b4540;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .menu-icon:hover::after {
+            opacity: 1;
+        }
+
+        /* Navigation icon backgrounds - with size overrides */
+        .menu-icon[data-section="home"] {
+            background-image: url('assets/images/i-home.jpg?v=1763210508') !important;
+            width: 88px !important;
+            height: 88px !important;
+        }
+
+        .menu-icon[data-section="vision"]::after,
+        .menu-icon[data-section="constellation"]::after,
+        .menu-icon[data-section="offerings"]::after,
+        .menu-icon[data-section="contact"]::after {
+            bottom: 4px; /* Raised to match home icon gap: -30px + (156-88)/2 = 4px */
+        }
+
+        .menu-icon[data-section="vision"] {
+            background-image: url('assets/images/i-vision.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        .menu-icon[data-section="constellation"] {
+            background-image: url('assets/images/i-const.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        .menu-icon[data-section="offerings"] {
+            background-image: url('assets/images/i-offering.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        .menu-icon[data-section="contact"] {
+            background-image: url('assets/images/i-circle.jpg?v=1763210508') !important;
+            width: 156px !important;
+            height: 156px !important;
+        }
+
+        /* CSS Variables */
+        :root {
+            --forest-emerald: #2D5A27;
+            --misty-teal: #4A9B8B;
+            --healing-mint: #A8E6CF;
+            --golden-sunbeam: #FFD700;
+            --ethereal-aura: rgba(168, 230, 207, 0.3);
+            --mystic-glow: rgba(168, 230, 207, 0.5);
+            --dawn-purple: #9B59B6;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 1001;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f2dde6, #efd2e0);
+            border: 2px solid #d4a76a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.6s ease;
+            box-shadow: 0 8px 25px rgba(212, 167, 106, 0.4);
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 167, 106, 0.6);
+            background: linear-gradient(135deg, #efd2e0, #f5e8ec);
+        }
+
+        .whatsapp-float .icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        /* Audio Control Floating Button */
+        .audio-control {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            z-index: 1001;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f8f0eb, #f5e8ec);
+            border: 2px solid #d4a76a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.6s ease;
+            box-shadow: 0 8px 25px rgba(212, 167, 106, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .audio-control:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 167, 106, 0.6);
+            background: linear-gradient(135deg, #efd2e0, #f2dde6);
+        }
+
+        .audio-control .icon {
+            font-size: 1.8rem;
+            color: #6b4540;
+            text-shadow: 0 0 10px rgba(107, 69, 64, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .audio-control.playing .icon::before {
+            content: '⏸️';
+        }
+
+        .audio-control.paused .icon::before {
+            content: '🎵';
+        }
+
+        .audio-control::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 15px;
+            height: 15px;
+            background: var(--golden-sunbeam);
+            border-radius: 50%;
+            opacity: 0;
+            animation: soundWave 2s ease-in-out infinite;
+        }
+
+        .audio-control.playing::after {
+            opacity: 1;
+        }
+
+        @keyframes soundWave {
+            0%, 100% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .left-bar, .right-bar {
+                width: 8%;
+            }
+            
+            .left-knot {
+                left: 8%;
+                width: 8%;
+            }
+            
+            .right-knot {
+                right: 8%;
+                width: 8%;
+            }
+
+            .main-content {
+                left: 16%;
+                right: 16%;
+            }
+
+            .logo-container img {
+                width: 350px;
+                height: 350px;
+            }
+
+            .title h1 {
+                font-size: 3rem;
+            }
+            
+            .quote-section p {
+                font-size: 1.5rem;
+            }
+            
+            .floating-menu {
+                gap: 30px;
+                padding: 15px 30px;
+            }
+            
+            .menu-icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-bar, .right-bar, .left-knot, .right-knot {
+                display: none;
+            }
+
+            .main-content {
+                left: 0;
+                right: 0;
+                width: 100%;
+                padding: 20px;
+                min-height: 100vh;
+            }
+            
+            .logo-container img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .title h1 {
+                font-size: 2.2rem;
+            }
+            
+            .center-quote {
+                margin: 20px auto;
+                padding: 15px;
+                max-width: 95%;
+            }
+            
+            .center-quote p {
+                font-size: 1.6rem;
+                line-height: 1.4;
+            }
+            
+            .home-bottom-text {
+                font-size: 1rem !important;
+                padding: 0 10px;
+                margin: 20px 0 !important;
+            }
+            
+            .content-section {
+                max-width: 95%;
+                margin-bottom: 30px;
+            }
+            
+            .content-section h2 {
+                font-size: 2rem;
+            }
+            
+            .content-section p {
+                font-size: 1.2rem;
+                line-height: 1.6;
+                text-align: left;
+            }
+            
+            .vision-quote {
+                margin: 30px auto;
+                padding: 20px;
+                max-width: 95%;
+            }
+            
+            .vision-quote p {
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            
+            .quote-image {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+            }
+            
+            .constellation-container {
+                max-width: 95%;
+                margin: 40px auto;
+            }
+            
+            .constellation-container h2 {
+                font-size: 2rem;
+            }
+            
+            .constellation-section {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .left-column, .right-column {
+                width: 100%;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            
+            .center-column {
+                width: 100%;
+                max-width: 200px;
+                margin: 20px auto;
+            }
+            
+            .leaf-image {
+                width: 150px !important;
+                height: 150px !important;
+            }
+            
+            .kkknot-image {
+                width: 150px !important;
+                height: 150px !important;
+            }
+            
+            .pretext-container {
+                width: 100%;
+                max-width: 300px;
+                height: 300px;
+            }
+            
+            .sohra-top-half {
+                height: 60%;
+            }
+            
+            .text-bottom-half {
+                height: 40%;
+                padding: 10px;
+            }
+            
+            .text-bottom-half p {
+                font-size: 0.9rem;
+                line-height: 1.3;
+            }
+            
+            .sohra-text {
+                font-size: 1.3rem;
+                margin: 10px 0;
+            }
+            
+            .offerings-container {
+                max-width: 95%;
+            }
+            
+            .offerings-container h2 {
+                font-size: 2rem;
+            }
+            
+            .offering-item {
+                margin: 20px 0;
+                padding: 15px;
+            }
+            
+            .offering-item h3 {
+                font-size: 1.4rem;
+            }
+            
+            .offering-item p {
+                font-size: 1.1rem;
+                line-height: 1.5;
+            }
+            
+            .floating-menu {
+                position: fixed;
+                bottom: 15px;
+                left: 15px;
+                right: 100px;
+                width: auto;
+                transform: none;
+                display: flex;
+                gap: 12px;
+                padding: 6px 12px;
+                background: rgba(255, 245, 234, 0.95);
+                backdrop-filter: blur(8px);
+                border-radius: 20px;
+                border: 1px solid rgba(212, 167, 106, 0.2);
+                box-shadow: 0 4px 20px rgba(212, 167, 106, 0.15);
+                z-index: 10;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: nowrap;
+                overflow: hidden;
+            }
+            
+            .menu-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .contact-section {
+                max-width: 95%;
+                margin: 30px auto;
+                padding: 20px;
+            }
+            
+            .contact-form-container {
+                padding: 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 12px;
+            }
+            
+            .submit-button {
+                width: 100%;
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+            
+            .whatsapp-button {
+                bottom: 20px;
+                right: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body ng-controller="MainController">
+    <!-- Left Fading Bar -->
+    <div class="left-bar"></div>
+    
+    <!-- Right Fading Bar -->
+    <div class="right-bar"></div>
+    
+    <!-- Left Celtic Knot -->
+    <div class="left-knot"></div>
+    
+    <!-- Right Celtic Knot -->
+    <div class="right-knot"></div>
+    
+    <!-- Main Content -->
+    <div id="home" class="main-content">
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="assets/images/Logo-100.jpg" alt="Ootahgonah Logo">
+        </div>
+        
+        <!-- Title -->
+        <div class="title">
+            <!-- Removed {{hero.title || 'Ootahgonah'}} and {{hero.tagline || 'A Haven of Healing and Warmth'}} -->
+        </div>
+        
+        <!-- Meditation Quote in Center -->
+        <div class="center-quote">
+            <p>{{dailyQuote}}</p>
+        </div>
+        
+        <!-- Home Page Bottom Text -->
+        <div class="home-bottom-text">
+            <p>Ootahgohnah is not an organization, nor a project alone. It is a living vision — a portal where body, space, and spirit remember their true light.</p>
+        </div>
+        
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+        
+        <!-- Vision Section -->
+        <div id="vision" class="content-section">
+            <h2>Our Purpose</h2>
+            <p>Ootahgohnah is a living portal where body, space, and spirit return to their true light. It unfolds through community, healing spaces, and retreats — not as separate offerings, but as one rhythm of remembrance. Here, living itself becomes practice, design becomes medicine, and clarity arises not by striving, but by softening into presence.</p>
+            
+            <p><em>"The Light Body is not a future attainment — it is the forgotten dimension of your being, shimmering beneath the weight of effort." — William</em></p>
+            
+            <p>Ootahgohnah carries this remembrance into form — inviting all who feel the call to step in, not as seekers or followers, but as ones who already belong.</p>
+        </div>
+
+        <!-- Vision Quote -->
+        <div class="vision-quote">
+            <img src="assets/images/quote1.jpg" alt="Vision Quote" class="quote-image">
+            <p>If you accept difficulty and are okay with it, difficulty does become less difficult immediately. You take the trying out of it.</p>
+        </div>
+
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+
+        <!-- Constellation Section -->
+        <div id="constellation" class="constellation-container">
+            <h2>The Constellations</h2>
+            <div class="constellation-section">
+                <div class="constellation-text">
+                    <p>Ootahgonah is carried by a constellation of companions — Light Body beings as guides, enlightened masters as teachers, and fellow travelers — each holding a unique thread of the vision.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+
+        <!-- Constellation Detail Section -->
+        <div class="constellation-detail" id="guides">
+            <!-- Left Column - Sohra -->
+            <div class="left-column">
+                <img src="assets/images/kkknot.jpg" alt="KKKnot" class="kkknot-image">
+                <div class="sohra-text">Sohra</div>
+                <div class="pretext-container" onclick="window.location.href='sohra.html'">
+                    <div class="sohra-top-half"></div>
+                    <div class="text-bottom-half">
+                        <p>A Light Body Being from the Sirian star system, carrying transmissions of remembrance. Sohra awakens what is already within through vibration, dissolving effort and restoring clarity.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Center Column - Leaf -->
+            <div class="center-column">
+                <img src="assets/images/leaf1.jpg" alt="Leaf" class="leaf-image">
+            </div>
+            
+            <!-- Right Column - William -->
+            <div class="right-column">
+                <img src="assets/images/kkknot.jpg" alt="KKKnot" class="kkknot-image">
+                <div class="sohra-text">William</div>
+                <div class="pretext-container" onclick="window.location.href='william.html'">
+                    <div class="sohra-top-half" style="background-image: url('assets/images/will.jpg');"></div>
+                    <div class="text-bottom-half">
+                        <p>An enlightened teacher in Oregon devoted to the Light Body. He channels Sohra and practices Ujrayaan Buddhism and yoga, embodying effortless effort.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+
+        <!-- Practices and Offerings Section -->
+        <div id="offerings" class="offerings-container">
+            <h2>Practices and Offerings</h2>
+            <div class="offerings-image-container">
+                <img src="assets/images/offering.png" alt="Practices and Offerings" class="offerings-image">
+                
+                <!-- Hexagonal arrangement with invisible clickable areas -->
+                <!-- Top Center - One on One -->
+                <a href="one-on-one-circle.html" style="position: absolute; top: 10%; left: 35%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="One on One Circle"></a>
+                
+                <!-- Top Right - Healing Sessions -->
+                <a href="healing-sessions.html" style="position: absolute; top: 25%; right: 10%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Healing Sessions"></a>
+                
+                <!-- Bottom Right - Retreats & Staycations -->
+                <a href="retreats-staycations.html" style="position: absolute; top: 55%; right: 10%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Retreats & Staycations"></a>
+                
+                <!-- Bottom Center - Portal Channelings -->
+                <a href="portal-channelings.html" style="position: absolute; bottom: 10%; left: 35%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Portal Channelings"></a>
+                
+                <!-- Bottom Left - Meet Ups -->
+                <a href="meet-ups.html" style="position: absolute; top: 55%; left: 10%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Meet Ups"></a>
+                
+                <!-- Top Left - Weekly Meditation -->
+                <a href="weekly-meditation.html" style="position: absolute; top: 25%; left: 10%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Weekly Meditation"></a>
+                
+                <!-- Center - Join the Circle -->
+                <a ng-click="scrollTo('contact')" style="position: absolute; top: 40%; left: 35%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Join the Circle"></a>
+            </div>
+        </div>
+        
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <h2>Join the circle</h2>
+            <p class="subtitle">Open your heart and step into our circle of healing</p>
+            
+            <div class="contact-form-container">
+                <form name="contactForm" ng-submit="submitForm()" novalidate>
+                    <div class="form-group">
+                        <label>Your Beautiful Name</label>
+                        <input type="text" ng-model="formData.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" ng-model="formData.email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" ng-model="formData.phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Share from Your Heart</label>
+                        <textarea ng-model="formData.message" rows="4" placeholder="What brings you to our healing circle?"></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send with Love 🌿</button>
+                </form>
+                
+                <!-- WhatsApp Alternative -->
+                <div class="whatsapp-alternative">
+                    <p>Or connect with us directly:</p>
+                    <a href="https://wa.me/15551234567?text=Hello!%20I%20would%20like%20to%20connect%20with%20Ootahgonah" target="_blank" class="whatsapp-button">
+                        <svg viewBox="0 0 32 32">
+                            <path fill="#6b4540" d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.245 1.407 1.417-5.264-0.321-0.533c-1.331-2.21-2.007-4.739-2.007-7.382 0-7.51 6.123-13.633 13.633-13.633s13.633 6.123 13.633 13.633c0 7.51-6.123 13.633-13.633 13.633zM21.751 18.893c-0.413-0.207-2.448-1.207-2.828-1.344s-0.655-0.207-0.931 0.207c-0.276 0.413-1.069 1.344-1.31 1.62s-0.482 0.31-0.896 0.103c-0.413-0.207-1.745-0.643-3.324-2.051-1.228-1.096-2.058-2.448-2.296-2.862s-0.024-0.637 0.182-0.843c0.186-0.186 0.413-0.482 0.62-0.724s0.276-0.413 0.413-0.689c0.138-0.276 0.069-0.517-0.034-0.724s-0.931-2.241-1.276-3.069c-0.338-0.807-0.679-0.697-0.931-0.71-0.241-0.012-0.517-0.014-0.793-0.014s-0.724 0.103-1.103 0.517c-0.379 0.413-1.448 1.414-1.448 3.448s1.482 4 1.689 4.276c0.207 0.276 2.914 4.448 7.062 6.236 0.986 0.426 1.755 0.681 2.355 0.872 0.992 0.315 1.896 0.271 2.61 0.164 0.796-0.119 2.448-1 2.793-1.966s0.345-1.793 0.241-1.966c-0.103-0.172-0.379-0.276-0.793-0.482z"/>
+                        </svg>
+                        WhatsApp Us
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/15551234567?text=Hello!%20I%20would%20like%20to%20connect%20with%20Ootahgonah" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       title="Connect via WhatsApp">
+        <svg class="icon" viewBox="0 0 32 32" width="32" height="32">
+            <path fill="#6b4540" d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.245 1.407 1.417-5.264-0.321-0.533c-1.331-2.21-2.007-4.739-2.007-7.382 0-7.51 6.123-13.633 13.633-13.633s13.633 6.123 13.633 13.633c0 7.51-6.123 13.633-13.633 13.633zM21.751 18.893c-0.413-0.207-2.448-1.207-2.828-1.344s-0.655-0.207-0.931 0.207c-0.276 0.413-1.069 1.344-1.31 1.62s-0.482 0.31-0.896 0.103c-0.413-0.207-1.745-0.643-3.324-2.051-1.228-1.096-2.058-2.448-2.296-2.862s-0.024-0.637 0.182-0.843c0.186-0.186 0.413-0.482 0.62-0.724s0.276-0.413 0.413-0.689c0.138-0.276 0.069-0.517-0.034-0.724s-0.931-2.241-1.276-3.069c-0.338-0.807-0.679-0.697-0.931-0.71-0.241-0.012-0.517-0.014-0.793-0.014s-0.724 0.103-1.103 0.517c-0.379 0.413-1.448 1.414-1.448 3.448s1.482 4 1.689 4.276c0.207 0.276 2.914 4.448 7.062 6.236 0.986 0.426 1.755 0.681 2.355 0.872 0.992 0.315 1.896 0.271 2.61 0.164 0.796-0.119 2.448-1 2.793-1.966s0.345-1.793 0.241-1.966c-0.103-0.172-0.379-0.276-0.793-0.482z"/>
+        </svg>
+    </a>
+
+    <!-- Audio Control -->
+    <div class="audio-control paused" id="audioControl" onclick="toggleAudio()" title="Click to play ambient music">
+        <div class="icon"></div>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="ambientAudio" loop preload="auto">
+        <source src="assets/sounds/chips1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <!-- Floating Menu -->
+    <div class="floating-menu">
+        <div class="menu-icon" data-section="home" data-label="Home" ng-click="scrollTo('home')" title="Home"></div>
+        <div class="menu-icon" data-section="vision" data-label="Vision" ng-click="scrollTo('vision')" title="Vision"></div>
+        <div class="menu-icon" data-section="constellation" data-label="Constellation" ng-click="scrollTo('constellation')" title="Constellation"></div>
+        <div class="menu-icon" data-section="offerings" data-label="Offerings" ng-click="scrollTo('offerings')" title="Offerings"></div>
+        <div class="menu-icon" data-section="contact" data-label="Join the Circle" ng-click="scrollTo('contact')" title="Join the Circle"></div>
+    </div>
+
+    <!-- AngularJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/mainController.js"></script>
+    <script src="services/dataService.js"></script>
+    <script src="js/audio.js"></script>
+</body>
+</html>
