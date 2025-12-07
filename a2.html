@@ -5,7 +5,265 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ootahgonah - A Healing Portal of Love & Light</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Nunito:wght@300;400;600&family=Jaini:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Mobile Responsiveness -->
     <style>
+        @media (max-width: 1200px) {
+            .left-bar, .right-bar {
+                width: 20%;
+            }
+
+            .main-content {
+                left: 20%;
+                right: 20%;
+                width: 60%;
+            }
+            
+            .floating-menu {
+                left: calc(20% + 25px);
+                right: calc(20% + 25px);
+            }
+            
+            .logo-container img {
+                width: 320px;
+                height: 320px;
+            }
+            
+            .title h1 {
+                font-size: 3.5rem;
+            }
+            
+            .center-quote p {
+                font-size: 2rem;
+            }
+            
+            .floating-menu {
+                gap: 30px;
+                padding: 15px 30px;
+            }
+            
+            .menu-icon {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-bar, .right-bar, .left-knot, .right-knot {
+                display: none;
+            }
+
+            .main-content {
+                left: 0;
+                right: 0;
+                width: 100%;
+                padding: 20px;
+                min-height: 100vh;
+            }
+            
+            .logo-container img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .title h1 {
+                font-size: 2.2rem;
+            }
+            
+            .center-quote {
+                margin: 20px auto;
+                padding: 15px;
+                max-width: 95%;
+            }
+            
+            .center-quote p {
+                font-size: 1.6rem;
+                line-height: 1.4;
+            }
+            
+            .home-bottom-text {
+                font-size: 1rem !important;
+                padding: 0 10px;
+                margin: 20px 0 !important;
+            }
+            
+            .content-section {
+                max-width: 95%;
+                margin-bottom: 30px;
+            }
+            
+            .content-section h2 {
+                font-size: 2rem;
+            }
+            
+            .content-section p {
+                font-size: 1.2rem;
+                line-height: 1.6;
+                text-align: left;
+            }
+            
+            .vision-quote {
+                margin: 30px auto;
+                padding: 20px;
+                max-width: 95%;
+            }
+            
+            .vision-quote p {
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            
+            .quote-image {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+            }
+            
+            .constellation-container {
+                max-width: 95%;
+                margin: 40px auto;
+            }
+            
+            .constellation-container h2 {
+                font-size: 2rem;
+            }
+            
+            .constellation-section {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .left-column, .right-column {
+                width: 100%;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            
+            .center-column {
+                width: 100%;
+                max-width: 200px;
+                margin: 20px auto;
+            }
+            
+            .leaf-image {
+                width: 150px !important;
+                height: 150px !important;
+            }
+            
+            .kkknot-image {
+                width: 150px !important;
+                height: 150px !important;
+            }
+            
+            .pretext-container {
+                width: 100%;
+                max-width: 300px;
+                height: 300px;
+            }
+            
+            .sohra-top-half {
+                height: 60%;
+            }
+            
+            .text-bottom-half {
+                height: 40%;
+                padding: 10px;
+            }
+            
+            .text-bottom-half p {
+                font-size: 0.9rem;
+                line-height: 1.3;
+            }
+            
+            .sohra-text {
+                font-size: 1.3rem;
+                margin: 10px 0;
+            }
+            
+            .offerings-container {
+                max-width: 95%;
+            }
+            
+            .offerings-container h2 {
+                font-size: 2rem;
+            }
+            
+            .offering-item {
+                margin: 20px 0;
+                padding: 15px;
+            }
+            
+            .offering-item h3 {
+                font-size: 1.4rem;
+            }
+            
+            .offering-item p {
+                font-size: 1.1rem;
+                line-height: 1.5;
+            }
+            
+            .floating-menu {
+                position: fixed;
+                bottom: 15px;
+                left: 15px;
+                right: 100px;
+                width: auto;
+                transform: none;
+                display: flex;
+                gap: 12px;
+                padding: 6px 12px;
+                background: rgba(255, 245, 234, 0.95);
+                backdrop-filter: blur(8px);
+                border-radius: 20px;
+                border: 1px solid rgba(212, 167, 106, 0.2);
+                box-shadow: 0 4px 20px rgba(212, 167, 106, 0.15);
+                z-index: 10;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: nowrap;
+                overflow: hidden;
+            }
+            
+            .menu-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .contact-section {
+                max-width: 95%;
+                margin: 30px auto;
+                padding: 20px;
+            }
+            
+            .contact-form-container {
+                padding: 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+            
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 12px;
+            }
+            
+            .submit-button {
+                width: 100%;
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+            
+            .whatsapp-button {
+                bottom: 20px;
+                right: 15px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
         * {
             margin: 0;
             padding: 0;
@@ -920,7 +1178,7 @@
     <div id="home" class="main-content">
         <!-- Logo -->
         <div class="logo-container">
-            <img src="assets/images/logo.jpg" alt="Ootahgonah Logo">
+            <img src="assets/images/Logo-100.jpg" alt="Ootahgonah Logo">
         </div>
         
         <!-- Title -->
@@ -934,7 +1192,7 @@
         </div>
         
         <!-- Home Page Bottom Text -->
-        <div class="home-bottom-text" style="text-align: center; margin: 30px 0; font-family: 'Nunito', sans-serif; font-size: 1.1rem; color: #6b4540; line-height: 1.6;">
+        <div class="home-bottom-text">
             <p>Ootahgohnah is not an organization, nor a project alone. It is a living vision — a portal where body, space, and spirit remember their true light.</p>
         </div>
         
@@ -953,7 +1211,7 @@
 
         <!-- Vision Quote -->
         <div class="vision-quote">
-            <img src="assets/images/quote1.jpg" alt="Vision Quote" style="max-width: 100%; height: auto; margin-bottom: 15px; border-radius: 8px;">
+            <img src="assets/images/quote1.jpg" alt="Vision Quote" class="quote-image">
             <p>If you accept difficulty and are okay with it, difficulty does become less difficult immediately. You take the trying out of it.</p>
         </div>
 
@@ -1009,10 +1267,10 @@
         <div class="section-divider"></div>
 
         <!-- Practices and Offerings Section -->
-        <div id="offerings" class="offerings-section" style="text-align: center;">
-            <h2 style="font-family: 'Jaini', cursive; font-size: 2.2rem; color: #6b4540; margin-bottom: 30px; text-align: center;">Practices and Offerings</h2>
-            <div class="offerings-image-container" style="position: relative; display: inline-block;">
-                <img src="assets/images/offering.png" alt="Practices and Offerings" class="offerings-image" style="display: block; max-width: 100%; height: auto;">
+        <div id="offerings" class="offerings-container">
+            <h2>Practices and Offerings</h2>
+            <div class="offerings-image-container">
+                <img src="assets/images/offering.png" alt="Practices and Offerings" class="offerings-image">
                 
                 <!-- Hexagonal arrangement with invisible clickable areas -->
                 <!-- Top Center - One on One -->
@@ -1042,37 +1300,37 @@
         <div class="section-divider"></div>
         
         <!-- Contact Section -->
-        <section id="contact" style="margin-top: 60px; padding: 40px 20px; margin-bottom: 120px;">
-            <h2 style="font-family: 'Jaini', cursive; font-size: 2.5rem; color: #6b4540; text-align: center; margin-bottom: 20px;">Join the circle</h2>
-            <p style="text-align: center; font-size: 1.3rem; margin-bottom: 40px; font-style: italic; color: #6b4540; font-family: 'Nunito', sans-serif;">Open your heart and step into our circle of healing</p>
+        <section id="contact" class="contact-section">
+            <h2>Join the circle</h2>
+            <p class="subtitle">Open your heart and step into our circle of healing</p>
             
-            <div style="max-width: 600px; margin: 0 auto; background: rgba(255, 245, 234, 0.7); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(107, 69, 64, 0.1);">
+            <div class="contact-form-container">
                 <form name="contactForm" ng-submit="submitForm()" novalidate>
-                    <div style="margin-bottom: 25px;">
-                        <label style="display: block; font-family: 'Nunito', sans-serif; font-size: 1.1rem; color: #6b4540; margin-bottom: 8px;">Your Beautiful Name</label>
-                        <input type="text" ng-model="formData.name" required style="width: 100%; padding: 12px 15px; border: 2px solid rgba(107, 69, 64, 0.2); border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 1rem; background: white;">
+                    <div class="form-group">
+                        <label>Your Beautiful Name</label>
+                        <input type="text" ng-model="formData.name" required>
                     </div>
-                    <div style="margin-bottom: 25px;">
-                        <label style="display: block; font-family: 'Nunito', sans-serif; font-size: 1.1rem; color: #6b4540; margin-bottom: 8px;">Email Address</label>
-                        <input type="email" ng-model="formData.email" required style="width: 100%; padding: 12px 15px; border: 2px solid rgba(107, 69, 64, 0.2); border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 1rem; background: white;">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" ng-model="formData.email" required>
                     </div>
-                    <div style="margin-bottom: 25px;">
-                        <label style="display: block; font-family: 'Nunito', sans-serif; font-size: 1.1rem; color: #6b4540; margin-bottom: 8px;">Phone Number</label>
-                        <input type="tel" ng-model="formData.phone" style="width: 100%; padding: 12px 15px; border: 2px solid rgba(107, 69, 64, 0.2); border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 1rem; background: white;">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" ng-model="formData.phone">
                     </div>
-                    <div style="margin-bottom: 25px;">
-                        <label style="display: block; font-family: 'Nunito', sans-serif; font-size: 1.1rem; color: #6b4540; margin-bottom: 8px;">Share from Your Heart</label>
-                        <textarea ng-model="formData.message" rows="4" placeholder="What brings you to our healing circle?" style="width: 100%; padding: 12px 15px; border: 2px solid rgba(107, 69, 64, 0.2); border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 1rem; background: white; resize: vertical;"></textarea>
+                    <div class="form-group">
+                        <label>Share from Your Heart</label>
+                        <textarea ng-model="formData.message" rows="4" placeholder="What brings you to our healing circle?"></textarea>
                     </div>
-                    <button type="submit" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #d4a76a, #c49660); border: none; border-radius: 10px; color: white; font-family: 'Nunito', sans-serif; font-size: 1.2rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Send with Love 🌿</button>
+                    <button type="submit" class="submit-button">Send with Love 🌿</button>
                 </form>
                 
                 <!-- WhatsApp Alternative -->
-                <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(107, 69, 64, 0.1); margin-bottom: 30px;">
-                    <p style="font-family: 'Nunito', sans-serif; color: #6b4540; margin-bottom: 15px;">Or connect with us directly:</p>
-                    <a href="https://wa.me/15551234567?text=Hello!%20I%20would%20like%20to%20connect%20with%20Ootahgonah" target="_blank" style="display: inline-flex; align-items: center; padding: 12px 25px; background: #25d366; color: white; text-decoration: none; border-radius: 25px; font-family: 'Nunito', sans-serif; font-weight: 600; transition: all 0.3s ease;">
-                        <svg style="width: 20px; height: 20px; margin-right: 8px;" viewBox="0 0 32 32">
-                            <path fill="white" d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.245 1.407 1.417-5.264-0.321-0.533c-1.331-2.21-2.007-4.739-2.007-7.382 0-7.51 6.123-13.633 13.633-13.633s13.633 6.123 13.633 13.633c0 7.51-6.123 13.633-13.633 13.633zM21.751 18.893c-0.413-0.207-2.448-1.207-2.828-1.344s-0.655-0.207-0.931 0.207c-0.276 0.413-1.069 1.344-1.31 1.62s-0.482 0.31-0.896 0.103c-0.413-0.207-1.745-0.643-3.324-2.051-1.228-1.096-2.058-2.448-2.296-2.862s-0.024-0.637 0.182-0.843c0.186-0.186 0.413-0.482 0.62-0.724s0.276-0.413 0.413-0.689c0.138-0.276 0.069-0.517-0.034-0.724s-0.931-2.241-1.276-3.069c-0.338-0.807-0.679-0.697-0.931-0.71-0.241-0.012-0.517-0.014-0.793-0.014s-0.724 0.103-1.103 0.517c-0.379 0.413-1.448 1.414-1.448 3.448s1.482 4 1.689 4.276c0.207 0.276 2.914 4.448 7.062 6.236 0.986 0.426 1.755 0.681 2.355 0.872 0.992 0.315 1.896 0.271 2.61 0.164 0.796-0.119 2.448-1 2.793-1.966s0.345-1.793 0.241-1.966c-0.103-0.172-0.379-0.276-0.793-0.482z"/>
+                <div class="whatsapp-alternative">
+                    <p>Or connect with us directly:</p>
+                    <a href="https://wa.me/15551234567?text=Hello!%20I%20would%20like%20to%20connect%20with%20Ootahgonah" target="_blank" class="whatsapp-button">
+                        <svg viewBox="0 0 32 32">
+                            <path fill="#6b4540" d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.245 1.407 1.417-5.264-0.321-0.533c-1.331-2.21-2.007-4.739-2.007-7.382 0-7.51 6.123-13.633 13.633-13.633s13.633 6.123 13.633 13.633c0 7.51-6.123 13.633-13.633 13.633zM21.751 18.893c-0.413-0.207-2.448-1.207-2.828-1.344s-0.655-0.207-0.931 0.207c-0.276 0.413-1.069 1.344-1.31 1.62s-0.482 0.31-0.896 0.103c-0.413-0.207-1.745-0.643-3.324-2.051-1.228-1.096-2.058-2.448-2.296-2.862s-0.024-0.637 0.182-0.843c0.186-0.186 0.413-0.482 0.62-0.724s0.276-0.413 0.413-0.689c0.138-0.276 0.069-0.517-0.034-0.724s-0.931-2.241-1.276-3.069c-0.338-0.807-0.679-0.697-0.931-0.71-0.241-0.012-0.517-0.014-0.793-0.014s-0.724 0.103-1.103 0.517c-0.379 0.413-1.448 1.414-1.448 3.448s1.482 4 1.689 4.276c0.207 0.276 2.914 4.448 7.062 6.236 0.986 0.426 1.755 0.681 2.355 0.872 0.992 0.315 1.896 0.271 2.61 0.164 0.796-0.119 2.448-1 2.793-1.966s0.345-1.793 0.241-1.966c-0.103-0.172-0.379-0.276-0.793-0.482z"/>
                         </svg>
                         WhatsApp Us
                     </a>
@@ -1117,79 +1375,6 @@
     <script src="app.js"></script>
     <script src="controllers/mainController.js"></script>
     <script src="services/dataService.js"></script>
-    <script>
-        // Audio Control Functionality
-        let isAudioPlaying = false;
-        let audioElement = null;
-        let audioControl = null;
-        
-        function toggleAudio() {
-            if (!audioElement) {
-                audioElement = document.getElementById('ambientAudio');
-                audioControl = document.getElementById('audioControl');
-            }
-            
-            if (isAudioPlaying) {
-                pauseAudio();
-            } else {
-                playAudio();
-            }
-        }
-        
-        function playAudio() {
-            if (audioElement) {
-                audioElement.volume = 0.3;
-                audioElement.play().then(() => {
-                    isAudioPlaying = true;
-                    audioControl.classList.remove('paused');
-                    audioControl.classList.add('playing');
-                }).catch((error) => {
-                    console.log('Audio play failed, will try on user interaction:', error);
-                    isAudioPlaying = false;
-                    audioControl.classList.remove('playing');
-                    audioControl.classList.add('paused');
-                });
-            }
-        }
-        
-        function pauseAudio() {
-            if (audioElement) {
-                audioElement.pause();
-                isAudioPlaying = false;
-                audioControl.classList.remove('playing');
-                audioControl.classList.add('paused');
-            }
-        }
-        
-        // Initialize audio control when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            audioElement = document.getElementById('ambientAudio');
-            audioControl = document.getElementById('audioControl');
-            
-            if (audioElement) {
-                audioElement.volume = 0.3;
-                
-                // Try to auto-start music immediately
-                playAudio();
-                
-                // Fallback: if autoplay fails, start on any user interaction
-                if (!isAudioPlaying) {
-                    document.addEventListener('click', function startAudio() {
-                        if (audioElement && !isAudioPlaying) {
-                            playAudio();
-                        }
-                        document.removeEventListener('click', startAudio);
-                    }, { once: true });
-                    
-                    document.addEventListener('touchstart', function startAudioTouch() {
-                        if (audioElement && !isAudioPlaying) {
-                            playAudio();
-                        }
-                        document.removeEventListener('touchstart', startAudioTouch);
-                    }, { once: true });
-                }
-            }
-        });
-    </script>
+    <script src="js/audio.js"></script>
 </body>
 </html>
