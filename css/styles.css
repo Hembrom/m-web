@@ -17,6 +17,187 @@ body {
     overflow-x: hidden;
 }
 
+/* Fix for Logo-100.jpg border and background issues */
+img[src*="Logo-100.jpg"],
+img[src*="Logo-100"],
+.logo-container img {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes softPulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.9; }
+    100% { opacity: 0.4; }
+}
+
+/* Super smooth 3-color blend animation */
+@keyframes smoothColorFlow {
+    0% { 
+        background: linear-gradient(45deg, 
+            #ff6b9d 0%, #ff6b9d 10%,
+            #667eea 30%, #667eea 40%,
+            #4facfe 60%, #4facfe 70%,
+            #ff6b9d 90%, #ff6b9d 100%
+        );
+    }
+    25% { 
+        background: linear-gradient(135deg, 
+            #667eea 0%, #667eea 10%,
+            #4facfe 30%, #4facfe 40%,
+            #fa709a 60%, #fa709a 70%,
+            #667eea 90%, #667eea 100%
+        );
+    }
+    50% { 
+        background: linear-gradient(225deg, 
+            #4facfe 0%, #4facfe 10%,
+            #fa709a 30%, #fa709a 40%,
+            #a8edea 60%, #a8edea 70%,
+            #4facfe 90%, #4facfe 100%
+        );
+    }
+    75% { 
+        background: linear-gradient(315deg, 
+            #fa709a 0%, #fa709a 10%,
+            #a8edea 30%, #a8edea 40%,
+            #ff6b9d 60%, #ff6b9d 70%,
+            #fa709a 90%, #fa709a 100%
+        );
+    }
+    100% { 
+        background: linear-gradient(405deg, 
+            #ff6b9d 0%, #ff6b9d 10%,
+            #667eea 30%, #667eea 40%,
+            #4facfe 60%, #4facfe 70%,
+            #ff6b9d 90%, #ff6b9d 100%
+        );
+    }
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    animation: smoothColorFlow 20s infinite ease-in-out;
+    background-size: 400% 400%;
+}
+
+/* Remove individual slide styles - using single rotating slide */
+.slide1 {
+    animation-delay: 0s;
+}
+
+.slide2, .slide3, .slide4, .slide5 {
+    display: none;
+}
+
+/* Add subtle texture overlay */
+.slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 200, 220, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(255, 220, 235, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Single butterfly circular spiral animation */
+@keyframes butterflySpiral {
+    0% { 
+        transform: translate(50px, 100px) rotate(0deg);
+        opacity: 1;
+    }
+    25% { 
+        transform: translate(150px, 200px) rotate(90deg);
+        opacity: 1;
+    }
+    50% { 
+        transform: translate(100px, 350px) rotate(180deg);
+        opacity: 1;
+    }
+    75% { 
+        transform: translate(200px, 500px) rotate(270deg);
+        opacity: 1;
+    }
+    85% { 
+        transform: translate(120px, 600px) rotate(360deg);
+        opacity: 1;
+    }
+    90% { 
+        opacity: 0;
+    }
+    100% { 
+        transform: translate(50px, 100px) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+@keyframes wingFlutter {
+    0%, 100% { transform: scaleX(1) scaleY(1); }
+    50% { transform: scaleX(0.7) scaleY(1.2); }
+}
+
+.butterfly {
+    position: fixed;
+    font-size: 45px;
+    color: #ff1493;
+    z-index: 999;
+    animation: butterflySpiral 8s ease-in-out infinite;
+    pointer-events: none;
+    text-shadow: 0 0 15px rgba(255, 20, 147, 0.8);
+    left: 2%;
+    top: 0;
+}
+
+.butterfly::before {
+    content: '🦋';
+    animation: wingFlutter 0.4s ease-in-out infinite;
+    display: inline-block;
+}
+
+.butterfly1 {
+    top: 10%;
+    left: 5px;
+    animation-delay: 0s;
+}
+
+.butterfly2 {
+    top: 35%;
+    left: 20px;
+    animation-delay: 2s;
+}
+
+.butterfly3 {
+    top: 60%;
+    left: 8px;
+    animation-delay: 4s;
+}
+
+.butterfly4 {
+    top: 80%;
+    left: 25px;
+    animation-delay: 6s;
+}
+
 /* ============================================
    LAYOUT - BACKGROUND ELEMENTS
    ============================================ */
@@ -33,6 +214,7 @@ body {
     background-position: center;
     z-index: 1;
     opacity: 0.6;
+    animation: softPulse 4s ease-in-out infinite;
 }
 
 .left-bar {
@@ -50,7 +232,7 @@ body {
     top: 0;
     width: 15.5%;
     height: 100%;
-    background-image: url('../assets/images/S11.jpeg');
+    background-image: url('../assets/images/S102.jpeg');
     background-size: 42% auto;
     background-repeat: repeat-y;
     z-index: 3;
@@ -61,12 +243,12 @@ body {
 }
 
 .left-knot {
-    left: 7.5%;
+    left: 0%;
     background-position: top right;
 }
 
 .right-knot {
-    right: 7.5%;
+    right: 0%;
     background-position: top left;
 }
 
@@ -76,9 +258,9 @@ body {
 
 .main-content {
     position: relative;
-    left: 23%;
-    right: 23%;
-    width: 54%;
+    left: 15.5%;
+    right: 15.5%;
+    width: 69%;
     min-height: 100vh;
     padding: 10px 40px 150px 40px;
     display: flex;
@@ -86,7 +268,7 @@ body {
     align-items: center;
     justify-content: flex-start;
     z-index: 3;
-    background: #FFF5EA;
+    background: rgba(255, 245, 234, 0.6);
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
@@ -110,9 +292,13 @@ body {
     width: 528px;
     height: 528px;
     object-fit: contain;
-    border: none;
-    outline: none;
-    box-shadow: none;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .title {
@@ -346,9 +532,10 @@ body {
     flex-direction: column;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 2px solid rgba(212, 167, 106, 0.3);
     margin-left: -5%;
     margin-top: 15px;
+    border: none !important;
+    outline: none !important;
 }
 
 .pretext-container:hover {
@@ -437,8 +624,8 @@ body {
 .floating-menu {
     position: fixed;
     bottom: 20px;
-    left: calc(23% + 25px);
-    right: calc(23% + 25px);
+    left: calc(15.5% + 25px);
+    right: calc(15.5% + 25px);
     transform: none;
     display: flex;
     gap: 40px;
@@ -761,8 +948,99 @@ body {
 }
 
 /* ============================================
-   RESPONSIVE DESIGN
+   MOBILE OPTIMIZATION & PERFORMANCE
    ============================================ */
+
+/* Smooth scrolling for all devices */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Touch action optimizations */
+.menu-icon,
+.whatsapp-float,
+.audio-control,
+.submit-button,
+.whatsapp-button,
+.pretext-container {
+    touch-action: manipulation; /* Eliminates 300ms tap delay */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Removes tap highlight on mobile */
+}
+
+/* Prevent text selection on interactive elements */
+.menu-icon,
+.whatsapp-float,
+.audio-control {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Improve form inputs on mobile */
+.form-group input,
+.form-group textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 8px;
+}
+
+/* Better touch feedback */
+.pretext-container:active,
+.menu-icon:active,
+.submit-button:active,
+.whatsapp-button:active,
+.whatsapp-float:active,
+.audio-control:active {
+    transform: scale(0.95);
+}
+
+/* Mobile keyboard adjustments */
+@media (max-width: 768px) {
+    /* Prevent viewport zoom when input is focused */
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    /* Optimize for mobile keyboards */
+    .contact-form-container {
+        padding-bottom: 60px; /* Extra space for mobile keyboard */
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .floating-menu {
+        background: rgba(107, 69, 64, 0.9);
+        border: 1px solid rgba(212, 167, 106, 0.4);
+    }
+    
+    .contact-form-container {
+        background: rgba(107, 69, 64, 0.8);
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        background: rgba(255, 245, 234, 0.9);
+    }
+}
 
 @media (max-width: 1200px) {
     .left-bar, .right-bar {
@@ -770,12 +1048,12 @@ body {
     }
     
     .left-knot {
-        left: 8%;
+        left: 2%;
         width: 8%;
     }
     
     .right-knot {
-        right: 8%;
+        right: 2%;
         width: 8%;
     }
 
@@ -805,32 +1083,406 @@ body {
 }
 
 @media (max-width: 768px) {
+    /* Hide decorative elements on mobile */
     .left-bar, .right-bar, .left-knot, .right-knot {
         display: none;
     }
 
+    /* Full width main content */
     .main-content {
         left: 0;
         right: 0;
+        width: 100%;
+        padding: 20px 15px 150px 15px;
     }
     
+    /* Scale down logo */
     .logo-container img {
         width: 280px;
         height: 280px;
     }
 
+    /* Adjust typography for mobile readability */
     .title h1 {
         font-size: 2.5rem;
     }
-    
+
+    .title .subtitle {
+        font-size: 1.2rem;
+    }
+
+    /* Quote boxes - mobile friendly */
+    .center-quote {
+        margin-top: -20px;
+        padding: 15px;
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .center-quote p {
+        font-size: 1.6rem;
+        line-height: 1.5;
+    }
+
+    .vision-quote {
+        padding: 20px;
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .vision-quote p {
+        font-size: 1.5rem;
+        line-height: 1.5;
+    }
+
+    /* Content sections */
+    .content-section {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .content-section h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .content-section p {
+        font-size: 1.2rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+
+    /* Constellation section mobile adjustments */
+    .constellation-container {
+        margin: 80px 0 40px 0;
+    }
+
+    .constellation-container h2 {
+        font-size: 2rem;
+    }
+
+    .constellation-section {
+        min-height: 400px;
+        padding: 15px 0 30px 0;
+    }
+
+    .constellation-text {
+        padding: 15px 25px;
+    }
+
+    .constellation-text p {
+        font-size: 1.3rem;
+        line-height: 1.4;
+    }
+
+    /* Constellation detail grid - stack on mobile */
+    .constellation-detail {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        margin: 40px 0;
+    }
+
+    .center-column {
+        order: -1;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .left-column, .right-column {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .pretext-container {
+        width: 100%;
+        min-height: 400px;
+        margin-left: 0;
+    }
+
+    .sohra-text {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .text-bottom-half {
+        padding: 20px;
+    }
+
+    .text-bottom-half p {
+        font-size: 1.1rem;
+    }
+
+    /* Offerings section */
+    .offerings-container {
+        margin: 80px 0 40px 0;
+    }
+
+    .offerings-container h2 {
+        font-size: 2rem;
+    }
+
+    /* Contact form mobile optimization */
+    .contact-section {
+        margin-top: 80px;
+        padding: 30px 15px;
+        margin-bottom: 120px;
+    }
+
+    .contact-section h2 {
+        font-size: 2rem;
+    }
+
+    .contact-section .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .contact-form-container {
+        max-width: 100%;
+        padding: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 14px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        border-radius: 8px;
+    }
+
+    .submit-button {
+        padding: 16px;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        min-height: 44px; /* Touch target size */
+    }
+
+    .whatsapp-button {
+        padding: 14px 25px;
+        min-height: 44px; /* Touch target size */
+    }
+
+    /* Floating menu mobile optimization */
     .floating-menu {
-        gap: 20px;
-        padding: 12px 25px;
+        left: 15px;
+        right: 15px;
         bottom: 20px;
+        gap: 15px;
+        padding: 12px 20px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .menu-icon {
-        width: 32px;
-        height: 32px;
+        width: 44px; /* Minimum touch target */
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    /* Scale down specific icon sizes for mobile */
+    .menu-icon[data-section="home"] {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    .menu-icon[data-section="vision"],
+    .menu-icon[data-section="constellation"] {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .menu-icon[data-section="offerings"],
+    .menu-icon[data-section="contact"] {
+        width: 46px !important;
+        height: 46px !important;
+    }
+
+    /* Floating buttons mobile positioning */
+    .whatsapp-float {
+        bottom: 90px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .whatsapp-float .icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .audio-control {
+        bottom: 150px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .audio-control .icon {
+        font-size: 1.5rem;
+    }
+
+    /* Section divider mobile */
+    .section-divider {
+        margin: 40px auto;
+        width: 60%;
+    }
+
+    /* Home bottom text */
+    .home-bottom-text {
+        font-size: 1rem;
+        margin: 25px 0;
+    }
+}
+
+/* Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 15px 10px 130px 10px;
+    }
+
+    .logo-container img {
+        width: 220px;
+        height: 220px;
+    }
+
+    .title h1 {
+        font-size: 2rem;
+    }
+
+    .title .subtitle {
+        font-size: 1rem;
+    }
+
+    .center-quote p {
+        font-size: 1.3rem;
+    }
+
+    .vision-quote p {
+        font-size: 1.3rem;
+    }
+
+    .content-section h2,
+    .constellation-container h2,
+    .offerings-container h2,
+    .contact-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .content-section p {
+        font-size: 1.1rem;
+    }
+
+    .constellation-text p {
+        font-size: 1.2rem;
+    }
+
+    .pretext-container {
+        min-height: 350px;
+    }
+
+    .text-bottom-half p {
+        font-size: 1rem;
+    }
+
+    .sohra-text {
+        font-size: 1.3rem;
+    }
+
+    .contact-form-container {
+        padding: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 12px;
+    }
+
+    .floating-menu {
+        gap: 10px;
+        padding: 8px 15px;
+    }
+
+    .menu-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .menu-icon[data-section="home"] {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .menu-icon[data-section="vision"],
+    .menu-icon[data-section="constellation"] {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    .menu-icon[data-section="offerings"],
+    .menu-icon[data-section="contact"] {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    .whatsapp-float,
+    .audio-control {
+        width: 45px;
+        height: 45px;
+    }
+
+    .whatsapp-float .icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .audio-control .icon {
+        font-size: 1.3rem;
+    }
+
+    .home-bottom-text {
+        font-size: 0.95rem;
+    }
+}
+
+/* Landscape orientation adjustments for phones */
+@media (max-width: 768px) and (orientation: landscape) {
+    .logo-container img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .main-content {
+        padding: 15px 15px 120px 15px;
+    }
+
+    .constellation-section {
+        min-height: 300px;
+    }
+
+    .pretext-container {
+        min-height: 300px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2) {
+    .menu-icon,
+    .whatsapp-float,
+    .audio-control {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
     }
 }

@@ -52,24 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (audioElement) {
         audioElement.volume = 0.3;
         
-        // Try to auto-start music immediately
-        playAudio();
-        
-        // Fallback: if autoplay fails, start on any user interaction
-        if (!isAudioPlaying) {
-            document.addEventListener('click', function startAudio() {
-                if (audioElement && !isAudioPlaying) {
-                    playAudio();
-                }
-                document.removeEventListener('click', startAudio);
-            }, { once: true });
-            
-            document.addEventListener('touchstart', function startAudioTouch() {
-                if (audioElement && !isAudioPlaying) {
-                    playAudio();
-                }
-                document.removeEventListener('touchstart', startAudioTouch);
-            }, { once: true });
-        }
+        // Start paused by default - user must click to play
+        isAudioPlaying = false;
+        audioControl.classList.remove('playing');
+        audioControl.classList.add('paused');
     }
 });
