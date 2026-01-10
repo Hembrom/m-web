@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sohra - Ootahgonah</title>
+    <title>Sohra - Light Body Being</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Nunito:wght@300;400;600&family=Jaini:wght@200;300;400&display=swap" rel="stylesheet">
     <style>
         * {
@@ -49,8 +49,7 @@
 
         .left-knot {
             left: 1.5%;
-            background-position: top left;
-            transform: scaleX(-1);
+            background-position: top right;
         }
 
         .right-knot {
@@ -58,7 +57,6 @@
             background-position: top left;
         }
 
-        /* Main Content Area */
         .main-content {
             position: relative;
             left: 17%;
@@ -72,14 +70,7 @@
             z-index: 3;
             background: rgba(255, 245, 234, 0.6);
         }
-            z-index: 3;
-            background: #FFF5EA;
-            border: none !important;
-            box-shadow: none !important;
-            outline: none !important;
-        }
 
-        /* Back Button */
         .back-button {
             align-self: flex-start;
             margin-bottom: 20px;
@@ -106,7 +97,7 @@
         }
 
         .page-header h1 {
-            font-family: 'Nunito', sans-serif;
+            font-family: 'Jaini', cursive;
             font-size: 3rem;
             color: #6b4540;
             margin-bottom: 10px;
@@ -121,12 +112,13 @@
         }
 
         .profile-image {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            border-radius: 30px;
+            width: 500px;
+            height: 438px;
+            border-radius: 15px;
+            object-fit: cover;
             margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(107, 69, 64, 0.2);
+            border: 4px solid rgba(212, 167, 106, 0.4);
+            box-shadow: 0 8px 20px rgba(212, 167, 106, 0.3);
         }
 
         .content-section {
@@ -143,12 +135,11 @@
             text-align: justify;
         }
 
-        /* Floating Menu */
         .floating-menu {
             position: fixed;
             bottom: 20px;
-            left: calc(15.5% + 25px + 2%);
-            right: calc(15.5% + 25px + 2%);
+            left: calc(17% + 25px + 2%);
+            right: calc(17% + 25px + 2%);
             transform: none;
             display: flex;
             gap: 40px;
@@ -311,90 +302,10 @@
                 margin-bottom: 15px;
             }
 
-            .content-section {
-                padding: 15px !important;
-                margin: 15px 0 !important;
-            }
-
-            .content-section p {
-                font-size: 1.1rem !important;
-                line-height: 1.6;
-                margin-bottom: 15px;
-            }
-
-            .floating-menu {
-                gap: 15px !important;
-                padding: 10px 20px !important;
-                bottom: 15px !important;
-                left: 10px !important;
-                right: 10px !important;
-                flex-wrap: wrap;
-                justify-content: space-around;
-            }
-            
-            .menu-icon {
-                width: 42px !important;
-                height: 42px !important;
-                min-width: 42px;
-                touch-action: manipulation;
-            }
-
-            .menu-icon[data-section="home"] {
-                width: 42px !important;
-                height: 42px !important;
-            }
-
-            .menu-icon[data-section="vision"] {
-                width: 42px !important;
-                height: 42px !important;
-            }
-
-            .menu-icon[data-section="constellation"] {
-                width: 42px !important;
-                height: 42px !important;
-            }
-
-            .menu-icon[data-section="offerings"] {
-                width: 42px !important;
-                height: 42px !important;
-            }
-
-            .menu-icon[data-section="contact"] {
-                width: 42px !important;
-                height: 42px !important;
-            }
-        }
-            }
-
-            body {
-                padding: 10px;
-            }
-
-            .main-content {
-                left: 0;
-                right: 0;
-                padding: 15px;
-                margin: 0;
-            }
-            
-            .back-button {
-                font-size: 18px !important;
-                padding: 10px 15px !important;
-                margin-bottom: 20px !important;
-                min-height: 44px;
-                touch-action: manipulation;
-            }
-
-            .page-header h1 {
-                font-size: 2.2rem !important;
-                line-height: 1.2;
-                margin-bottom: 10px;
-            }
-
-            .page-header h2 {
-                font-size: 1.3rem !important;
-                line-height: 1.3;
-                margin-bottom: 15px;
+            .profile-image {
+                width: 180px;
+                height: 180px;
+                margin-bottom: 25px;
             }
 
             .content-section {
@@ -467,6 +378,11 @@
 
             .page-header h2 {
                 font-size: 1.1rem !important;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
             }
 
             .content-section p {
@@ -569,6 +485,15 @@
             content: '🎵';
         }
         
+        body {
+            min-height: auto !important;
+            overflow-x: hidden !important;
+        }
+        
+        html, body {
+            height: auto !important;
+        }
+        
         /* Footer styling */
         .site-footer {
             width: 100%;
@@ -594,6 +519,7 @@
             font-size: 0.85rem;
             color: #8b6858;
             font-weight: 300;
+            font-style: italic;
         }
     </style>
 </head>
@@ -607,21 +533,15 @@
 
         <div class="page-header">
             <h1>Sohra</h1>
-            <h2>Light Body Being & Guide</h2>
+            <h2>Light Body Being</h2>
         </div>
 
         <img src="assets/images/sohra.jpg" alt="Sohra" class="profile-image">
 
         <div class="content-section">
-            <p>Sohra is a Light Body Being from the Sirian star system, a presence that carries transmissions of remembrance. Unlike a teacher bound to methods, Sohra awakens what is already within. The essence of Sohra is not instruction, but vibration — a current that dissolves the weight of effort and restores clarity.</p>
+            <p>Sohra is a Light Body being — a presence beyond form, channeled through William to guide seekers on the path of effortless awakening. She does not speak of struggle, effort, or striving. Instead, she points to what is already here: the Light Body, always present, always whole, waiting only to be recognized.</p>
             
-            <p>Sohra is the heart of Ootahgohnah. Sohra's transmission reminds us that the wall between waking life and dream is not real — it exists only by our permission. When that wall dissolves, remembrance begins.</p>
-            
-            <p>In William's meditations, Sohra is channeled as a voice of the timeless, guiding seekers into the merging of dream body and physical body, into the direct experience of Light.</p>
-            
-            <p>Sohra often speaks of the law of effortless effort:</p>
-            
-            <p style="font-style: italic; text-align: center; margin: 30px 0; font-size: 1.4rem;">"Effort stops. Clarity begins. The Light Body is not something you create — it is what you already are, shimmering beneath the weight of striving."</p>
+            <p>Her teachings are not doctrines to follow but invitations to rest in resonance. She offers Light Body meditations — not as practices to perfect, but as doorways to remembering. Through her channeling, Sohra speaks directly to the heart, bypassing the mind's endless questions and returning us to the simplicity of being.</p>
         </div>
         
         <!-- Footer -->
@@ -631,7 +551,6 @@
         </footer>
     </div>
     
-    <!-- Floating Menu -->
     <div class="floating-menu">
         <div class="menu-icon" data-section="home" data-label="Home" onclick="window.location.href='a3.html#home'" style="cursor: pointer;" title="Home"></div>
         <div class="menu-icon" data-section="vision" data-label="Vision" onclick="window.location.href='a3.html#vision'" title="Vision"></div>
@@ -662,7 +581,6 @@
         Your browser does not support the audio element.
     </audio>
 
-    <!-- AngularJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
     <script src="app.js"></script>
     <script src="controllers/mainController.js"></script>
