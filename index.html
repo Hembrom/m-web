@@ -41,6 +41,56 @@
             position: relative;
         }
         
+        /* Decorative Background Bars - leftleft.jpg */
+        .left-bar,
+        .right-bar {
+            position: fixed;
+            top: 0;
+            width: 23%;
+            height: 100%;
+            background-image: url('assets/images/leftleft.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .left-bar {
+            left: 0;
+        }
+        
+        .right-bar {
+            right: 0;
+            transform: scaleX(-1); /* Mirror the image for right side */
+        }
+        
+        /* Decorative Knot Overlays - KK002.png */
+        .left-knot,
+        .right-knot {
+            position: fixed;
+            top: 0;
+            width: 15.5%;
+            height: 100%;
+            background-image: url('assets/images/KK002.png');
+            background-size: 42% auto;
+            background-repeat: repeat-y;
+            z-index: 3;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .left-knot {
+            left: 0%;
+            background-position: top right;
+        }
+        
+        .right-knot {
+            right: 0%;
+            background-position: top left;
+        }
+        
         /* Decorative Sidebars */
         .left-sidebar,
         .right-sidebar {
@@ -58,12 +108,12 @@
         
         .left-sidebar {
             left: 0;
-            background-image: url('assets/images/left-sidebar.jpg');
+            background-image: url('assets/images/leftleft.jpg');
         }
         
         .right-sidebar {
             right: 0;
-            background-image: url('assets/images/left-sidebar.jpg');
+            background-image: url('assets/images/leftleft.jpg');
             transform: scaleX(-1); /* Mirror the image for right side */
         }
         
@@ -438,7 +488,7 @@
             padding: 2.5rem 3rem;
             font-style: italic;
             color: var(--dawn-purple);
-            background: linear-gradient(135deg, var(--crystal-white), var(--ethereal-aura));
+            background: linear-gradient(135deg, var(--crystal-white), var (--ethereal-aura));
             border-radius: 30px;
             box-shadow: 0 10px 30px var(--mystic-glow);
             border: 2px solid var(--healing-mint);
@@ -521,7 +571,7 @@
         .mystical-button:hover {
             transform: translateY(-8px) scale(1.05);
             box-shadow: 0 20px 50px var(--mystic-glow);
-            background: linear-gradient(135deg, var(--dawn-purple), var(--golden-sunbeam), var(--ocean-breeze));
+            background: linear-gradient(135deg, var (--dawn-purple), var(--golden-sunbeam), var(--ocean-breeze));
         }
         
 
@@ -666,7 +716,7 @@
         }
         
         .team-member .role {
-            color: var(--dawn-purple);
+            color: var (--dawn-purple);
             font-size: 1.3rem;
             margin-bottom: 2.5rem;
             font-style: italic;
@@ -1050,9 +1100,13 @@
 <body ng-controller="MainController">
     <div class="mystical-bg" id="mysticalBg"></div>
     
-    <!-- Decorative Sidebars -->
-    <div class="left-sidebar"></div>
-    <div class="right-sidebar"></div>
+    <!-- Decorative Background Bars (leftleft.jpg) -->
+    <div class="left-bar"></div>
+    <div class="right-bar"></div>
+    
+    <!-- Decorative Knot Overlays (KK002.png) -->
+    <div class="left-knot"></div>
+    <div class="right-knot"></div>
     
     <!-- Navigation -->
     <nav>

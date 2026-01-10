@@ -5,23 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ootahgonah - A Healing Portal of Love & Light</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Nunito:wght@300;400;600&family=Jaini:wght@200;300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=20250115">
     <style>
-        /* Override for a3.html - position bars away from S102 image area */
+        /* Override for a3.html - position bars away from KK001 image area */
         .left-bar,
         .right-bar {
-            width: 6% !important; /* Narrower to avoid S102 image area */
+            width: 8% !important; /* Width of the bar */
             overflow: hidden !important; /* Prevent elements from floating outside */
-            background: transparent; /* Remove default background */
-            z-index: 0 !important; /* Keep bars behind knots */
+            z-index: 2 !important; /* Higher than default but lower than knots */
         }
         
         .left-bar {
-            left: 6.5% !important; /* Position away from S102 image */
+            left: 0% !important; /* Position it at the left edge, before the knot */
         }
         
         .right-bar {
-            right: 6.5% !important; /* Position away from S102 image */
+            right: 0% !important; /* Position it at the right edge */
         }
         
         /* Ensure knots also contain floating elements */

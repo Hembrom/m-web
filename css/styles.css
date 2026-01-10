@@ -232,7 +232,7 @@ img[src*="Logo-100"],
     top: 0;
     width: 15.5%;
     height: 100%;
-    background-image: url('../assets/images/S102.jpeg');
+    background-image: url('../assets/images/KK002.png');
     background-size: 42% auto;
     background-repeat: repeat-y;
     z-index: 3;
@@ -643,9 +643,6 @@ img[src*="Logo-100"],
 .menu-icon {
     width: 69px;
     height: 69px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
     border-radius: 0;
@@ -722,7 +719,7 @@ img[src*="Logo-100"],
 }
 
 .menu-icon[data-section="contact"] {
-    background-image: url('../assets/images/i1-circle.jpg?v=1763210508') !important;
+    background-image: url('../assets/images/circle-modified.png?v=1763210508') !important;
     width: 90px !important;
     height: 90px !important;
 }
@@ -1073,12 +1070,12 @@ html {
     
     .floating-menu {
         gap: 30px;
-        padding: 15px 30px;
+        padding: 12px 30px;
     }
     
     .menu-icon {
-        width: 36px;
-        height: 36px;
+        width: 44px;
+        height: 44px;
     }
 }
 
