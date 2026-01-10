@@ -26,11 +26,14 @@ function playAudio() {
             isAudioPlaying = true;
             audioControl.classList.remove('paused');
             audioControl.classList.add('playing');
+            // Save state to localStorage
+            localStorage.setItem('musicPlaying', 'true');
         }).catch((error) => {
             console.log('Audio play failed, will try on user interaction:', error);
             isAudioPlaying = false;
             audioControl.classList.remove('playing');
             audioControl.classList.add('paused');
+            localStorage.setItem('musicPlaying', 'false');
         });
     }
 }
@@ -41,6 +44,8 @@ function pauseAudio() {
         isAudioPlaying = false;
         audioControl.classList.remove('playing');
         audioControl.classList.add('paused');
+        // Save state to localStorage
+        localStorage.setItem('musicPlaying', 'false');
     }
 }
 
@@ -52,9 +57,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (audioElement) {
         audioElement.volume = 0.3;
         
-        // Start paused by default - user must click to play
-        isAudioPlaying = false;
-        audioControl.classList.remove('playing');
-        audioControl.classList.add('paused');
+        // Check if music should be playing from localStorage
+        const shouldPlay = localStorage.getItem('musicPlaying') === 'true';
+        
+        if (shouldPlay) {
+            // Try to resume playing
+            playAudio();
+        } else {
+            // Start paused by default
+            isAudioPlaying = false;
+            audioControl.classList.remove('playing');
+            audioControl.classList.add('paused');
+        }
     }
 });

@@ -7,26 +7,62 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Nunito:wght@300;400;600&family=Jaini:wght@200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css?v=20250115">
     <style>
-        /* Override for a3.html - position bars away from KK001 image area */
+        /* Override for a3.html - simple repeating approach */
         .left-bar,
-        .right-bar {
-            width: 8% !important; /* Width of the bar */
-            overflow: hidden !important; /* Prevent elements from floating outside */
-            z-index: 2 !important; /* Higher than default but lower than knots */
+        .right-bar,
+        .left-delta-bar,
+        .right-delta-bar {
+            position: absolute !important;
+            width: 11% !important;
+            background-size: 100% auto !important;
+            background-repeat: no-repeat !important;
+            z-index: 1 !important;
+            opacity: 0.6 !important;
+            pointer-events: none !important;
         }
         
         .left-bar {
-            left: 0% !important; /* Position it at the left edge, before the knot */
+            left: 0% !important;
+            top: 0 !important;
+            height: 50vh !important;
+            background-image: url('assets/images/leftleft.jpg') !important;
+        }
+        
+        .left-delta-bar {
+            left: 0% !important;
+            top: 50vh !important;
+            height: 50vh !important;
+            background-image: url('assets/images/leftDeltaleft.jpg') !important;
         }
         
         .right-bar {
-            right: 0% !important; /* Position it at the right edge */
+            right: 0% !important;
+            top: 0 !important;
+            height: 50vh !important;
+            background-image: url('assets/images/leftleft.jpg') !important;
+            transform: scaleX(-1) !important;
+        }
+        
+        .right-delta-bar {
+            right: 0% !important;
+            top: 50vh !important;
+            height: 50vh !important;
+            background-image: url('assets/images/leftDeltaleft.jpg') !important;
+            transform: scaleX(-1) !important;
         }
         
         /* Ensure knots also contain floating elements */
         .left-knot,
         .right-knot {
             overflow: hidden !important; /* Critical: prevent floating outside knot zones */
+        }
+        
+        .left-knot {
+            left: 1.5% !important;
+        }
+        
+        .right-knot {
+            right: 1.5% !important;
         }
         
         /* 6-color smooth dominance rotation (removed green) */
@@ -155,7 +191,7 @@
         
         /* Override pretext-container background for a3.html */
         .pretext-container {
-            background-image: url('../assets/images/texts.png') !important;
+            background-image: url('../assets/images/test-c001.png') !important;
         }
         
         /* Remove borders from text section */
@@ -168,29 +204,75 @@
             border: none !important;
             outline: none !important;
         }
+        
+        /* Reduce bottom padding to prevent empty space */
+        .main-content {
+            padding-bottom: 30px !important;
+            min-height: auto !important;
+        }
+        
+        .contact-section {
+            margin-bottom: 20px !important;
+        }
+        
+        body {
+            min-height: auto !important;
+            overflow-x: hidden !important;
+        }
+        
+        html, body {
+            height: auto !important;
+        }
+        
+        /* Ensure page ends with knot pattern */
+        body::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        /* Footer styling */
+        .site-footer {
+            width: 100%;
+            padding: 30px 20px 150px 20px;
+            text-align: center;
+            background: rgba(255, 245, 234, 0.4);
+            border-top: 1px solid rgba(212, 167, 106, 0.2);
+            margin-top: 40px;
+            margin-bottom: 0;
+        }
+        
+        .footer-text {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95rem;
+            color: #6b4540;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+        
+        .footer-tagline {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.85rem;
+            color: #8b6858;
+            font-weight: 300;
+        }
     </style>
 </head>
 <body ng-controller="MainController">
-    <!-- Left Fading Bar -->
-    <div class="left-bar">
-        <div class="slide slide1"></div>
-        <div class="slide slide2"></div>
-        <div class="slide slide3"></div>
-        <div class="slide slide4"></div>
-        <div class="slide slide5"></div>
-    </div>
+    <!-- Left Fading Bar - leftleft.jpg -->
+    <div class="left-bar"></div>
+    
+    <!-- Left Delta Bar - leftDeltaleft.jpg -->
+    <div class="left-delta-bar"></div>
     
     <!-- Mystical floating background -->
     <div id="mysticalBg" class="mystical-bg"></div>
     
-    <!-- Right Fading Bar -->
-    <div class="right-bar">
-        <div class="slide slide1"></div>
-        <div class="slide slide2"></div>
-        <div class="slide slide3"></div>
-        <div class="slide slide4"></div>
-        <div class="slide slide5"></div>
-    </div>
+    <!-- Right Fading Bar - leftleft.jpg -->
+    <div class="right-bar"></div>
+    
+    <!-- Right Delta Bar - leftDeltaleft.jpg -->
+    <div class="right-delta-bar"></div>
     
     <!-- Left Celtic Knot -->
     <div class="left-knot"></div>
@@ -252,8 +334,49 @@
             </div>
         </div>
 
+        <!-- Companion Profiles -->
+        <div class="companion-profiles">
+            <h2>Healing Companions</h2>
+            
+            <!-- Amit - Image Left, Text Right -->
+            <div class="companion-row">
+                <div class="companion-image-left">
+                    <img src="assets/images/amit.jpg" alt="Amit">
+                </div>
+                <div class="companion-text-right">
+                    <h3>Amit</h3>
+                    <p>A seeker of truth and light, walking the path of transformation and service. Amit brings grounded wisdom and compassionate presence to the circle.</p>
+                </div>
+            </div>
+
+            <!-- Apurva - Image Right, Text Left -->
+            <div class="companion-row">
+                <div class="companion-text-left">
+                    <h3>Apurva</h3>
+                    <p>A devoted practitioner channeling healing energy and grace. Apurva embodies the balance of strength and tenderness in service to the collective.</p>
+                </div>
+                <div class="companion-image-right">
+                    <img src="assets/images/apurva.jpg" alt="Apurva">
+                </div>
+            </div>
+
+            <!-- Hether - Image Left, Text Right -->
+            <div class="companion-row">
+                <div class="companion-image-left">
+                    <img src="assets/images/heather.jpg" alt="Hether">
+                </div>
+                <div class="companion-text-right">
+                    <h3>Hether</h3>
+                    <p>A gentle soul radiating kindness and wisdom, Hether walks the path of love and understanding, offering healing presence and sacred guidance to all who cross her path.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Section Divider -->
         <div class="section-divider"></div>
+          <div id="constellation" class="constellation-container">
+            <h2>The Guru's</h2>
+        </div>
 
         <!-- Constellation Detail Section -->
         <div class="constellation-detail" id="guides">
@@ -361,6 +484,12 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p class="footer-text">© 2026 Ootahgonah • A Portal of Love & Light</p>
+            <p class="footer-tagline">Guided by Sohra • Channeled with William • Held in Community</p>
+        </footer>
     </div>
 
     <!-- WhatsApp Floating Button -->
@@ -401,14 +530,67 @@
     <script src="js/audio.js"></script>
     
     <script>
-        // Create floating mystical essence for ethereal atmosphere
-        function createMysticalEssence() {
-            // Disabled - no floating elements
-            return;
+        // Create alternating pattern for leftleft and leftDeltaleft images
+        function createAlternatingBars() {
+            const body = document.body;
+            const footer = document.querySelector('.site-footer');
+            
+            // Calculate based on footer position to match where content ends
+            const pageHeight = footer ? footer.offsetTop + footer.offsetHeight : body.scrollHeight;
+            
+            const segmentHeight = 400; // Height of each image segment in pixels
+            const overlap = 2; // Overlap by 2px to eliminate gaps
+            const numSegments = Math.ceil(pageHeight / segmentHeight);
+            
+            // Clear existing bars
+            const existingBars = document.querySelectorAll('.left-bar, .right-bar, .left-delta-bar, .right-delta-bar');
+            existingBars.forEach(bar => bar.remove());
+            
+            // Create alternating segments
+            for (let i = 0; i < numSegments; i++) {
+                const isLeftLeft = i % 2 === 0;
+                const imageName = isLeftLeft ? 'leftleft.jpg' : 'leftDeltaleft.jpg';
+                const topPosition = (i * segmentHeight) - (i > 0 ? overlap : 0);
+                
+                // Left side
+                const leftDiv = document.createElement('div');
+                leftDiv.style.position = 'absolute';
+                leftDiv.style.left = '0';
+                leftDiv.style.top = topPosition + 'px';
+                leftDiv.style.width = '11%';
+                leftDiv.style.height = (segmentHeight + overlap) + 'px';
+                leftDiv.style.backgroundImage = `url('assets/images/${imageName}')`;
+                leftDiv.style.backgroundSize = '100% 100%';
+                leftDiv.style.backgroundRepeat = 'no-repeat';
+                leftDiv.style.opacity = '0.6';
+                leftDiv.style.zIndex = '1';
+                leftDiv.style.pointerEvents = 'none';
+                body.appendChild(leftDiv);
+                
+                // Right side
+                const rightDiv = document.createElement('div');
+                rightDiv.style.position = 'absolute';
+                rightDiv.style.right = '0';
+                rightDiv.style.top = topPosition + 'px';
+                rightDiv.style.width = '11%';
+                rightDiv.style.height = (segmentHeight + overlap) + 'px';
+                rightDiv.style.backgroundImage = `url('assets/images/${imageName}')`;
+                rightDiv.style.backgroundSize = '100% 100%';
+                rightDiv.style.backgroundRepeat = 'no-repeat';
+                rightDiv.style.opacity = '0.6';
+                rightDiv.style.zIndex = '1';
+                rightDiv.style.pointerEvents = 'none';
+                rightDiv.style.transform = 'scaleX(-1)';
+                body.appendChild(rightDiv);
+            }
         }
         
         // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', createMysticalEssence);
+        document.addEventListener('DOMContentLoaded', function() {
+            createAlternatingBars();
+            // Recreate bars if page content changes height
+            setTimeout(createAlternatingBars, 1000);
+        });
     </script>
 </body>
 </html>
