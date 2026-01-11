@@ -8,7 +8,7 @@
 
 A mystical and serene healing portal designed to provide a sanctuary of peace, love, and spiritual wellness. This web application features beautiful cosmic backgrounds, ethereal animations, and a calming user interface that promotes inner healing and spiritual growth.
 
-
+ 
  
 ## 🌟 Features
 
