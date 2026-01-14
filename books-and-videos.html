@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ootahgonahApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books and Videos - Ootahgonah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Nunito:wght@300;400;600&family=Jaini:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(180deg, #f8f0eb 0%, #f5e8ec 40%, #f2dde6 70%, #efd2e0 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .left-bar,
+        .right-bar,
+        .left-delta-bar,
+        .right-delta-bar {
+            position: absolute !important;
+            width: 11% !important;
+            background-size: 100% auto !important;
+            background-repeat: no-repeat !important;
+            z-index: 1 !important;
+            opacity: 0.6 !important;
+            pointer-events: none !important;
+        }
+        .left-knot,
+        .right-knot {
+            position: absolute;
+            top: 0;
+            width: 15.5%;
+            height: 100%;
+            background-image: url('assets/images/KK002.png');
+            background-size: 42% auto;
+            background-repeat: repeat-y;
+            z-index: 3;
+            opacity: 0.7;
+            overflow: hidden;
+        }
+        .left-knot {
+            left: 1.5%;
+            background-position: top right;
+        }
+        .right-knot {
+            right: 1.5%;
+            background-position: top left;
+        }
+        .main-content {
+            position: relative;
+            left: 17%;
+            right: 17%;
+            width: 66%;
+            min-height: auto;
+            padding: 8vh 40px 240px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 3;
+            background: rgba(255, 245, 234, 0.6);
+        }
+        .back-button {
+            align-self: flex-start;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: rgba(212, 167, 106, 0.3);
+            border: 1px solid rgba(212, 167, 106, 0.5);
+            border-radius: 20px;
+            color: #6b4540;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background: rgba(212, 167, 106, 0.5);
+            transform: translateY(-2px);
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            font-family: 'Jaini', cursive;
+            font-size: 3rem;
+            color: #6b4540;
+            margin-bottom: 10px;
+        }
+        .page-header h2 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.8rem;
+            color: #6b4540;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        .content-section {
+            width: 100%;
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+        .content-section h3 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.8rem;
+            color: #6b4540;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid rgba(212, 167, 106, 0.3);
+            padding-bottom: 15px;
+        }
+        .content-section p {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #6b4540;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .items-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .item-box {
+            background: rgba(255, 245, 234, 0.8);
+            border: 2px solid rgba(212, 167, 106, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .item-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(212, 167, 106, 0.2);
+            border-color: rgba(212, 167, 106, 0.6);
+        }
+        .item-box h4 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.2rem;
+            color: #6b4540;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .item-box p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        .item-box a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #d4a76a, #c49660);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .item-box a:hover {
+            background: linear-gradient(135deg, #c49660, #b88650);
+            transform: scale(1.05);
+        }
+        .floating-menu {
+            position: fixed;
+            bottom: 20px;
+            left: calc(17% + 25px + 2%);
+            right: calc(17% + 25px + 2%);
+            transform: none;
+            display: flex;
+            gap: 40px;
+            padding: 15px 30px;
+            background: rgba(255, 245, 234, 0.95);
+            backdrop-filter: blur(8px);
+            border-radius: 25px;
+            border: 1px solid rgba(212, 167, 106, 0.2);
+            box-shadow: 0 4px 20px rgba(212, 167, 106, 0.15);
+            z-index: 10;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu-icon {
+            width: 69px;
+            height: 69px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: none;
+            position: relative;
+            overflow: visible;
+        }
+        .menu-icon:hover {
+            transform: scale(1.1) translateY(-3px);
+        }
+        .menu-icon::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            color: #6b4540;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .menu-icon:hover::after {
+            opacity: 1;
+        }
+        .menu-icon[data-section="home"] {
+            background-image: url('assets/images/i-home.jpg?v=1763210508') !important;
+            width: 63px !important;
+            height: 63px !important;
+        }
+        .menu-icon[data-section="home"]::after {
+            bottom: -30px;
+        }
+        .menu-icon[data-section="vision"] {
+            background-image: url('assets/images/i-vision.jpg?v=1763210508') !important;
+            width: 112px !important;
+            height: 112px !important;
+        }
+        .menu-icon[data-section="vision"]::after {
+            bottom: -5px;
+        }
+        .menu-icon[data-section="constellation"] {
+            background-image: url('assets/images/i1-const.jpg?v=1763210508') !important;
+            width: 112px !important;
+            height: 112px !important;
+        }
+        .menu-icon[data-section="constellation"]::after {
+            bottom: -5px;
+        }
+        .menu-icon[data-section="offerings"] {
+            background-image: url('assets/images/i-offering.jpg?v=1763210508') !important;
+            width: 90px !important;
+            height: 90px !important;
+        }
+        .menu-icon[data-section="offerings"]::after {
+            bottom: -15px;
+        }
+        .menu-icon[data-section="contact"] {
+            background-image: url('assets/images/circle-modified.png?v=1763210508') !important;
+            width: 90px !important;
+            height: 90px !important;
+        }
+        .menu-icon[data-section="contact"]::after {
+            bottom: -15px;
+        }
+        @media (max-width: 992px) {
+            .left-bar, .right-bar {
+                width: 5%;
+            }
+            .left-knot, .right-knot {
+                width: 5%;
+            }
+            .left-knot {
+                left: 5%;
+            }
+            .right-knot {
+                right: 5%;
+            }
+            .main-content {
+                left: 10%;
+                right: 10%;
+                padding: 20px;
+            }
+        }
+        @media (max-width: 768px) {
+            .left-bar, .right-bar, .left-knot, .right-knot {
+                display: none;
+            }
+            body {
+                padding: 10px;
+            }
+            .main-content {
+                left: 0;
+                right: 0;
+                width: 100%;
+                padding: 15px;
+                margin: 0;
+            }
+            .back-button {
+                font-size: 18px !important;
+                padding: 10px 15px !important;
+                margin-bottom: 20px !important;
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+            .page-header h1 {
+                font-size: 2.2rem !important;
+                line-height: 1.2;
+                margin-bottom: 10px;
+            }
+            .page-header h2 {
+                font-size: 1.3rem !important;
+                line-height: 1.3;
+                margin-bottom: 15px;
+            }
+            .content-section {
+                padding: 15px !important;
+                margin: 15px 0 !important;
+            }
+            .content-section p {
+                font-size: 1.1rem !important;
+                line-height: 1.6;
+                margin-bottom: 15px;
+            }
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+            .floating-menu {
+                gap: 15px !important;
+                padding: 10px 20px !important;
+                bottom: 15px !important;
+                left: 10px !important;
+                right: 10px !important;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+            .menu-icon {
+                width: 42px !important;
+                height: 42px !important;
+                min-width: 42px;
+                touch-action: manipulation;
+            }
+        }
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 10px;
+            }
+            .back-button {
+                font-size: 16px !important;
+                padding: 8px 12px !important;
+            }
+            .page-header h1 {
+                font-size: 1.8rem !important;
+            }
+            .page-header h2 {
+                font-size: 1.1rem !important;
+            }
+            .content-section p {
+                font-size: 1rem !important;
+            }
+            .floating-menu {
+                gap: 10px !important;
+                padding: 8px 15px !important;
+                bottom: 10px !important;
+                left: 5px !important;
+                right: 5px !important;
+            }
+            .menu-icon {
+                width: 38px !important;
+                height: 38px !important;
+            }
+        }
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f2dde6, #efd2e0);
+            border: 2px solid #d4a76a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(212, 167, 106, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 1001;
+            transition: all 0.6s ease;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 167, 106, 0.6);
+            background: linear-gradient(135deg, #efd2e0, #f5e8ec);
+        }
+        .whatsapp-float .icon {
+            width: 32px;
+            height: 32px;
+        }
+        /* Audio Control */
+        .audio-control {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f8f0eb, #f5e8ec);
+            border: 2px solid #d4a76a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(212, 167, 106, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 1001;
+            transition: all 0.6s ease;
+        }
+        .audio-control:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 167, 106, 0.6);
+            background: linear-gradient(135deg, #efd2e0, #f2dde6);
+        }
+        .audio-control .icon {
+            font-size: 1.8rem;
+            color: #6b4540;
+            text-shadow: 0 0 10px rgba(107, 69, 64, 0.3);
+            transition: all 0.3s ease;
+        }
+        .audio-control.playing .icon::before {
+            content: '⏸️';
+        }
+        .audio-control.paused .icon::before {
+            content: '🎵';
+        }
+        
+        body {
+            min-height: auto !important;
+            overflow-x: hidden !important;
+        }
+        
+        html, body {
+            height: auto !important;
+        }
+        
+        /* Footer styling */
+        .site-footer {
+            width: 100%;
+            position: relative;
+            padding: 30px 20px 100px 20px;
+            text-align: center;
+            background: transparent;
+            border-top: 2px solid rgba(212, 167, 106, 0.8);
+            margin-top: 60px;
+            margin-bottom: 0;
+        }
+        
+        .footer-text {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95rem;
+            color: #6b4540;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+        
+        .footer-tagline {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.85rem;
+            color: #8b6858;
+            font-weight: 300;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body ng-controller="MainController">
+    <!-- Left and right bars will be created by JavaScript -->
+    <div class="left-knot"></div>
+    <div class="right-knot"></div>
+    
+    <div class="main-content">
+        <button onclick="window.history.back()" class="back-button">← Back</button>
+        <div class="page-header">
+            <h1>Books & Videos</h1>
+            <h2>Resources for Your Journey</h2>
+        </div>
+        
+        <!-- Books Section -->
+        <div class="content-section">
+            <h3>📚 Recommended Books</h3>
+            <p>Explore a collection of transformative books that deepen your understanding of the Light Body and spiritual awakening.</p>
+            <div class="items-grid">
+                <div class="item-box">
+                    <h4>The Light Body Awakening</h4>
+                    <p>A foundational guide to understanding and cultivating your light body.</p>
+                    <a href="#" target="_blank">Learn More</a>
+                </div>
+                <div class="item-box">
+                    <h4>Ujrayaan: The Path of Grace</h4>
+                    <p>Discover the teachings and practices of Ujrayaan Buddhism.</p>
+                    <a href="#" target="_blank">Learn More</a>
+                </div>
+                <div class="item-box">
+                    <h4>Transmissions from Sohra</h4>
+                    <p>Sacred teachings channeled from the Sirian star system.</p>
+                    <a href="#" target="_blank">Learn More</a>
+                </div>
+                <div class="item-box">
+                    <h4>The Effortless Way</h4>
+                    <p>Mastering the art of doing without trying.</p>
+                    <a href="#" target="_blank">Learn More</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Videos Section -->
+        <div class="content-section">
+            <h3>🎥 Video Teachings</h3>
+            <p>Watch inspiring video content featuring meditations, teachings, and transformative practices.</p>
+            <div class="items-grid">
+                <div class="item-box">
+                    <h4>Light Body Meditation</h4>
+                    <p>A guided meditation to awaken your light body presence.</p>
+                    <a href="#" target="_blank">Watch</a>
+                </div>
+                <div class="item-box">
+                    <h4>Understanding Sohra</h4>
+                    <p>An introduction to the teachings and presence of Sohra.</p>
+                    <a href="#" target="_blank">Watch</a>
+                </div>
+                <div class="item-box">
+                    <h4>Yoga for the Light Body</h4>
+                    <p>Practice yoga specifically designed to cultivate light body awareness.</p>
+                    <a href="#" target="_blank">Watch</a>
+                </div>
+                <div class="item-box">
+                    <h4>Channeling Circle</h4>
+                    <p>Experience live channeling sessions with William and Sohra.</p>
+                    <a href="#" target="_blank">Watch</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p class="footer-text">© 2026 Ootahgonah • A Portal of Love & Light</p>
+            <p class="footer-tagline">Guided by Sohra • Channeled with William • Held in Community</p>
+        </footer>
+    </div>
+    
+    <div class="floating-menu">
+        <div class="menu-icon" data-section="home" data-label="Home" onclick="window.location.href='a3.html#home'" style="cursor: pointer;" title="Home"></div>
+        <div class="menu-icon" data-section="vision" data-label="Vision" onclick="window.location.href='a3.html#vision'" title="Vision"></div>
+        <div class="menu-icon" data-section="constellation" data-label="Constellation" onclick="window.location.href='a3.html#constellation'" title="Constellation"></div>
+        <div class="menu-icon" data-section="offerings" data-label="Offerings" onclick="window.location.href='a3.html#offerings'" title="Offerings"></div>
+        <div class="menu-icon" data-section="contact" data-label="Join the Circle" onclick="window.location.href='a3.html#contact'" title="Join the Circle"></div>
+    </div>
+    
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/15551234567?text=Hello!%20I%20would%20like%20to%20connect%20with%20Ootahgonah" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       title="Connect via WhatsApp">
+        <svg class="icon" viewBox="0 0 32 32" width="32" height="32">
+            <path fill="#6b4540" d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.245 1.407 1.417-5.264-0.321-0.533c-1.331-2.21-2.007-4.739-2.007-7.382 0-7.51 6.123-13.633 13.633-13.633s13.633 6.123 13.633 13.633c0 7.51-6.123 13.633-13.633 13.633zM21.751 18.893c-0.413-0.207-2.448-1.207-2.828-1.344s-0.655-0.207-0.931 0.207c-0.276 0.413-1.069 1.344-1.31 1.62s-0.482 0.31-0.896 0.103c-0.413-0.207-1.745-0.643-3.324-2.051-1.228-1.096-2.058-2.448-2.296-2.862s-0.024-0.637 0.182-0.843c0.186-0.186 0.413-0.482 0.62-0.724s0.276-0.413 0.413-0.689c0.138-0.276 0.069-0.517-0.034-0.724s-0.931-2.241-1.276-3.069c-0.338-0.807-0.679-0.697-0.931-0.71-0.241-0.012-0.517-0.014-0.793-0.014s-0.724 0.103-1.103 0.517c-0.379 0.413-1.448 1.414-1.448 3.448s1.482 4 1.689 4.276c0.207 0.276 2.914 4.448 7.062 6.236 0.986 0.426 1.755 0.681 2.355 0.872 0.992 0.315 1.896 0.271 2.61 0.164 0.796-0.119 2.448-1 2.793-1.966s0.345-1.793 0.241-1.966c-0.103-0.172-0.379-0.276-0.793-0.482z"/>
+        </svg>
+    </a>
+    
+    <!-- Audio Control -->
+    <div class="audio-control paused" id="audioControl" onclick="toggleAudio()" title="Click to play ambient music">
+        <div class="icon"></div>
+    </div>
+    
+    <!-- Hidden Audio Element -->
+    <audio id="ambientAudio" loop preload="auto">
+        <source src="assets/sounds/chips1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/mainController.js"></script>
+    <script src="services/dataService.js"></script>
+    <script src="js/audio.js"></script>
+    
+    <script>
+        function createAlternatingBars() {
+            const body = document.body;
+            const footer = document.querySelector('.site-footer');
+            
+            const pageHeight = footer ? footer.offsetTop + footer.offsetHeight : body.scrollHeight;
+            
+            const segmentHeight = 400;
+            const overlap = 2;
+            const numSegments = Math.ceil(pageHeight / segmentHeight);
+            
+            const existingBars = document.querySelectorAll('.left-bar, .right-bar, .left-delta-bar, .right-delta-bar');
+            existingBars.forEach(bar => bar.remove());
+            
+            for (let i = 0; i < numSegments; i++) {
+                const isLeftLeft = i % 2 === 0;
+                const imageName = isLeftLeft ? 'leftleft.jpg' : 'leftDeltaleft.jpg';
+                const topPosition = (i * segmentHeight) - (i > 0 ? overlap : 0);
+                
+                const leftDiv = document.createElement('div');
+                leftDiv.style.position = 'absolute';
+                leftDiv.style.left = '0';
+                leftDiv.style.top = topPosition + 'px';
+                leftDiv.style.width = '11%';
+                leftDiv.style.height = (segmentHeight + overlap) + 'px';
+                leftDiv.style.backgroundImage = `url('assets/images/${imageName}')`;
+                leftDiv.style.backgroundSize = '100% 100%';
+                leftDiv.style.backgroundRepeat = 'no-repeat';
+                leftDiv.style.opacity = '0.6';
+                leftDiv.style.zIndex = '1';
+                leftDiv.style.pointerEvents = 'none';
+                body.appendChild(leftDiv);
+                
+                const rightDiv = document.createElement('div');
+                rightDiv.style.position = 'absolute';
+                rightDiv.style.right = '0';
+                rightDiv.style.top = topPosition + 'px';
+                rightDiv.style.width = '11%';
+                rightDiv.style.height = (segmentHeight + overlap) + 'px';
+                rightDiv.style.backgroundImage = `url('assets/images/${imageName}')`;
+                rightDiv.style.backgroundSize = '100% 100%';
+                rightDiv.style.backgroundRepeat = 'no-repeat';
+                rightDiv.style.opacity = '0.6';
+                rightDiv.style.zIndex = '1';
+                rightDiv.style.pointerEvents = 'none';
+                rightDiv.style.transform = 'scaleX(-1)';
+                body.appendChild(rightDiv);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            createAlternatingBars();
+            setTimeout(createAlternatingBars, 1000);
+        });
+    </script>
+</body>
+</html>
