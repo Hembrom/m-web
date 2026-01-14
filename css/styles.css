@@ -394,7 +394,7 @@ img[src*="Logo-100"],
     text-align: center;
     margin: 30px 0;
     font-family: 'Nunito', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: #6b4540;
     line-height: 1.6;
 }
@@ -746,6 +746,48 @@ img[src*="Logo-100"],
 
 .menu-icon:hover::after {
     opacity: 1;
+}
+
+/* Submenu Styles */
+.menu-with-submenu {
+    position: relative;
+}
+
+.submenu {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 245, 234, 0.95);
+    border: 2px solid rgba(212, 167, 106, 0.8);
+    border-radius: 12px;
+    padding: 8px 0;
+    min-width: 160px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.menu-with-submenu:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.submenu-item {
+    padding: 10px 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: #6b4540;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.submenu-item:hover {
+    background: rgba(212, 167, 106, 0.2);
+    color: #4a2f2c;
 }
 
 .menu-icon[data-section="home"] {

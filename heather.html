@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One on One Healing Session - Ootahgonah</title>
+    <title>Heather - Healing Companion</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Nunito:wght@300;400;600&family=Jaini:wght@200;300;400&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Nunito', sans-serif;
             background: linear-gradient(180deg, #f8f0eb 0%, #f5e8ec 40%, #f2dde6 70%, #efd2e0 100%);
             min-height: 100vh;
             position: relative;
@@ -63,7 +63,7 @@
             right: 17%;
             width: 66%;
             min-height: auto;
-            padding: 15vh 40px 240px 40px;
+            padding: 8vh 40px 240px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -104,11 +104,21 @@
         }
 
         .page-header h2 {
-            font-family: 'Georgia', serif;
+            font-family: 'Nunito', sans-serif;
             font-size: 1.8rem;
             color: #6b4540;
             font-weight: 300;
             margin-bottom: 30px;
+        }
+
+        .profile-image {
+            width: 500px;
+            height: 350px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-bottom: 40px;
+            border: 4px solid rgba(212, 167, 106, 0.4);
+            box-shadow: 0 8px 20px rgba(212, 167, 106, 0.3);
         }
 
         .content-section {
@@ -268,6 +278,7 @@
             .main-content {
                 left: 0;
                 right: 0;
+                width: 100%;
                 padding: 15px;
                 margin: 0;
             }
@@ -290,6 +301,12 @@
                 font-size: 1.3rem !important;
                 line-height: 1.3;
                 margin-bottom: 15px;
+            }
+
+            .profile-image {
+                width: 180px;
+                height: 180px;
+                margin-bottom: 25px;
             }
 
             .content-section {
@@ -364,6 +381,11 @@
                 font-size: 1.1rem !important;
             }
 
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+
             .content-section p {
                 font-size: 1rem !important;
             }
@@ -377,16 +399,6 @@
             }
             
             .menu-icon {
-                width: 38px !important;
-                height: 38px !important;
-                min-width: 38px;
-            }
-
-            .menu-icon[data-section="home"],
-            .menu-icon[data-section="vision"],
-            .menu-icon[data-section="constellation"],
-            .menu-icon[data-section="offerings"],
-            .menu-icon[data-section="contact"] {
                 width: 38px !important;
                 height: 38px !important;
             }
@@ -464,15 +476,7 @@
             content: '🎵';
         }
         
-        body {
-            min-height: auto !important;
-            overflow-x: hidden !important;
-        }
-        
-        html, body {
-            height: auto !important;
-        }
-        
+
         /* Footer styling */
         .site-footer {
             width: 100%;
@@ -511,14 +515,14 @@
         <button onclick="window.history.back()" class="back-button">← Back</button>
 
         <div class="page-header">
-            <h1>One on One Healing Session</h1>
-            <h2>Personal Healing & Guidance</h2>
+            <h1>Heather</h1>
+            <h2>Healing Companion</h2>
         </div>
 
-                <div class="content-section">
-            <p>A one-on-one healing session is a sacred space created just for you, offering channeling, healing, and guidance tailored to your journey. These sessions support the release of physical tension and emotional patterns, creating space for renewal, balance, and deeper connection with the Light within.</p>
-            
-            <p>Through channeling, energy work, and guided presence, each session unfolds uniquely — meeting you where you are and allowing healing to arise naturally. A space to release effort, find clarity, and reconnect with your true essence.</p>
+        <img src="assets/images/heather.jpg" alt="Heather" class="profile-image">
+
+        <div class="content-section">
+            <p>A gentle soul radiating kindness and wisdom, Heather walks the path of love and understanding, offering healing presence and sacred guidance to all who cross her path.</p>
         </div>
         
         <!-- Footer -->
@@ -529,11 +533,11 @@
     </div>
     
     <div class="floating-menu">
-        <div class="menu-icon" data-section="home" data-label="Home" onclick="window.location.href='a1.html#offerings'" style="cursor: pointer;" title="Home"></div>
-        <div class="menu-icon" data-section="vision" data-label="Vision" onclick="window.location.href='a1.html#vision'" title="Vision"></div>
-        <div class="menu-icon" data-section="constellation" data-label="Constellation" onclick="window.location.href='a1.html#constellation'" title="Constellation"></div>
-        <div class="menu-icon" data-section="offerings" data-label="Offerings" onclick="window.location.href='a1.html#offerings'" title="Offerings"></div>
-        <div class="menu-icon" data-section="contact" data-label="Join the Circle" onclick="window.location.href='a1.html#contact'" title="Join the Circle"></div>
+        <div class="menu-icon" data-section="home" data-label="Home" onclick="window.location.href='a3.html#home'" style="cursor: pointer;" title="Home"></div>
+        <div class="menu-icon" data-section="vision" data-label="Vision" onclick="window.location.href='a3.html#vision'" title="Vision"></div>
+        <div class="menu-icon" data-section="constellation" data-label="Constellation" onclick="window.location.href='a3.html#constellation'" title="Constellation"></div>
+        <div class="menu-icon" data-section="offerings" data-label="Offerings" onclick="window.location.href='a3.html#offerings'" title="Offerings"></div>
+        <div class="menu-icon" data-section="contact" data-label="Join the Circle" onclick="window.location.href='a3.html#contact'" title="Join the Circle"></div>
     </div>
 
     <!-- WhatsApp Floating Button -->
@@ -570,24 +574,20 @@
             const body = document.body;
             const footer = document.querySelector('.site-footer');
             
-            // Calculate based on footer position to match where content ends
             const pageHeight = footer ? footer.offsetTop + footer.offsetHeight : body.scrollHeight;
             
-            const segmentHeight = 400; // Height of each image segment in pixels
-            const overlap = 2; // Overlap by 2px to eliminate gaps
+            const segmentHeight = 400;
+            const overlap = 2;
             const numSegments = Math.ceil(pageHeight / segmentHeight);
             
-            // Clear existing bars
             const existingBars = document.querySelectorAll('.left-bar, .right-bar, .left-delta-bar, .right-delta-bar');
             existingBars.forEach(bar => bar.remove());
             
-            // Create alternating segments
             for (let i = 0; i < numSegments; i++) {
                 const isLeftLeft = i % 2 === 0;
                 const imageName = isLeftLeft ? 'leftleft.jpg' : 'leftDeltaleft.jpg';
                 const topPosition = (i * segmentHeight) - (i > 0 ? overlap : 0);
                 
-                // Left side
                 const leftDiv = document.createElement('div');
                 leftDiv.style.position = 'absolute';
                 leftDiv.style.left = '0';
@@ -602,7 +602,6 @@
                 leftDiv.style.pointerEvents = 'none';
                 body.appendChild(leftDiv);
                 
-                // Right side
                 const rightDiv = document.createElement('div');
                 rightDiv.style.position = 'absolute';
                 rightDiv.style.right = '0';
@@ -620,10 +619,8 @@
             }
         }
         
-        // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
             createAlternatingBars();
-            // Recreate bars if page content changes height
             setTimeout(createAlternatingBars, 1000);
         });
     </script>
