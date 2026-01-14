@@ -948,7 +948,7 @@ img[src*="Logo-100"],
    ============================================ */
 
 .contact-section {
-    margin-top: 120px;
+    margin-top: 0;
     padding: 40px 20px;
     margin-bottom: 120px;
 }
