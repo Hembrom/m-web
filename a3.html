@@ -256,6 +256,112 @@
             color: #8b6858;
             font-weight: 300;
         }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .offerings-image-container {
+                position: relative;
+                max-width: 90%;
+                margin: 0 auto;
+            }
+
+            .offerings-image {
+                width: 100%;
+                height: auto;
+            }
+
+            /* Increase touch target sizes for mobile */
+            .offerings-image-container a {
+                min-height: 50px !important;
+                height: 15% !important;
+            }
+
+            .offerings-container h2 {
+                font-size: 2rem;
+                margin-bottom: 25px;
+            }
+
+            /* Adjust floating menu for mobile */
+            .floating-menu {
+                left: 10px;
+                right: 10px;
+                bottom: 15px;
+                gap: 12px;
+                padding: 10px 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .menu-icon {
+                width: 42px !important;
+                height: 42px !important;
+                min-width: 42px;
+                min-height: 42px;
+            }
+
+            /* Ensure bars work on mobile */
+            .left-bar, .right-bar, .left-delta-bar, .right-delta-bar {
+                width: 5% !important;
+            }
+
+            .left-knot, .right-knot {
+                width: 8%;
+                background-size: 80% auto;
+            }
+
+            .left-knot {
+                left: 0.5%;
+            }
+
+            .right-knot {
+                right: 0.5%;
+            }
+
+            .main-content {
+                left: 10%;
+                right: 10%;
+                width: 80%;
+                padding: 10vh 20px 180px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .offerings-container h2 {
+                font-size: 1.6rem;
+            }
+
+            .offerings-image-container a {
+                min-height: 40px !important;
+                height: 14% !important;
+            }
+
+            .main-content {
+                left: 5%;
+                right: 5%;
+                width: 90%;
+                padding: 8vh 15px 150px 15px;
+            }
+
+            .floating-menu {
+                gap: 8px;
+                padding: 8px 12px;
+                bottom: 10px;
+                left: 5px;
+                right: 5px;
+            }
+
+            .menu-icon {
+                width: 38px !important;
+                height: 38px !important;
+                min-width: 38px;
+                min-height: 38px;
+            }
+
+            .left-knot, .right-knot {
+                width: 6%;
+                background-size: 100% auto;
+            }
+        }
     </style>
 </head>
 <body ng-controller="MainController">
