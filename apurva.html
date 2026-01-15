@@ -191,6 +191,48 @@
             opacity: 1;
         }
 
+        /* Submenu Styles */
+        .menu-with-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 245, 234, 0.95);
+            border: 2px solid rgba(212, 167, 106, 0.8);
+            border-radius: 12px;
+            padding: 8px 0;
+            min-width: 160px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-with-submenu:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .submenu-item {
+            padding: 10px 20px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            color: #6b4540;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .submenu-item:hover {
+            background: rgba(212, 167, 106, 0.2);
+            color: #4a2f2c;
+        }
+
         .menu-icon[data-section="home"] {
             background-image: url('assets/images/i-home.jpg?v=1763210508') !important;
             width: 63px !important;
@@ -536,7 +578,12 @@
         <div class="menu-icon" data-section="home" data-label="Home" onclick="window.location.href='a3.html#home'" style="cursor: pointer;" title="Home"></div>
         <div class="menu-icon" data-section="vision" data-label="Vision" onclick="window.location.href='a3.html#vision'" title="Vision"></div>
         <div class="menu-icon" data-section="constellation" data-label="Constellation" onclick="window.location.href='a3.html#constellation'" title="Constellation"></div>
-        <div class="menu-icon" data-section="offerings" data-label="Offerings" onclick="window.location.href='a3.html#offerings'" title="Offerings"></div>
+        <div class="menu-with-submenu">
+            <div class="menu-icon" data-section="offerings" data-label="Offerings" onclick="window.location.href='a3.html#offerings'" title="Offerings"></div>
+            <div class="submenu">
+                <div class="submenu-item" onclick="window.location.href='books-and-videos.html'">Books and Videos</div>
+            </div>
+        </div>
         <div class="menu-icon" data-section="contact" data-label="Join the Circle" onclick="window.location.href='a3.html#contact'" title="Join the Circle"></div>
     </div>
 

@@ -419,7 +419,7 @@
         <div id="offerings" class="offerings-container">
             <h2>Practices and Offerings</h2>
             <div class="offerings-image-container">
-                <img src="assets/images/circle2.png" alt="Practices and Offerings" class="offerings-image">
+                <img src="assets/images/circle100.png" alt="Practices and Offerings" class="offerings-image">
                 
                 <!-- Hexagonal arrangement with invisible clickable areas -->
                 <!-- Top Center - One on One -->
@@ -443,8 +443,8 @@
                 <!-- Center - Join the Circle -->
                 <a ng-click="scrollTo('contact')" style="position: absolute; top: 40%; left: 35%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Join the Circle"></a>
                 
-                <!-- Right Side - Books and Videos -->
-                <a href="books-and-videos.html" style="position: absolute; top: 75%; right: 25%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Books and Videos"></a>
+                <!-- Right Side - All Meetings -->
+                <a href="all-meetings.html" style="position: absolute; top: 75%; right: 25%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="All Meetings"></a>
             </div>
         </div>
         
@@ -524,7 +524,12 @@
         <div class="menu-icon" data-section="home" data-label="Home" ng-click="scrollTo('home')" title="Home"></div>
         <div class="menu-icon" data-section="vision" data-label="Vision" ng-click="scrollTo('vision')" title="Vision"></div>
         <div class="menu-icon" data-section="constellation" data-label="Constellation" ng-click="scrollTo('constellation')" title="Constellation"></div>
-        <div class="menu-icon" data-section="offerings" data-label="Offerings" ng-click="scrollTo('offerings')" title="Offerings"></div>
+        <div class="menu-with-submenu">
+            <div class="menu-icon" data-section="offerings" data-label="Offerings" ng-click="scrollTo('offerings')" title="Offerings"></div>
+            <div class="submenu">
+                <div class="submenu-item" onclick="window.location.href='books-and-videos.html'">Books and Videos</div>
+            </div>
+        </div>
         <div class="menu-icon" data-section="contact" data-label="Join the Circle" ng-click="scrollTo('contact')" title="Join the Circle"></div>
     </div>
 

@@ -99,6 +99,53 @@
             font-weight: 300;
             margin-bottom: 30px;
         }
+        
+        /* Tabs Styling */
+        .tabs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid rgba(212, 167, 106, 0.3);
+            width: 100%;
+        }
+        
+        .tab {
+            padding: 15px 30px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.2rem;
+            color: #6b4540;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+        
+        .tab:hover {
+            background: rgba(212, 167, 106, 0.1);
+        }
+        
+        .tab.active {
+            border-bottom-color: #d4a76a;
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         .content-section {
             width: 100%;
             max-width: 700px;
@@ -123,9 +170,15 @@
         }
         .items-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
             margin-top: 20px;
+            width: 100%;
+        }
+        
+        .items-grid.videos-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
         }
         .item-box {
             background: rgba(255, 245, 234, 0.8);
@@ -135,6 +188,41 @@
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .book-cover {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #efd2e0, #f5e8ec);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f2dde6, #efd2e0);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .video-thumbnail::after {
+            content: '▶';
+            position: absolute;
+            font-size: 3rem;
+            color: rgba(107, 69, 64, 0.8);
         }
         .item-box:hover {
             transform: translateY(-5px);
@@ -217,6 +305,49 @@
         .menu-icon:hover::after {
             opacity: 1;
         }
+        
+        /* Submenu Styles */
+        .menu-with-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 245, 234, 0.95);
+            border: 2px solid rgba(212, 167, 106, 0.8);
+            border-radius: 12px;
+            padding: 8px 0;
+            min-width: 160px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-with-submenu:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .submenu-item {
+            padding: 10px 20px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            color: #6b4540;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .submenu-item:hover {
+            background: rgba(212, 167, 106, 0.2);
+            color: #4a2f2c;
+        }
+        
         .menu-icon[data-section="home"] {
             background-image: url('assets/images/i-home.jpg?v=1763210508') !important;
             width: 63px !important;
@@ -317,6 +448,10 @@
                 margin-bottom: 15px;
             }
             .items-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .items-grid.videos-grid {
                 grid-template-columns: 1fr;
             }
             .floating-menu {
@@ -475,62 +610,60 @@
     <div class="main-content">
         <button onclick="window.history.back()" class="back-button">← Back</button>
         <div class="page-header">
-            <h1>Books & Videos</h1>
+            <h1>Books and Videos</h1>
             <h2>Resources for Your Journey</h2>
         </div>
         
-        <!-- Books Section -->
-        <div class="content-section">
-            <h3>📚 Recommended Books</h3>
-            <p>Explore a collection of transformative books that deepen your understanding of the Light Body and spiritual awakening.</p>
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('books')">Books</button>
+            <button class="tab" onclick="showTab('videos')">Videos</button>
+        </div>
+        
+        <!-- Books Tab -->
+        <div id="books" class="tab-content active">
             <div class="items-grid">
                 <div class="item-box">
-                    <h4>The Light Body Awakening</h4>
-                    <p>A foundational guide to understanding and cultivating your light body.</p>
-                    <a href="#" target="_blank">Learn More</a>
+                    <div class="book-cover">📖</div>
+                    <h4>The Light Within</h4>
+                    <p>A journey into discovering your inner radiance and truth</p>
                 </div>
+                
                 <div class="item-box">
-                    <h4>Ujrayaan: The Path of Grace</h4>
-                    <p>Discover the teachings and practices of Ujrayaan Buddhism.</p>
-                    <a href="#" target="_blank">Learn More</a>
+                    <div class="book-cover">📕</div>
+                    <h4>Sacred Portals</h4>
+                    <p>Opening doorways to higher consciousness and healing</p>
                 </div>
+                
                 <div class="item-box">
-                    <h4>Transmissions from Sohra</h4>
-                    <p>Sacred teachings channeled from the Sirian star system.</p>
-                    <a href="#" target="_blank">Learn More</a>
+                    <div class="book-cover">📗</div>
+                    <h4>Healing Through Love</h4>
+                    <p>Transformative practices for heart-centered healing</p>
                 </div>
+                
                 <div class="item-box">
-                    <h4>The Effortless Way</h4>
-                    <p>Mastering the art of doing without trying.</p>
-                    <a href="#" target="_blank">Learn More</a>
+                    <div class="book-cover">📘</div>
+                    <h4>Cosmic Connections</h4>
+                    <p>Understanding our place in the universal tapestry</p>
                 </div>
             </div>
         </div>
         
-        <!-- Videos Section -->
-        <div class="content-section">
-            <h3>🎥 Video Teachings</h3>
-            <p>Watch inspiring video content featuring meditations, teachings, and transformative practices.</p>
-            <div class="items-grid">
+        <!-- Videos Tab -->
+        <div id="videos" class="tab-content">
+            <div class="items-grid videos-grid">
                 <div class="item-box">
-                    <h4>Light Body Meditation</h4>
-                    <p>A guided meditation to awaken your light body presence.</p>
-                    <a href="#" target="_blank">Watch</a>
+                    <div class="video-thumbnail">🎥</div>
+                    <h4>Introduction to Healing Portals</h4>
+                    <p>Explore the transformative power of healing portals and spiritual awakening</p>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Watch Video →</a>
                 </div>
+                
                 <div class="item-box">
-                    <h4>Understanding Sohra</h4>
-                    <p>An introduction to the teachings and presence of Sohra.</p>
-                    <a href="#" target="_blank">Watch</a>
-                </div>
-                <div class="item-box">
-                    <h4>Yoga for the Light Body</h4>
-                    <p>Practice yoga specifically designed to cultivate light body awareness.</p>
-                    <a href="#" target="_blank">Watch</a>
-                </div>
-                <div class="item-box">
-                    <h4>Channeling Circle</h4>
-                    <p>Experience live channeling sessions with William and Sohra.</p>
-                    <a href="#" target="_blank">Watch</a>
+                    <div class="video-thumbnail">🎬</div>
+                    <h4>Meditation & Light Work Practice</h4>
+                    <p>Guided meditation session for connecting with your light body</p>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Watch Video →</a>
                 </div>
             </div>
         </div>
@@ -546,7 +679,12 @@
         <div class="menu-icon" data-section="home" data-label="Home" onclick="window.location.href='a3.html#home'" style="cursor: pointer;" title="Home"></div>
         <div class="menu-icon" data-section="vision" data-label="Vision" onclick="window.location.href='a3.html#vision'" title="Vision"></div>
         <div class="menu-icon" data-section="constellation" data-label="Constellation" onclick="window.location.href='a3.html#constellation'" title="Constellation"></div>
-        <div class="menu-icon" data-section="offerings" data-label="Offerings" onclick="window.location.href='a3.html#offerings'" title="Offerings"></div>
+        <div class="menu-with-submenu">
+            <div class="menu-icon" data-section="offerings" data-label="Offerings" onclick="window.location.href='a3.html#offerings'" title="Offerings"></div>
+            <div class="submenu">
+                <div class="submenu-item" onclick="window.location.href='books-and-videos.html'">Books and Videos</div>
+            </div>
+        </div>
         <div class="menu-icon" data-section="contact" data-label="Join the Circle" onclick="window.location.href='a3.html#contact'" title="Join the Circle"></div>
     </div>
     
@@ -579,6 +717,18 @@
     <script src="js/audio.js"></script>
     
     <script>
+        // Tab switching function
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+        
         function createAlternatingBars() {
             const body = document.body;
             const footer = document.querySelector('.site-footer');

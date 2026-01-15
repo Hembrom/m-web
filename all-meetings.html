@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sohra - Light Body Being</title>
+    <title>All Meetings - Ootahgonah</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Nunito:wght@300;400;600&family=Jaini:wght@200;300;400&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: 'Nunito', sans-serif;
+            font-family: 'Georgia', serif;
             background: linear-gradient(180deg, #f8f0eb 0%, #f5e8ec 40%, #f2dde6 70%, #efd2e0 100%);
             min-height: 100vh;
             position: relative;
@@ -63,7 +63,7 @@
             right: 17%;
             width: 66%;
             min-height: auto;
-            padding: 8vh 40px 240px 40px;
+            padding: 15vh 40px 240px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -101,111 +101,137 @@
             font-size: 3rem;
             color: #6b4540;
             margin-bottom: 10px;
+            font-weight: 300;
         }
 
         .page-header h2 {
             font-family: 'Nunito', sans-serif;
-            font-size: 1.8rem;
-            color: #6b4540;
+            font-size: 1.3rem;
+            color: #8b6858;
             font-weight: 300;
-            margin-bottom: 30px;
-        }
-
-        .profile-image {
-            width: 500px;
-            height: 438px;
-            border-radius: 15px;
-            object-fit: cover;
-            margin-bottom: 40px;
-            border: 4px solid rgba(212, 167, 106, 0.4);
-            box-shadow: 0 8px 20px rgba(212, 167, 106, 0.3);
         }
 
         .content-section {
             width: 100%;
-            max-width: 600px;
+            max-width: 800px;
+            margin-bottom: 40px;
         }
 
         .content-section p {
             font-family: 'Nunito', sans-serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             line-height: 1.8;
             color: #6b4540;
             margin-bottom: 20px;
-            text-align: justify;
+            text-align: center;
+        }
+
+        .meetings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 40px;
+        }
+
+        .meeting-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid rgba(212, 167, 106, 0.4);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .meeting-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(212, 167, 106, 0.3);
+            border-color: rgba(212, 167, 106, 0.7);
+        }
+
+        .meeting-card h3 {
+            font-family: 'Jaini', cursive;
+            font-size: 1.8rem;
+            color: #6b4540;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .meeting-card p {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #8b6858;
+            margin: 0;
         }
 
         .floating-menu {
             position: fixed;
             bottom: 20px;
-            left: calc(17% + 25px + 2%);
-            right: calc(17% + 25px + 2%);
-            transform: none;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            gap: 40px;
+            gap: 20px;
+            background: rgba(255, 245, 234, 0.98);
             padding: 15px 30px;
-            background: rgba(255, 245, 234, 0.95);
-            backdrop-filter: blur(8px);
-            border-radius: 25px;
-            border: 1px solid rgba(212, 167, 106, 0.2);
-            box-shadow: 0 4px 20px rgba(212, 167, 106, 0.15);
-            z-index: 10;
-            justify-content: space-between;
-            align-items: center;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
         }
 
         .menu-icon {
-            width: 69px;
-            height: 69px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 0;
+            width: 60px;
+            height: 60px;
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
-            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: visible;
-        }
-
-        .menu-icon:hover {
-            transform: scale(1.1) translateY(-3px);
         }
 
         .menu-icon::after {
             content: attr(data-label);
             position: absolute;
-            bottom: 10px;
+            bottom: -25px;
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Nunito', sans-serif;
-            font-size: 14px;
+            font-size: 0.7rem;
             color: #6b4540;
             white-space: nowrap;
             opacity: 0;
             transition: opacity 0.3s ease;
-            pointer-events: none;
         }
 
         .menu-icon:hover::after {
             opacity: 1;
         }
 
-        /* Submenu Styles */
+        .menu-icon:hover {
+            transform: scale(1.1);
+        }
+
         .menu-with-submenu {
             position: relative;
         }
 
         .submenu {
             position: absolute;
-            bottom: 80px;
+            bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(255, 245, 234, 0.95);
-            border: 2px solid rgba(212, 167, 106, 0.8);
-            border-radius: 12px;
-            padding: 8px 0;
-            min-width: 160px;
+            background: rgba(255, 245, 234, 0.98);
+            border-radius: 15px;
+            padding: 10px 0;
+            margin-bottom: 10px;
+            min-width: 180px;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -258,7 +284,7 @@
             width: 112px !important;
             height: 112px !important;
         }
-        
+
         .menu-icon[data-section="constellation"]::after {
             bottom: -5px;
         }
@@ -283,6 +309,102 @@
             bottom: -15px;
         }
 
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 100px;
+            right: 20px;
+            background-color: rgba(212, 167, 106, 0.9);
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-float:hover {
+            background-color: rgba(212, 167, 106, 1);
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float .icon {
+            margin-top: 0;
+        }
+
+        .audio-control {
+            position: fixed;
+            bottom: 100px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(212, 167, 106, 0.9);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .audio-control:hover {
+            transform: scale(1.1);
+            background: rgba(212, 167, 106, 1);
+        }
+
+        .audio-control .icon {
+            width: 30px;
+            height: 30px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236b4540"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>') no-repeat center;
+            background-size: contain;
+        }
+
+        .audio-control.paused .icon {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236b4540"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>') no-repeat center;
+            background-size: contain;
+        }
+
+        body {
+            overflow-x: hidden !important;
+        }
+        
+        html, body {
+            height: auto !important;
+        }
+        
+        /* Footer styling */
+        .site-footer {
+            width: 100%;
+            position: relative;
+            padding: 30px 20px 100px 20px;
+            text-align: center;
+            background: transparent;
+            border-top: 2px solid rgba(212, 167, 106, 0.8);
+            margin-top: 60px;
+            margin-bottom: 0;
+        }
+        
+        .footer-text {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95rem;
+            color: #6b4540;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+        
+        .footer-tagline {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.85rem;
+            color: #8b6858;
+            font-weight: 300;
+            font-style: italic;
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 992px) {
             .left-bar, .right-bar {
@@ -300,65 +422,31 @@
             .right-knot {
                 right: 5%;
             }
-
+            
             .main-content {
                 left: 10%;
                 right: 10%;
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .left-bar, .right-bar, .left-knot, .right-knot {
-                display: none;
-            }
-
-            body {
-                padding: 10px;
-            }
-
-            .main-content {
-                left: 0;
-                right: 0;
-                padding: 15px;
-                margin: 0;
-            }
-            
-            .back-button {
-                font-size: 18px !important;
-                padding: 10px 15px !important;
-                margin-bottom: 20px !important;
-                min-height: 44px;
-                touch-action: manipulation;
+                width: 80%;
+                padding: 50px 20px 180px 20px;
             }
 
             .page-header h1 {
                 font-size: 2.2rem !important;
-                line-height: 1.2;
-                margin-bottom: 10px;
             }
 
             .page-header h2 {
-                font-size: 1.3rem !important;
-                line-height: 1.3;
-                margin-bottom: 15px;
-            }
-
-            .profile-image {
-                width: 180px;
-                height: 180px;
-                margin-bottom: 25px;
-            }
-
-            .content-section {
-                padding: 15px !important;
-                margin: 15px 0 !important;
+                font-size: 1.1rem !important;
             }
 
             .content-section p {
                 font-size: 1.1rem !important;
                 line-height: 1.6;
                 margin-bottom: 15px;
+            }
+
+            .meetings-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
             .floating-menu {
@@ -422,13 +510,16 @@
                 font-size: 1.1rem !important;
             }
 
-            .profile-image {
-                width: 150px;
-                height: 150px;
-            }
-
             .content-section p {
                 font-size: 1rem !important;
+            }
+
+            .meeting-card {
+                padding: 20px;
+            }
+
+            .meeting-card h3 {
+                font-size: 1.4rem;
             }
             
             .floating-menu {
@@ -454,115 +545,6 @@
                 height: 38px !important;
             }
         }
-
-        /* WhatsApp Floating Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #f2dde6, #efd2e0);
-            border: 2px solid #d4a76a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 25px rgba(212, 167, 106, 0.4);
-            backdrop-filter: blur(10px);
-            z-index: 1001;
-            transition: all 0.6s ease;
-            text-decoration: none;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.15) translateY(-5px);
-            box-shadow: 0 15px 40px rgba(212, 167, 106, 0.6);
-            background: linear-gradient(135deg, #efd2e0, #f5e8ec);
-        }
-
-        .whatsapp-float .icon {
-            width: 32px;
-            height: 32px;
-        }
-
-        /* Audio Control */
-        .audio-control {
-            position: fixed;
-            bottom: 90px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #f8f0eb, #f5e8ec);
-            border: 2px solid #d4a76a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(212, 167, 106, 0.4);
-            backdrop-filter: blur(10px);
-            z-index: 1001;
-            transition: all 0.6s ease;
-        }
-
-        .audio-control:hover {
-            transform: scale(1.1) translateY(-3px);
-            box-shadow: 0 15px 40px rgba(212, 167, 106, 0.6);
-            background: linear-gradient(135deg, #efd2e0, #f2dde6);
-        }
-
-        .audio-control .icon {
-            font-size: 1.8rem;
-            color: #6b4540;
-            text-shadow: 0 0 10px rgba(107, 69, 64, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .audio-control.playing .icon::before {
-            content: '⏸️';
-        }
-
-        .audio-control.paused .icon::before {
-            content: '🎵';
-        }
-        
-        body {
-            min-height: auto !important;
-            overflow-x: hidden !important;
-        }
-        
-        html, body {
-            height: auto !important;
-        }
-        
-        /* Footer styling */
-        .site-footer {
-            width: 100%;
-            position: relative;
-            padding: 30px 20px 100px 20px;
-            text-align: center;
-            background: transparent;
-            border-top: 2px solid rgba(212, 167, 106, 0.8);
-            margin-top: 60px;
-            margin-bottom: 0;
-        }
-        
-        .footer-text {
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.95rem;
-            color: #6b4540;
-            margin-bottom: 8px;
-            font-weight: 400;
-        }
-        
-        .footer-tagline {
-            font-family: 'Nunito', sans-serif;
-            font-size: 0.85rem;
-            color: #8b6858;
-            font-weight: 300;
-            font-style: italic;
-        }
     </style>
 </head>
 <body ng-controller="MainController">
@@ -574,16 +556,12 @@
         <button onclick="window.history.back()" class="back-button">← Back</button>
 
         <div class="page-header">
-            <h1>Sohra</h1>
-            <h2>Light Body Being</h2>
+            <h1>All Meetings</h1>
+            <h2>Community Gatherings & Sacred Circles</h2>
         </div>
 
-        <img src="assets/images/sohra.jpg" alt="Sohra" class="profile-image">
-
         <div class="content-section">
-            <p>Sohra is a Light Body being — a presence beyond form, channeled through William to guide seekers on the path of effortless awakening. She does not speak of struggle, effort, or striving. Instead, she points to what is already here: the Light Body, always present, always whole, waiting only to be recognized.</p>
-            
-            <p>Her teachings are not doctrines to follow but invitations to rest in resonance. She offers Light Body meditations — not as practices to perfect, but as doorways to remembering. Through her channeling, Sohra speaks directly to the heart, bypassing the mind's endless questions and returning us to the simplicity of being.</p>
+            <p>Explore all our community gatherings, healing circles, and consciousness expansion offerings. Each gathering provides unique opportunities for connection, growth, and awakening.</p>
         </div>
         
         <!-- Footer -->
@@ -672,7 +650,7 @@
                 leftDiv.style.pointerEvents = 'none';
                 body.appendChild(leftDiv);
                 
-                // Right side
+                // Right side (mirrored)
                 const rightDiv = document.createElement('div');
                 rightDiv.style.position = 'absolute';
                 rightDiv.style.right = '0';
@@ -682,20 +660,18 @@
                 rightDiv.style.backgroundImage = `url('assets/images/${imageName}')`;
                 rightDiv.style.backgroundSize = '100% 100%';
                 rightDiv.style.backgroundRepeat = 'no-repeat';
+                rightDiv.style.transform = 'scaleX(-1)';
                 rightDiv.style.opacity = '0.6';
                 rightDiv.style.zIndex = '1';
                 rightDiv.style.pointerEvents = 'none';
-                rightDiv.style.transform = 'scaleX(-1)';
                 body.appendChild(rightDiv);
             }
         }
         
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            createAlternatingBars();
-            // Recreate bars if page content changes height
-            setTimeout(createAlternatingBars, 1000);
-        });
+        // Call initially and on window resize/load
+        createAlternatingBars();
+        window.addEventListener('load', createAlternatingBars);
+        window.addEventListener('resize', createAlternatingBars);
     </script>
 </body>
 </html>
