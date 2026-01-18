@@ -7,7 +7,14 @@
     "build": "echo 'Static site - no build needed'",
     "start": "echo 'Static site deployed'"
   },
-  "keywords": ["healing", "wellness", "spiritual"],
+  "keywords": [
+    "healing",
+    "wellness",
+    "spiritual"
+  ],
   "author": "Ootahgonah Team",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "resend": "^3.5.0"
+  }
 }

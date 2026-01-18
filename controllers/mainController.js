@@ -56,23 +56,53 @@ angular.module('ootahgonahApp')
     // Form submission handler
     $scope.submitForm = function() {
         if ($scope.contactForm.$valid) {
-            console.log('Form submitted:', $scope.formData);
+            $scope.formSubmitting = true;
 
-            $scope.successMessage = 'Thank you for stepping through the portal. We will connect with you soon.';
-            $scope.formSubmitted = true;
+            // Send form data to Vercel API endpoint
+            fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify($scope.formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    $scope.$apply(function() {
+                        $scope.successMessage = 'Thank you for stepping through the portal. We will connect with you soon.';
+                        $scope.formSubmitted = true;
+                        $scope.formSubmitting = false;
+                    });
 
-            // Reset form after 3 seconds
-            $timeout(function() {
-                $scope.formData = {
-                    name: '',
-                    email: '',
-                    phone: '',
-                    message: ''
-                };
-                $scope.contactForm.$setPristine();
-                $scope.contactForm.$setUntouched();
-                $scope.formSubmitted = false;
-            }, 3000);
+                    // Reset form after 3 seconds
+                    $timeout(function() {
+                        $scope.formData = {
+                            name: '',
+                            email: '',
+                            phone: '',
+                            message: ''
+                        };
+                        $scope.contactForm.$setPristine();
+                        $scope.contactForm.$setUntouched();
+                        $scope.formSubmitted = false;
+                    }, 3000);
+                } else {
+                    throw new Error(data.error || 'Failed to send');
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+                $scope.$apply(function() {
+                    $scope.successMessage = 'There was an issue sending your message. Please try the WhatsApp option below.';
+                    $scope.formSubmitted = true;
+                    $scope.formSubmitting = false;
+                });
+
+                $timeout(function() {
+                    $scope.formSubmitted = false;
+                }, 5000);
+            });
         }
     };
 

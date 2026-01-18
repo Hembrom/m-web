@@ -13,7 +13,7 @@
         .left-delta-bar,
         .right-delta-bar {
             position: absolute !important;
-            width: 11% !important;
+            width: 16% !important; /* Changed from 11% to 16% */
             background-size: 100% auto !important;
             background-repeat: no-repeat !important;
             z-index: 1 !important;
@@ -256,6 +256,112 @@
             color: #8b6858;
             font-weight: 300;
         }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .offerings-image-container {
+                position: relative;
+                max-width: 90%;
+                margin: 0 auto;
+            }
+
+            .offerings-image {
+                width: 100%;
+                height: auto;
+            }
+
+            /* Increase touch target sizes for mobile */
+            .offerings-image-container a {
+                min-height: 50px !important;
+                height: 15% !important;
+            }
+
+            .offerings-container h2 {
+                font-size: 2rem;
+                margin-bottom: 25px;
+            }
+
+            /* Adjust floating menu for mobile */
+            .floating-menu {
+                left: 10px;
+                right: 10px;
+                bottom: 15px;
+                gap: 12px;
+                padding: 10px 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .menu-icon {
+                width: 42px !important;
+                height: 42px !important;
+                min-width: 42px;
+                min-height: 42px;
+            }
+
+            /* Ensure bars work on mobile */
+            .left-bar, .right-bar, .left-delta-bar, .right-delta-bar {
+                width: 5% !important;
+            }
+
+            .left-knot, .right-knot {
+                width: 8%;
+                background-size: 80% auto;
+            }
+
+            .left-knot {
+                left: 0.5%;
+            }
+
+            .right-knot {
+                right: 0.5%;
+            }
+
+            .main-content {
+                left: 10%;
+                right: 10%;
+                width: 80%;
+                padding: 10vh 20px 180px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .offerings-container h2 {
+                font-size: 1.6rem;
+            }
+
+            .offerings-image-container a {
+                min-height: 40px !important;
+                height: 14% !important;
+            }
+
+            .main-content {
+                left: 5%;
+                right: 5%;
+                width: 90%;
+                padding: 8vh 15px 150px 15px;
+            }
+
+            .floating-menu {
+                gap: 8px;
+                padding: 8px 12px;
+                bottom: 10px;
+                left: 5px;
+                right: 5px;
+            }
+
+            .menu-icon {
+                width: 38px !important;
+                height: 38px !important;
+                min-width: 38px;
+                min-height: 38px;
+            }
+
+            .left-knot, .right-knot {
+                width: 6%;
+                background-size: 100% auto;
+            }
+        }
     </style>
 </head>
 <body ng-controller="MainController">
@@ -323,61 +429,12 @@
 
         <!-- Section Divider -->
         <div class="section-divider"></div>
-
-        <!-- Constellation Section -->
-        <div id="constellation" class="constellation-container">
-            <h2>The Constellations</h2>
-            <div class="constellation-section">
-                <div class="constellation-text">
-                    <p>Ootahgonah is carried by a constellation of companions — Light Body beings as guides, enlightened masters as teachers, and fellow travelers — each holding a unique thread of the vision.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Companion Profiles -->
-        <div class="companion-profiles">
-            <h2>Healing Companions</h2>
-            
-            <!-- Amit - Image Left, Text Right -->
-            <div class="companion-row">
-                <div class="companion-image-left">
-                    <img src="assets/images/amit.jpg" alt="Amit">
-                </div>
-                <div class="companion-text-right">
-                    <h3>Amit</h3>
-                    <p>A seeker of truth and light, walking the path of transformation and service. Amit brings grounded wisdom and compassionate presence to the circle.</p>
-                </div>
-            </div>
-
-            <!-- Apurva - Image Right, Text Left -->
-            <div class="companion-row">
-                <div class="companion-text-left">
-                    <h3>Apurva</h3>
-                    <p>A devoted practitioner channeling healing energy and grace. Apurva embodies the balance of strength and tenderness in service to the collective.</p>
-                </div>
-                <div class="companion-image-right">
-                    <img src="assets/images/apurva.jpg" alt="Apurva">
-                </div>
-            </div>
-
-            <!-- Hether - Image Left, Text Right -->
-            <div class="companion-row">
-                <div class="companion-image-left">
-                    <img src="assets/images/heather.jpg" alt="Hether">
-                </div>
-                <div class="companion-text-right">
-                    <h3>Hether</h3>
-                    <p>A gentle soul radiating kindness and wisdom, Hether walks the path of love and understanding, offering healing presence and sacred guidance to all who cross her path.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section Divider -->
-        <div class="section-divider"></div>
-          <div id="constellation" class="constellation-container">
+        
+        <!-- The Guru's Section -->
+        <div id="gurus" class="constellation-container">
             <h2>The Guru's</h2>
         </div>
-
+        
         <!-- Constellation Detail Section -->
         <div class="constellation-detail" id="guides">
             <!-- Left Column - Sohra -->
@@ -402,29 +459,80 @@
                 <img src="assets/images/kkknot.jpg" alt="KKKnot" class="kkknot-image">
                 <div class="sohra-text">William</div>
                 <div class="pretext-container" onclick="window.location.href='william.html'">
-                    <div class="sohra-top-half" style="background-image: url('assets/images/will.jpg');"></div>
+                    <div class="sohra-top-half" style="background-image: url('assets/images/William1.jpeg');"></div>
                     <div class="text-bottom-half">
                         <p>An enlightened teacher in Oregon devoted to the Light Body. He channels Sohra and practices Ujrayaan Buddhism and yoga, embodying effortless effort.</p>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+        
+        <!-- Constellation Section -->
+        <div id="constellation" class="constellation-container">
+            <h2>The Constellations</h2>
+            <div class="constellation-section">
+                <div class="constellation-text">
+                    <p>Ootahgonah is carried by a constellation of companions — Light Body beings as guides, enlightened masters as teachers, and fellow travelers — each holding a unique thread of the vision.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Companion Profiles -->
+        <div class="companion-profiles">
+            <h2>Healing Companions</h2>
+            
+            <!-- Amit - Image Left, Text Right -->
+            <div class="companion-row" onclick="window.location.href='amit.html'" style="cursor: pointer;">
+                <div class="companion-image-left">
+                    <img src="assets/images/amit.jpg" alt="Amit">
+                </div>
+                <div class="companion-text-right">
+                    <h3>Amit</h3>
+                    <p>A seeker of truth and light, walking the path of transformation and service. Amit brings grounded wisdom and compassionate presence to the circle.</p>
+                </div>
+            </div>
+
+            <!-- Apurva - Image Right, Text Left -->
+            <div class="companion-row" onclick="window.location.href='apurva.html'" style="cursor: pointer;">
+                <div class="companion-text-left">
+                    <h3>Apurva</h3>
+                    <p>A devoted practitioner channeling healing energy and grace. Apurva embodies the balance of strength and tenderness in service to the collective.</p>
+                </div>
+                <div class="companion-image-right">
+                    <img src="assets/images/apurva.jpg" alt="Apurva">
+                </div>
+            </div>
+
+            <!-- Hether - Image Left, Text Right -->
+            <div class="companion-row" onclick="window.location.href='heather.html'" style="cursor: pointer;">
+                <div class="companion-image-left">
+                    <img src="assets/images/heather.jpg" alt="Hether">
+                </div>
+                <div class="companion-text-right">
+                    <h3>Hether</h3>
+                    <p>A gentle soul radiating kindness and wisdom, Hether walks the path of love and understanding, offering healing presence and sacred guidance to all who cross her path.</p>
+                </div>
+            </div>
+        </div>
 
         <!-- Section Divider -->
         <div class="section-divider"></div>
-
+        
         <!-- Practices and Offerings Section -->
         <div id="offerings" class="offerings-container">
             <h2>Practices and Offerings</h2>
             <div class="offerings-image-container">
-                <img src="assets/images/offering.png" alt="Practices and Offerings" class="offerings-image">
+                <img src="assets/images/circle100.png" alt="Practices and Offerings" class="offerings-image">
                 
                 <!-- Hexagonal arrangement with invisible clickable areas -->
                 <!-- Top Center - One on One -->
-                <a href="one-on-one-circle.html" style="position: absolute; top: 10%; left: 35%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="One on One Circle"></a>
+                <a href="one-on-one-circle.html" style="position: absolute; top: 10%; left: 35%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="One on One Healing Circle"></a>
                 
                 <!-- Top Right - Healing Sessions -->
-                <a href="healing-sessions.html" style="position: absolute; top: 25%; right: 10%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Healing Sessions"></a>
+                <a href="whatsapp-community.html" style="position: absolute; top: 25%; right: 10%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="WhatsApp Community"></a>
                 
                 <!-- Bottom Right - Retreats & Staycations -->
                 <a href="retreats-staycations.html" style="position: absolute; top: 55%; right: 10%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Retreats & Staycations"></a>
@@ -440,6 +548,9 @@
                 
                 <!-- Center - Join the Circle -->
                 <a ng-click="scrollTo('contact')" style="position: absolute; top: 40%; left: 35%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="Join the Circle"></a>
+                
+                <!-- Right Side - All Meetings -->
+                <a href="all-meetings.html" style="position: absolute; top: 75%; right: 25%; width: 30%; height: 12%; cursor: pointer; z-index: 5; display: block;" title="All Meetings"></a>
             </div>
         </div>
         
@@ -519,7 +630,12 @@
         <div class="menu-icon" data-section="home" data-label="Home" ng-click="scrollTo('home')" title="Home"></div>
         <div class="menu-icon" data-section="vision" data-label="Vision" ng-click="scrollTo('vision')" title="Vision"></div>
         <div class="menu-icon" data-section="constellation" data-label="Constellation" ng-click="scrollTo('constellation')" title="Constellation"></div>
-        <div class="menu-icon" data-section="offerings" data-label="Offerings" ng-click="scrollTo('offerings')" title="Offerings"></div>
+        <div class="menu-with-submenu">
+            <div class="menu-icon" data-section="offerings" data-label="Offerings" ng-click="scrollTo('offerings')" title="Offerings"></div>
+            <div class="submenu">
+                <div class="submenu-item" onclick="window.location.href='books-and-videos.html'">Books and Videos</div>
+            </div>
+        </div>
         <div class="menu-icon" data-section="contact" data-label="Join the Circle" ng-click="scrollTo('contact')" title="Join the Circle"></div>
     </div>
 
